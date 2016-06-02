@@ -16,3 +16,6 @@ _book
 *.pdf
 
 .DS_Store
+
+#language/lessons specific ignores
+.ipynb_checkpoints
