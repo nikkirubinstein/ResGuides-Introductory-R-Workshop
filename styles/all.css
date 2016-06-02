@@ -56,8 +56,8 @@ h6 {
 .book .book-summary ul.summary > li:first-child a {
   font: 0/0 none;
   background: transparent url("../images/ResBaz.png") no-repeat left top;
-  height: 100px;
-  width: 100%;
+  height: 70px;
+  width: 70%;
 }
 .book .book-body .page-wrapper .page-inner section.normal a {
   color: #2aabe2;
