@@ -1,7 +1,7 @@
 {
     "name": "ResGuides: Lessons for next generation digital reasearch tools",
     "version": "0.0.1",
-    "description": "Drupal Commerce is an open source eCommerce framework that is designed to enable flexible eCommerce for websites and applications based on Drupal.",
+    "description": "ResPlat is the department within the University of Melbourne that helps researchers with the research-specific IT things they do.",
     "repository": {
         "type": "git",
         "url": "https://github.com/drupalcommerce/commerce-docs"
