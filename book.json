@@ -7,16 +7,20 @@
         "url": "https://github.com/drupalcommerce/commerce-docs"
     },
     "plugins": [
-        "edit-link", "ga", "ungrey", "toggle-chapters"
+        "edit-link",
+        "ga",
+        "ungrey",
+        "toggle-chapters",
+        "mathjax"
     ],
     "pluginsConfig": {
+        "edit-link": {
+            "base": "https://github.com/drupalcommerce/commerce-docs/edit/master",
+            "label": "Edit This Page"
+        },
         "ga": {
             "token": "UA-12478122-2"
-        },
-        "edit-link": {
-           "base": "https://github.com/drupalcommerce/commerce-docs/edit/master",
-           "label": "Edit This Page"
-       }
+        }
     },
     "styles": {
         "website": "styles/all.css",
@@ -26,8 +30,8 @@
         "epub": "styles/all.css"
     },
     "links": {
-      "sidebar": {
-        "DrupalCommerce.org": "https://drupalcommerce.org"
-      }
+        "sidebar": {
+            "DrupalCommerce.org": "https://drupalcommerce.org"
+        }
     }
 }
