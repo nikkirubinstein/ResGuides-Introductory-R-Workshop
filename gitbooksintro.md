@@ -1,4 +1,4 @@
-# Creating your own lessons
+n# Creating your own lessons
 
 Follow these instructions to create you own `ResGuides` lesson using this book as a template. 
 
@@ -9,10 +9,9 @@ Create a __copy__ of this repository in using the github [importer](https://gith
 
 ##Step 2: gitbook.
 
-Go to [gitbook.com](gitbook.com), and then 'new book'. Now, this is bit is __important__ make sure you choose the github, then select the github repository you set up.
+Go to [gitbook.com](gitbook.com), and then click `new book`. This bit is __important__: in the new book window cmake sure you choose the github option in the top menu. Now scroll down and select the new github repository you set up.
 
-Great. This should have set up the webhooks needed to update your girbook from github. Let's check that by adding some content.
- 
+Nice work. This should have set up the webhooks needed to update your gitbook from github. Let's check that by adding some content.
 
 
 ##Step 3: Adding content
