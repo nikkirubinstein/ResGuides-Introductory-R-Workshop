@@ -1,4 +1,4 @@
-n# Creating your own lessons
+# Creating your own lessons
 
 Follow these instructions to create you own `ResGuides` lesson using this book as a template. 
 
