@@ -1,17 +1,12 @@
-# gitbooks_intro
+# Creating your own lessons
 
-
-# gettingstarted
-
-This is a tutorial on how to create a minimal gitbook with github integration. This workflow will set up a gitbook from an existing github repository, this way the webhooks enabling syncing get automatically created and you can edit your book from the the github or gitbook.com end.
-
+Follow these instructions to create you own `ResGuides` lesson using this book as a template. 
 
 ##Step 1: github
 
+Create a __copy__ of this repository in using the github [importer](https://github.com/new/import). Make sure to give your new lesson a new name, e.g. `ResGuides: Data Science with Python`
 
 
-
-Create a copy of this repository using the github importer...https://github.com/new/import
 
 [](https://help.github.com/articles/creating-a-new-repository/)
 
