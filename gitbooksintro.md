@@ -7,19 +7,9 @@ Follow these instructions to create you own `ResGuides` lesson using this book a
 Create a __copy__ of this repository in using the github [importer](https://github.com/new/import). Make sure to give your new lesson a new name, e.g. `ResGuides: Data Science with Python`
 
 
-
-[](https://help.github.com/articles/creating-a-new-repository/)
-
-* When you create a github repository you can choose a customised gitbook `.gitignore` file. 
-* Add a license if one of the default options is suitable
-* Click `create repository`
-* Make sure to add a readme.md file (add readme button)
-
-The repository’s main README.md is going to be the book’s introduction.
-
 ##Step 2: gitbook.
 
-Go to [gitbook.com](gitbook.com), and then 'new book'. Now, this is __importante__ make sure you choose the github, then select the github repository you set up.
+Go to [gitbook.com](gitbook.com), and then 'new book'. Now, this is bit is __important__ make sure you choose the github, then select the github repository you set up.
 
 Great. This should have set up the webhooks needed to update your girbook from github. Let's check that by adding some content.
  
