@@ -4,7 +4,7 @@
     "description": "ResPlat is the department within the University of Melbourne that helps researchers with the research-specific IT things they do.",
     "repository": {
         "type": "git",
-        "url": "https://github.com/drupalcommerce/commerce-docs"
+        "url": "https://github.com/resbaz/ResGuides-Gitbook"
     },
     "plugins": [
         "edit-link",
