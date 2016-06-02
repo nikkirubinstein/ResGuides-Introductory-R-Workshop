@@ -32,6 +32,11 @@ h5,
 h6 {
   font-family: 'MuseoSlab', Century Gothic, Apple Gothic, sans-serif;
 }
+
+.book-body .book-header {
+background-color: #00779c;
+color: white;
+}
 .book .book-body .page-wrapper .page-inner section.normal h1 {
   font-weight: 200;
 }
@@ -75,10 +80,6 @@ h6 {
   border-radius: 0;
 }
 
-.book-body .book-header {
-background-color: #00779c;
-color: white;
-}
 
 .gitbook-link { display: none !important; }
 
