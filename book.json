@@ -3,4 +3,11 @@
         "mathjax"
     ],
     "pluginsConfig": {}
+     "styles": {
+        "website": "styles/all.css",
+        "ebook": "styles/all.css",
+        "pdf": "styles/all.css",
+        "mobi": "styles/all.css",
+        "epub": "styles/all.css"
+    },
 }
