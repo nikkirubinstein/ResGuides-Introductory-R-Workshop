@@ -4,7 +4,7 @@ Follow these instructions to create you own `ResGuides` lesson using this book a
 
 ##Step 1: github
 
-Create a __copy__ of this repository in using the github [importer](https://github.com/new/import). Make sure to give your new lesson a new name, e.g. `ResGuides: Data Science with Python`
+Create a __copy__ of this repository in using the github [importer](https://github.com/new/import). Paste this link in to the importer: https://github.com/resbaz/ResGuides-Gitbook.git. Make sure to give your new lesson a new name, e.g. `ResGuides: Data Science with Python`
 
 
 ##Step 2: gitbook.
