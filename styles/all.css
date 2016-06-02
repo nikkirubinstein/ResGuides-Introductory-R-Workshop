@@ -56,8 +56,8 @@ h6 {
 .book .book-summary ul.summary > li:first-child a {
   font: 0/0 none;
   background: transparent url("../images/ResBaz_vector.png") no-repeat left top;
-  height: 300px;
-  width: 300%;
+  height: 250px;
+  width: 250%;
 }
 .book .book-body .page-wrapper .page-inner section.normal a {
   color: #2aabe2;
