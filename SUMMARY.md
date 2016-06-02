@@ -1,4 +1,4 @@
 # Summary
 
-* gitbooks_intro
+* [gitbooks_intro](gitbooksintro.md)
 
