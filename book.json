@@ -12,7 +12,8 @@
         "ungrey",
         "toggle-chapters",
         "mathjax",
-        "sectionx"
+        "sectionx",
+        "youtubex"
     ],
     "pluginsConfig": {
         "edit-link": {
