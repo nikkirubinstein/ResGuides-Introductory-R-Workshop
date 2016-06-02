@@ -8,7 +8,12 @@ This is a tutorial on how to create a minimal gitbook with github integration. T
 
 ##Step 1: github
 
-Create a github repository...[](https://help.github.com/articles/creating-a-new-repository/)
+
+
+
+Create a copy of this repository using the github importer...https://github.com/new/import
+
+[](https://help.github.com/articles/creating-a-new-repository/)
 
 * When you create a github repository you can choose a customised gitbook `.gitignore` file. 
 * Add a license if one of the default options is suitable
