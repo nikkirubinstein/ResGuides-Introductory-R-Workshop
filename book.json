@@ -11,7 +11,8 @@
         "ga",
         "ungrey",
         "toggle-chapters",
-        "mathjax"
+        "mathjax",
+        "sectionx"
     ],
     "pluginsConfig": {
         "edit-link": {
