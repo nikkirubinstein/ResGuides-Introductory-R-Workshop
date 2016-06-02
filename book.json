@@ -17,7 +17,7 @@
     ],
     "pluginsConfig": {
         "edit-link": {
-            "base": "https://github.com/drupalcommerce/commerce-docs/edit/master",
+            "base": "https://github.com/resbaz/ResGuides-Gitbook/edit/master",
             "label": "Edit This Page"
         },
         "ga": {
