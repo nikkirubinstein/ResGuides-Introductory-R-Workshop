@@ -74,7 +74,16 @@ h6 {
   background: #f1f1f1;
   border-radius: 0;
 }
+
+.book-body .book-header {
+background-color: #00779c;
+color: white;
+}
+
 .gitbook-link { display: none !important; }
+
+
+
 
 .panel-default>.panel-heading {
 background-color: #FF6700;
