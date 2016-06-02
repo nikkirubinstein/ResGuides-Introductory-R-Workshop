@@ -2,9 +2,13 @@
 
 ## Challenges:
 
-<!--sec data-title="Introduction" data-id="section0" data-show=true ces-->
+<!--sec data-title="Challenge 1" data-id="challenge" data-show=true ces-->
 
-Insert markdown content here (you should start with h3 if you use heading).
+Your first challenge is
+
+```python
+alist = [1,2,'three']
+```
 
 <!--endsec-->
 
