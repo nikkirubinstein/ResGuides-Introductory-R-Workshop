@@ -1,5 +1,5 @@
 # Summary
 
-* [gitbooks_intro](gitbooksintro.md)
+* [chapter 1]()
   * [Getting started](content/section1.md)
-
+* [gitbooks_intro](gitbooksintro.md)
