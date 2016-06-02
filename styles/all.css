@@ -75,3 +75,7 @@ h6 {
   border-radius: 0;
 }
 .gitbook-link { display: none !important; }
+
+.panel-default>.panel-heading {
+background-color: #FF801D;
+}
