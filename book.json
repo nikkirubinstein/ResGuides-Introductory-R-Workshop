@@ -14,7 +14,8 @@
         "toggle-chapters",
         "mathjax",
         "sectionx",
-        "youtubex"
+        "youtubex",
+        "section"
     ],
     "pluginsConfig": {
         "edit-link": {
@@ -26,7 +27,10 @@
         }
     },
     "styles": {
-        "website": ["styles/all.css","styles/sectionx.js"],
+        "website": [
+            "styles/all.css",
+            "styles/sectionx.js"
+        ],
         "ebook": "styles/all.css",
         "pdf": "styles/all.css",
         "mobi": "styles/all.css",
