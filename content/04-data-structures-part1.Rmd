@@ -1,20 +1,25 @@
 ---
-layout: page
-title: R for reproducible scientific analysis
-subtitle: Data structures
-minutes: 90
+output: 
+  md_document
 ---
 
-```{r, include=FALSE}
-source("tools/chunk-options.R")
-```
+# Data structures
 
-> ## Learning Objectives {.objectives}
->
-> - To be aware of the different types of data
-> - To begin exploring the data.frame, and understand how it's related to vectors, factors and lists
-> - To be able to ask questions from R about the type, class, and structure of an object.
->
+<!--sec data-title="Learning Objectives" data-id="obj" data-show=true data-collapse=false ces-->
+
+- To be aware of the different types of data
+- To begin exploring the data.frame, and understand how it's related to vectors, factors and lists
+- To be able to ask questions from R about the type, class, and structure of an object.
+
+<!--endsec-->
+
+---
+
+**Table of Contents**
+
+<!-- toc -->
+
+---
 
 One of R's most powerful features is its ability to deal with tabular data - like what you might already have in a spreadsheet or a CSV. Let's start by making a toy dataset in your `data/` directory, called `feline-data.csv`:
 
@@ -29,13 +34,13 @@ tabby,3.2,TRUE
 cats.df <- data.frame(coat = c("calico", "black", "tabby"), 
                       weight = c(2.1, 5.0, 3.2), 
                       likes_string = c(TRUE, FALSE, TRUE))
-write.csv(cats.df, "data/feline-data.csv", row.names = FALSE)
+write.csv(cats.df, "../data/feline-data.csv", row.names = FALSE)
 ```
 
 We can load this into R via the following:
 
 ```{r}
-cats <- read.csv(file = "data/feline-data.csv")
+cats <- read.csv(file = "../data/feline-data.csv")
 cats
 ```
 
@@ -80,10 +85,17 @@ Note the `L` suffix to insist that a number is an integer. No matter how complic
 tabby,2.3 or 2.4,TRUE
 ```
 
+```{r, echo = FALSE}
+cats.df <- data.frame(coat = c("calico", "black", "tabby", "tabby"), 
+                      weight = c(2.1, 5.0, 3.2, '2.3 or 2.4'), 
+                      likes_string = c(TRUE, FALSE, TRUE, TRUE))
+write.csv(cats.df, "../data/feline-data.csv", row.names = FALSE)
+```
+
 Reload your cats data like before, and check what type of data we find in the `weight` column:
 
 ```{r}
-cats <- read.csv(file="data/feline-data.csv")
+cats <- read.csv(file="../data/feline-data.csv")
 typeof(cats$weight[1])
 ```
 
@@ -104,10 +116,17 @@ black,5.0,FALSE
 tabby,3.2,TRUE
 ```
 
+```{r, echo = FALSE}
+cats <- data.frame(coat = c("calico", "black", "tabby"), 
+                      weight = c(2.1, 5.0, 3.2), 
+                      likes_string = c(TRUE, FALSE, TRUE))
+write.csv(cats.df, "../data/feline-data.csv", row.names = FALSE)
+```
+
 And back in RStudio:
 
 ```
-cats <- read.csv(file="data/feline-data.csv")
+cats <- read.csv(file="../data/feline-data.csv")
 ```
 
 ## Vectors & Type Coercion
@@ -140,11 +159,12 @@ str(cats$weight)
 
 we see that that's a vector, too - *the columns of data we load into R data.frames are all vectors*, and that's the root of why R forces everything in a column to be the same basic data type.
 
-> ## Discussion 1 {.challenge}
->
-> Why is R so opinionated about what we put in our columns of data?
-> How does this help us?
->
+<!--sec data-title="Discussion 1" data-id="disc1" data-show=true data-collapse=true ces-->
+
+Why is R so opinionated about what we put in our columns of data?
+How does this help us?
+
+<!--endsec-->
 
 You can also make vectors with explicit contents with the concatenate function:
 
@@ -217,11 +237,11 @@ names_example
 names_example['b']
 ```
 
-> ## Challenge 1 {.challenge}
-> Start by making a vector with the numbers 11 to 20.
-> Then use the functions we just learned to extract the 3rd through 5th element in that vector into a new vector;
-> name the elements in that new vector 'S', 'W', 'C'.
->
+<!--sec data-title="Challenge 1" data-id="ch1" data-show=true data-collapse=false ces-->
+
+Start by making a vector with the numbers 11 to 20. Then use the functions we just learned to extract the 3rd through 5th element in that vector into a new vector; name the elements in that new vector 'S', 'W', 'C'.
+
+<!--endsec-->
 
 ## Factors
 
@@ -262,11 +282,11 @@ typeof(coats[1])
 typeof(CATegories[1])
 ```
 
-> ## Challenge 2 {.challenge}
-> Is there a factor in our `cats` data.frame? what is its name?
-> Try using `?read.csv` to figure out how to keep text columns as character vectors instead of factors;
-> then write a command or two to show that the factor in `cats` is actually is a character vector when loaded in this way.
->
+<!--sec data-title="Challenge 2" data-id="ch2" data-show=true data-collapse=false ces-->
+
+Is there a factor in our `cats` data.frame? what is its name? Try using `?read.csv` to figure out how to keep text columns as character vectors instead of factors; then write a command or two to show that the factor in `cats` is actually is a character vector when loaded in this way.
+
+<!--endsec-->
 
 In modeling functions, it's important to know what the baseline levels are. This is assumed to be the
 first factor, but by default factors are labeled in alphabetical order. You can change this by specifying the levels:
@@ -321,52 +341,43 @@ matrix_example[1,1]
 matrix_example
 ```
 
->
-> ## Challenge 3 {.challenge}
->
-> What do you think will be the result of
-> `length(matrix_example)`?
-> Try it.
-> Were you right? Why / why not?
->
+<!--sec data-title="Challenge 3" data-id="ch3" data-show=true data-collapse=false ces-->
 
->
-> ## Challenge 4 {.challenge}
->
-> Make another matrix, this time containing the numbers 1:50,
-> with 5 columns and 10 rows.
-> Did the `matrix` function fill your matrix by column, or by
-> row, as its default behaviour?
-> See if you can figure out how to change this.
-> (hint: read the documentation for `matrix`!)
->
+What do you think will be the result of `length(matrix_example)`? Try it. Were you right? Why / why not?
 
-> ## Challenge 5 {.challenge}
-> Create a list of length two containing a character vector for each of the sections in this part of the workshop:
->
-> - Data types
-> - Data structures
->
-> Populate each character vector with the names of the data types and data structures we've seen so far.
->
+<!--endsec-->
 
->
-> ## Challenge 6 {.challenge}
->
-> Consider the R output of the matrix below:
-> ```{r, echo=FALSE}
-> matrix(c(4, 1, 9, 5, 10, 7), ncol = 2, byrow = TRUE)
-> ```
-> What was the correct command used to write this matrix? Examine
-> each command and try to figure out the correct one before typing them.
-> Think about what matrices the other commands will produce.
->
-> 1. `matrix(c(4, 1, 9, 5, 10, 7), nrow = 3)`
-> 2. `matrix(c(4, 9, 10, 1, 5, 7), ncol = 2, byrow = TRUE)`
-> 3. `matrix(c(4, 9, 10, 1, 5, 7), nrow = 2)`
-> 4. `matrix(c(4, 1, 9, 5, 10, 7), ncol = 2, byrow = TRUE)`
->
+<!--sec data-title="Challenge 4" data-id="ch4" data-show=true data-collapse=false ces-->
 
+Make another matrix, this time containing the numbers 1:50, with 5 columns and 10 rows. Did the `matrix` function fill your matrix by column, or by row, as its default behaviour? See if you can figure out how to change this. (hint: read the documentation for `matrix`!)
+
+<!--endsec-->
+
+<!--sec data-title="Challenge 5" data-id="ch5" data-show=true data-collapse=false ces-->
+
+Create a list of length two containing a character vector for each of the sections in this part of the workshop:
+
+- Data types
+- Data structures
+
+Populate each character vector with the names of the data types and data structures we've seen so far.
+
+<!--endsec-->
+
+<!--sec data-title="Challenge 6" data-id="ch6" data-show=true data-collapse=false ces-->
+
+Consider the R output of the matrix below:
+```{r, echo=FALSE}
+matrix(c(4, 1, 9, 5, 10, 7), ncol = 2, byrow = TRUE)
+```
+What was the correct command used to write this matrix? Examine each command and try to figure out the correct one before typing them. Think about what matrices the other commands will produce.
+
+1. `matrix(c(4, 1, 9, 5, 10, 7), nrow = 3)`
+2. `matrix(c(4, 9, 10, 1, 5, 7), ncol = 2, byrow = TRUE)`
+3. `matrix(c(4, 9, 10, 1, 5, 7), nrow = 2)`
+4. `matrix(c(4, 1, 9, 5, 10, 7), ncol = 2, byrow = TRUE)`
+
+<!--endsec-->
 
 
 
@@ -376,83 +387,76 @@ matrix_example
 
 ## Challenge solutions
 
-> ## Discussion 1 {.challenge}
-> By keeping everything in a column the same, we allow ourselves to make simple assumptions about our data;
-> if you can interpret one entry in the column as a number, then you can interpret *all* of them as numbers,
-> so we don't have to check every time. This consistency, like consistently using the same separator in our
-> data files, is what people mean when they talk about *clean data*; in the long run, strict consistency goes
-> a long way to making our lives easier in R.
->
+<!--sec data-title="Solution to Discussion 1" data-id="disc1sol" data-show=true data-collapse=true ces-->
 
-> ## Solution to Challenge 1 {.challenge}
-> ```{r}
-> x <- c(11:20)
-> subset <- x[3:5]
-> names(subset) <- c('S', 'W', 'C')
-> ```
->
+By keeping everything in a column the same, we allow ourselves to make simple assumptions about our data; if you can interpret one entry in the column as a number, then you can interpret *all* of them as numbers, so we don't have to check every time. This consistency, like consistently using the same separator in our data files, is what people mean when they talk about *clean data*; in the long run, strict consistency goes a long way to making our lives easier in R.
 
-> ## Solution to Challenge 2 {.challenge}
-> ```{r}
-> cats <- read.csv(file="data/feline-data.csv", stringsAsFactors=FALSE)
-> str(cats$coat)
-> ```
-> Note: new students find the help files difficult to understand; make sure to let them know
-> that this is typical, and encourage them to take their best guess based on semantic meaning,
-> even if they aren't sure.
+<!--endsec-->
 
->
-> ## Solution to challenge 3 {.challenge}
->
-> What do you think will be the result of
-> `length(x)`?
->
-> ```{r}
-> length(matrix_example)
-> ```
->
-> Because a matrix is really just a vector with added dimension attributes, `length`
-> gives you the total number of elements in the matrix.
->
+<!--sec data-title="Solution to Challenge 1" data-id="ch1sol" data-show=true data-collapse=true ces-->
 
->
-> ## Solution to challenge 4 {.challenge}
->
-> Make another matrix, this time containing the numbers 1:50,
-> with 5 columns and 10 rows.
-> Did the `matrix` function fill your matrix by column, or by
-> row, as its default behaviour?
-> See if you can figure out how to change this.
-> (hint: read the documentation for `matrix`!)
->
-> ```{r, eval=FALSE}
+```{r}
+x <- c(11:20)
+subset <- x[3:5]
+names(subset) <- c('S', 'W', 'C')
+```
+
+<!--endsec-->
+
+<!--sec data-title="Solution to Challenge 2" data-id="ch2sol" data-show=true data-collapse=true ces-->
+
+```{r}
+cats <- read.csv(file="../data/feline-data.csv", stringsAsFactors=FALSE)
+str(cats$coat)
+```
+Note: new students find the help files difficult to understand; make sure to let them know that this is typical, and encourage them to take their best guess based on semantic meaning, even if they aren't sure.
+
+<!--endsec-->
+
+<!--sec data-title="Solution to Challenge 3" data-id="ch3sol" data-show=true data-collapse=true ces-->
+
+What do you think will be the result of `length(x)`?
+
+```{r}
+length(matrix_example)
+```
+
+Because a matrix is really just a vector with added dimension attributes, `length` gives you the total number of elements in the matrix.
+
+<!--endsec-->
+
+<!--sec data-title="Solution to Challenge 4" data-id="ch4sol" data-show=true data-collapse=true ces-->
+
+Make another matrix, this time containing the numbers 1:50, with 5 columns and 10 rows. Did the `matrix` function fill your matrix by column, or by row, as its default behaviour? See if you can figure out how to change this. (hint: read the documentation for `matrix`!)
+
+```{r, eval=FALSE}
 > x <- matrix(1:50, ncol=5, nrow=10)
 > x <- matrix(1:50, ncol=5, nrow=10, byrow = TRUE) # to fill by row
-> ```
->
+```
 
-> ## Solution to Challenge 5 {.challenge}
-> ```{r}
-> dataTypes <- c('double', 'complex', 'integer', 'character', 'logical')
-> dataStructures <- c('data.frame', 'vector', 'factor', 'list', 'matrix')
-> answer <- list(dataTypes, dataStructures)
-> ```
-> Note: it's nice to make a list in big writing on the board or taped to the wall
-> listing all of these types and structures - leave it up for the rest of the workshop
-> to remind people of the importance of these basics.
->
+<!--endsec-->
 
->
-> ## Solution to challenge 6 {.challenge}
->
-> Consider the R output of the matrix below:
-> ```{r, echo=FALSE}
+<!--sec data-title="Solution to Challenge 5" data-id="ch5sol" data-show=true data-collapse=true ces-->
+
+```{r}
+dataTypes <- c('double', 'complex', 'integer', 'character', 'logical')
+dataStructures <- c('data.frame', 'vector', 'factor', 'list', 'matrix')
+answer <- list(dataTypes, dataStructures)
+```
+Note: it's nice to make a list in big writing on the board or taped to the wall listing all of these types and structures - leave it up for the rest of the workshop to remind people of the importance of these basics.
+
+<!--endsec-->
+
+
+<!--sec data-title="Solution to Challenge 6" data-id="ch6sol" data-show=true data-collapse=true ces-->
+
+Consider the R output of the matrix below:
+```{r, echo=FALSE}
+matrix(c(4, 1, 9, 5, 10, 7), ncol = 2, byrow = TRUE)
+```
+What was the correct command used to write this matrix? Examine each command and try to figure out the correct one before typing them. Think about what matrices the other commands will produce.
+```{r, eval=FALSE}
 > matrix(c(4, 1, 9, 5, 10, 7), ncol = 2, byrow = TRUE)
-> ```
-> What was the correct command used to write this matrix? Examine
-> each command and try to figure out the correct one before typing them.
-> Think about what matrices the other commands will produce.
-> ```{r, eval=FALSE}
-> matrix(c(4, 1, 9, 5, 10, 7), ncol = 2, byrow = TRUE)
-> ```
->
+```
+
+<!--endsec-->
