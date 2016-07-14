@@ -1,3 +1,10 @@
+R for reproducible scientific analysis
+======================================
+
+Introduction to R and RStudio
+-----------------------------
+
+<!--sec data-title="Figure Description Structure" data-id="eg1" data-show=true data-collapse=false ces-->
 > Learning Objectives
 > -------------------
 >
@@ -10,6 +17,7 @@
 > -   To be able to call functions
 > -   Introduction to package management
 
+<!--endsec-->
 Introduction to RStudio
 -----------------------
 
@@ -397,7 +405,7 @@ function!
         }
         else all.names
     }
-    <bytecode: 0x2d3a458>
+    <bytecode: 0x30b7458>
     <environment: namespace:base>
 
 You can use `rm` to delete objects you no longer need:

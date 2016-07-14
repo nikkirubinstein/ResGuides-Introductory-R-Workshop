@@ -1,7 +1,4 @@
 ---
-title: "R for reproducible scientific analysis"
-subtitle: "Introduction to R and RStudio"
-date: March 22, 2005
 output: 
   md_document
 ---
@@ -9,6 +6,11 @@ output:
 ```{r, include=FALSE} 
 source("../tools/chunk-options.R")
 ```
+
+# R for reproducible scientific analysis
+## Introduction to R and RStudio
+
+<!--sec data-title="Figure Description Structure" data-id="eg1" data-show=true data-collapse=false ces-->
 
 > ## Learning Objectives {.objectives}
 >
@@ -20,6 +22,8 @@ source("../tools/chunk-options.R")
 > * To be able to call functions
 > * Introduction to package management
 > 
+
+<!--endsec-->
 
 ## Introduction to RStudio
 
