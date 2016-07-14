@@ -4,7 +4,7 @@ R for reproducible scientific analysis
 Introduction to R and RStudio
 -----------------------------
 
-<!--sec data-title="Figure Description Structure" data-id="eg1" data-show=true data-collapse=true ces-->
+<!--sec data-title="Figure Description Structure" data-id="eg1" data-show=true data-collapse=false ces-->
 > Learning Objectives
 > -------------------
 >
@@ -18,8 +18,6 @@ Introduction to R and RStudio
 > -   Introduction to package management
 
 <!--endsec-->
-
-
 Introduction to RStudio
 -----------------------
 
@@ -100,7 +98,7 @@ The simplest thing you could do with R is do arithmetic:
 
     1 + 100
 
-    [1] 101
+    ## [1] 101
 
 And R will print out the answer, with a preceding "\[1\]". Don't worry
 about this for now, we'll explain that later. For now think of it as
@@ -146,7 +144,7 @@ From highest to lowest precedence:
 
     3 + 5 * 2
 
-    [1] 13
+    ## [1] 13
 
 Use parentheses to group operations in order to force the order of
 evaluation if it differs from the default, or to make clear what you
@@ -154,7 +152,7 @@ intend.
 
     (3 + 5) * 2
 
-    [1] 16
+    ## [1] 16
 
 This can get unwieldy when not needed, but clarifies your intentions.
 Remember that others may later read your code.
@@ -171,7 +169,7 @@ Really small or large numbers get a scientific notation:
 
     2/10000
 
-    [1] 2e-04
+    ## [1] 2e-04
 
 Which is shorthand for "multiplied by `10^XX`". So `2e-4` is shorthand
 for `2 * 10^(-4)`.
@@ -180,7 +178,7 @@ You can write numbers in scientific notation too:
 
     5e3  # Note the lack of minus here
 
-    [1] 5000
+    ## [1] 5000
 
 Mathematical functions
 ----------------------
@@ -191,19 +189,19 @@ we type inside the parentheses is called the function's arguments:
 
     sin(1)  # trigonometry functions
 
-    [1] 0.841471
+    ## [1] 0.841471
 
     log(1)  # natural logarithm
 
-    [1] 0
+    ## [1] 0
 
     log10(10) # base-10 logarithm
 
-    [1] 1
+    ## [1] 1
 
     exp(0.5) # e^(1/2)
 
-    [1] 1.648721
+    ## [1] 1.648721
 
 Don't worry about trying to remember every function in R. You can simply
 look them up on google, or if you can remember the start of the
@@ -226,27 +224,27 @@ We can also do comparison in R:
 
     1 == 1  # equality (note two equals signs, read as "is equal to")
 
-    [1] TRUE
+    ## [1] TRUE
 
     1 != 2  # inequality (read as "is not equal to")
 
-    [1] TRUE
+    ## [1] TRUE
 
     1 <  2  # less than
 
-    [1] TRUE
+    ## [1] TRUE
 
     1 <= 1  # less than or equal to
 
-    [1] TRUE
+    ## [1] TRUE
 
     1 > 0  # greater than
 
-    [1] TRUE
+    ## [1] TRUE
 
     1 >= -9 # greater than or equal to
 
-    [1] TRUE
+    ## [1] TRUE
 
 > Tip: Comparing Numbers
 > ----------------------
@@ -279,7 +277,7 @@ later in something called a **variable**. `x` now contains the **value**
 
     x
 
-    [1] 0.025
+    ## [1] 0.025
 
 More precisely, the stored value is a *decimal approximation* of this
 fraction called a [floating point
@@ -291,7 +289,7 @@ used in place of a number in any calculation that expects a number:
 
     log(x)
 
-    [1] -3.688879
+    ## [1] -3.688879
 
 Notice also that variables can be reassigned:
 
@@ -334,16 +332,16 @@ variables and functions can have vectors as values. For example
 
     1:5
 
-    [1] 1 2 3 4 5
+    ## [1] 1 2 3 4 5
 
     2^(1:5)
 
-    [1]  2  4  8 16 32
+    ## [1]  2  4  8 16 32
 
     x <- 1:5
     2^x
 
-    [1]  2  4  8 16 32
+    ## [1]  2  4  8 16 32
 
 This is incredibly powerful; we will discuss this further in an upcoming
 lesson.
@@ -359,7 +357,7 @@ environment (your working R session):
 
     ls()
 
-    [1] "hook_error" "hook_in"    "hook_out"   "x"         
+    ## [1] "x"
 
 > Tip: hidden objects
 > -------------------
@@ -376,39 +374,39 @@ function!
 
     ls
 
-    function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE, 
-        pattern, sorted = TRUE) 
-    {
-        if (!missing(name)) {
-            pos <- tryCatch(name, error = function(e) e)
-            if (inherits(pos, "error")) {
-                name <- substitute(name)
-                if (!is.character(name)) 
-                    name <- deparse(name)
-                warning(gettextf("%s converted to character string", 
-                    sQuote(name)), domain = NA)
-                pos <- name
-            }
-        }
-        all.names <- .Internal(ls(envir, all.names, sorted))
-        if (!missing(pattern)) {
-            if ((ll <- length(grep("[", pattern, fixed = TRUE))) && 
-                ll != length(grep("]", pattern, fixed = TRUE))) {
-                if (pattern == "[") {
-                    pattern <- "\\["
-                    warning("replaced regular expression pattern '[' by  '\\\\['")
-                }
-                else if (length(grep("[^\\\\]\\[<-", pattern))) {
-                    pattern <- sub("\\[<-", "\\\\\\[<-", pattern)
-                    warning("replaced '[<-' by '\\\\[<-' in regular expression pattern")
-                }
-            }
-            grep(pattern, all.names, value = TRUE)
-        }
-        else all.names
-    }
-    <bytecode: 0x30b7458>
-    <environment: namespace:base>
+    ## function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE, 
+    ##     pattern, sorted = TRUE) 
+    ## {
+    ##     if (!missing(name)) {
+    ##         pos <- tryCatch(name, error = function(e) e)
+    ##         if (inherits(pos, "error")) {
+    ##             name <- substitute(name)
+    ##             if (!is.character(name)) 
+    ##                 name <- deparse(name)
+    ##             warning(gettextf("%s converted to character string", 
+    ##                 sQuote(name)), domain = NA)
+    ##             pos <- name
+    ##         }
+    ##     }
+    ##     all.names <- .Internal(ls(envir, all.names, sorted))
+    ##     if (!missing(pattern)) {
+    ##         if ((ll <- length(grep("[", pattern, fixed = TRUE))) && 
+    ##             ll != length(grep("]", pattern, fixed = TRUE))) {
+    ##             if (pattern == "[") {
+    ##                 pattern <- "\\["
+    ##                 warning("replaced regular expression pattern '[' by  '\\\\['")
+    ##             }
+    ##             else if (length(grep("[^\\\\]\\[<-", pattern))) {
+    ##                 pattern <- sub("\\[<-", "\\\\\\[<-", pattern)
+    ##                 warning("replaced '[<-' by '\\\\[<-' in regular expression pattern")
+    ##             }
+    ##         }
+    ##         grep(pattern, all.names, value = TRUE)
+    ##     }
+    ##     else all.names
+    ## }
+    ## <bytecode: 0x2fe9458>
+    ## <environment: namespace:base>
 
 You can use `rm` to delete objects you no longer need:
 
@@ -431,7 +429,7 @@ may just get an error message:
 
     rm(list <- ls())
 
-    Error in rm(list <- ls()): ... must contain names or character strings
+    ## Error in rm(list <- ls()): ... must contain names or character strings
 
 > Tip: Warnings vs. Errors
 > ------------------------
