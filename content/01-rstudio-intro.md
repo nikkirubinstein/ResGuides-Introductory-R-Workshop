@@ -399,7 +399,7 @@ function!
     ##     }
     ##     else all.names
     ## }
-    ## <bytecode: 0x18e7458>
+    ## <bytecode: 0x14c1458>
     ## <environment: namespace:base>
 
 You can use `rm` to delete objects you no longer need:
