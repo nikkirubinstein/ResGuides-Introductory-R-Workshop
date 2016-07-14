@@ -7,28 +7,26 @@
         "url": "https://github.com/resbaz/ResGuides-Gitbook"
     },
     "plugins": [
-        "edit-link",
         "ga",
         "ungrey",
-        "atoc",
         "toggle-chapters",
         "mathjax",
         "sectionx",
-        "youtubex"
+        "youtubex",
+        "edit-link",
+        "atoc"
     ],
     "pluginsConfig": {
+        "ga": {
+            "token": "UA-12478122-2"
+        },
         "edit-link": {
             "base": "https://github.com/resbaz/ResGuides-Gitbook/edit/master",
             "label": "Edit This Page"
-        },
-        "ga": {
-            "token": "UA-12478122-2"
         }
     },
     "styles": {
-        "website": 
-            "styles/all.css"
-        ,
+        "website": "styles/all.css",
         "ebook": "styles/all.css",
         "pdf": "styles/all.css",
         "mobi": "styles/all.css",
