@@ -1,23 +1,19 @@
 ---
-output: 
-  md_document
----
-# Project management with RStudio
-
-<!--sec data-title="Learning Objectives" data-id="obj" data-show=true data-collapse=false ces-->
-
-* To be able to create self-contained projects in RStudio
-* To be able to use git from within RStudio
-
-<!--endsec-->
-
+layout: page
+title: R for reproducible scientific analysis
+subtitle: Project management with RStudio
+minutes: 30
 ---
 
-**Table of Contents**
+```{r, include=FALSE}
+source("tools/chunk-options.R")
+```
 
-<!-- toc -->
-
----
+> ## Learning Objectives {.objectives}
+>
+> * To be able to create self-contained projects in RStudio
+> * To be able to use git from within RStudio
+>
 
 ## Introduction
 
@@ -30,7 +26,7 @@ eventually everything is a bit mixed together.
 
 Most people tend to organize their projects like this:
 
-![](images/bad_layout.png)
+![](fig/bad_layout.png)
 
 There are many reasons why we should *ALWAYS* avoid this:
 
@@ -58,18 +54,18 @@ One of the most powerful and useful aspects of RStudio is its project management
 functionality. We'll be using this today to create a self-contained, reproducible
 project.
 
-<!--sec data-title="Challenge 1: Creating a self-contained project" data-id="ch1" data-show=true data-collapse=false ces-->
 
-We're going to create a new project in RStudio:
-
-1. Click the "File" menu button, then "New Project".
-2. Click "New Directory".
-3. Click "Empty Project".
-4. Type in the name of the directory to store your project, e.g. "my_project".
-5. Make sure that the checkbox for "Create a git repository" is selected.
-6. Click the "Create Project" button.
-
-<!--endsec-->
+> ## Challenge: Creating a self-contained project {.challenge}
+>
+> We're going to create a new project in RStudio:
+>
+> 1. Click the "File" menu button, then "New Project".
+> 2. Click "New Directory".
+> 3. Click "Empty Project".
+> 4. Type in the name of the directory to store your project, e.g. "my_project".
+> 5. Make sure that the checkbox for "Create a git repository" is selected.
+> 6. Click the "Create Project" button.
+>
 
 Now when we start R in this project directory, or open this project with RStudio,
 all of our work on this project will be entirely self-contained in this directory.
@@ -106,23 +102,27 @@ analysis. This makes it easier later, as many of my analyses are exploratory
 and don't end up being used in the final project, and some of the analyses
 get shared between projects.
 
-<!--sec data-title="Tip: ProjectTemplate - a possible solution" data-id="tip1" data-show=true data-collapse=true ces-->
-
-One way to automate the management of projects is to install the third-party package, `ProjectTemplate`. This package will set up an ideal directory structure for project management. This is very useful as it enables you to have your analysis pipeline/workflow organised and structured. Together with the default RStudio project functionality and Git you will be able to keep track of your work as well as be able to share your work with collaborators.
-
-1. Install `ProjectTemplate`.
-2. Load the library
-3. Initialise the project:
-
-```{r, eval=FALSE}
+> ## Tip: ProjectTemplate - a possible solution {.callout}
+>
+> One way to automate the management of projects is to install the third-party package, `ProjectTemplate`.
+> This package will set up an ideal directory structure for project management.
+> This is very useful as it enables you to have your analysis pipeline/workflow organised and structured.
+> Together with the default RStudio project functionality and Git you will be able to keep track of your
+> work as well as be able to share your work with collaborators.
+>
+> 1. Install `ProjectTemplate`.
+> 2. Load the library
+> 3. Initialise the project:
+>
+> ```{r, eval=FALSE}
 > install.packages("ProjectTemplate")
 > library(ProjectTemplate)
 > create.project("../my_project", merge.strategy = "allow.non.conflict")
-```
-
-For more information on ProjectTemplate and its functionality visit the home page [ProjectTemplate](http://projecttemplate.net/index.html)
-
-<!--endsec-->
+> ```
+>
+> For more information on ProjectTemplate and its functionality visit the
+> home page [ProjectTemplate](http://projecttemplate.net/index.html)
+>
 
 ## Separate function definition and application
 
@@ -138,39 +138,39 @@ own functions. It's a good idea to separate these into separate folders; one
 to store useful functions that you'll reuse across analyses and projects, and
 one to store the analysis scripts.
 
-<!--sec data-title="Tip: Avoiding duplication" data-id="tip2" data-show=true data-collapse=true ces-->
-
-You may find yourself using data or analysis scripts across several projects. Typically you want to avoid duplication to save space and avoid having to make updates to code in multiple places.
-
-In this case I find it useful to make "symbolic links", which are essentially shortcuts to files somewhere else on a filesystem. On Linux and OS X you can use the `ln -s` command, and on windows you can either create a shortcut or use the `mklink` command from the windows terminal.
-
-<!--endsec-->
+> ## Tip: avoiding duplication {.callout}
+>
+> You may find yourself using data or analysis scripts across several projects.
+> Typically you want to avoid duplication to save space and avoid having to
+> make updates to code in multiple places.
+>
+> In this case I find it useful to make "symbolic links", which are essentially
+> shortcuts to files somewhere else on a filesystem. On Linux and OS X you can
+> use the `ln -s` command, and on windows you can either create a shortcut or
+> use the `mklink` command from the windows terminal.
+>
 
 ## Save the data in the data directory
 
 Now we have a good directory structure we will now place/save the data file in the `data/` directory.
 
-<!--sec data-title="Challenge 2" data-id="ch2" data-show=true data-collapse=false ces-->
+> ## Challenge 1 {.challenge}
+> Download the gapminder data from [here](https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv).
+>
+> 1. Download the file (CTRL + S, right mouse click -> "Save as", or File -> "Save page as")
+> 2. Make sure it's saved under the name `gapminder-FiveYearData.csv`
+> 3. Save the file in the `data/` folder within your project.
+>
+> We will load and inspect these data later.
 
-Download the gapminder data from [here](https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv).
-
-1. Download the file (CTRL + S, right mouse click -> "Save as", or File -> "Save page as")
-2. Make sure it's saved under the name `gapminder-FiveYearData.csv`
-3. Save the file in the `data/` folder within your project.
-
-We will load and inspect these data later.
-
-<!--endsec-->
-
-<!--sec data-title="Challenge 3" data-id="obj" data-show=true data-collapse=false ces-->
-
-It is useful to get some general idea about the dataset, directly from the command line, before loading it into R. Understanding the dataset better will come handy when making decisions on how to load it in R. Use command-line shell to answer the following questions:
-
-1. What is the size of the file?
-2. How many rows of data does it contain?
-3. What are the data types of values stored in this file?
-
-<!--endsec-->
+> ## Challenge 2 {.challenge}
+> It is useful to get some general idea about the dataset, directly from the
+> command line, before loading it into R. Understanding the dataset better
+> will come handy when making decisions on how to load it in R. Use command-line
+> shell to answer the following questions:
+> 1. What is the size of the file?
+> 2. How many rows of data does it contain?
+> 3. What are the data types of values stored in this file?
 
 ## Version Control
 
@@ -184,17 +184,20 @@ you will see a Green "A" next to stage files and folders, and yellow question ma
 files or folders git doesn't know about yet. RStudio also nicely shows you the difference
 between files from different commits.
 
-<!--sec data-title="Tip: Versioning disposable output" data-id="tip3" data-show=true data-collapse=true ces-->
+> ## Tip: versioning disposable output {.callout}
+>
+> Generally you do not want to version disposable output (or read-only data).
+> You should modify the `.gitignore` file to tell git to ignore these files
+> and directories.
+>
 
-Generally you do not want to version disposable output (or read-only data). You should modify the `.gitignore` file to tell git to ignore these files and directories.
-
-<!--endsec-->
-
-<!--sec data-title="Challenge 4" data-id="ch4" data-show=true data-collapse=false ces-->
-
-1. Create a directory within your project called `graphs`.
-2. Modify the `.gitignore` file to contain `graphs/` so that this disposable output isn't versioned.
-
-Add the newly created folders to version control using the git interface.
-
-<!--endsec-->
+> ## Challenge 3 {.challenge}
+>
+> 1. Create a directory within your project called `graphs`.
+> 2. Modify the `.gitignore` file to contain `graphs/`
+> so that this disposable output isn't versioned.
+>
+> Add the newly created folders to version control using
+> the git interface.
+>
+>

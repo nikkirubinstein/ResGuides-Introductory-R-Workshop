@@ -9,7 +9,7 @@ minutes: 45
 source("tools/chunk-options.R")
 opts_chunk$set(fig.path = "fig/12-plyr-")
 # Silently load in the data so the rest of the lesson works
-healthData <- read.csv("https://goo.gl/oqQGKF", header=TRUE)
+gapminder <- read.csv("data/gapminder-FiveYearData.csv", header=TRUE)
 ```
 
 > ## Learning Objectives {.objectives}
@@ -18,45 +18,54 @@ healthData <- read.csv("https://goo.gl/oqQGKF", header=TRUE)
 >
 
 Previously we looked at how you can use functions to simplify your code.
-For example we could define a `calcAverageHealth` function, which takes the healthData dataset,
-and calculates the average health metric in the data. We can also define an
-additional argument so we can filter by HIGroup:
+We defined the `calcGDP` function, which takes the gapminder dataset,
+and multiplies the population and GDP per capita column. We also defined
+additional arguments so we could filter by `year` and `country`:
 
 ```{r}
-# Takes a dataset and calculates the average health metric for a
-# specified study group.
-calcAverageHealth <- function(dat, group = "Group 1") {
-  healthAverage <- mean(dat[dat$HIGroup == group, ]$health)
-  return(healthAverage)
+# Takes a dataset and multiplies the population column
+# with the GDP per capita column.
+calcGDP <- function(dat, year=NULL, country=NULL) {
+  if(!is.null(year)) {
+    dat <- dat[dat$year %in% year, ]
+  }
+  if (!is.null(country)) {
+    dat <- dat[dat$country %in% country,]
+  }
+  gdp <- dat$pop * dat$gdpPercap
+
+  new <- cbind(dat, gdp=gdp)
+  return(new)
 }
 ```
 
-A common task you'll encounter when working with data is that you'll want to
-run calculations on different groups within the data. In the above, we are
-simply calculating the mean health metric in the data. But what if
-we wanted to calculated the mean health per group, or per education level?
+A common task you'll encounter when working with data, is that you'll want to
+run calculations on different groups within the data. In the above, we were
+simply calculating the GDP by multiplying two columns together. But what if
+we wanted to calculated the mean GDP per continent?
 
-We could, for example, run `calcAverageHealth` and on each subsetted dataset:
+We could run `calcGPD` and then take the mean of each continent:
 
 ```{r}
-calcAverageHealth(healthData[healthData$education == 4,],"Group 2")
-calcAverageHealth(healthData[healthData$education == 5,],"Group 2")
-calcAverageHealth(healthData[healthData$education == 6,],"Group 2")
+withGDP <- calcGDP(gapminder)
+mean(withGDP[withGDP$continent == "Africa", "gdp"])
+mean(withGDP[withGDP$continent == "Americas", "gdp"])
+mean(withGDP[withGDP$continent == "Asia", "gdp"])
 ```
 
 But this isn't very *nice*. Yes, by using a function, you have reduced a
-substantial amount of repetition. That *is* nice. But there is still
+substantial amount of repetition. That **is** nice. But there is still
 repetition. Repeating yourself will cost you time, both now and later, and
 potentially introduce some nasty bugs.
 
-We could write a new function that is potentially more flexible than `calcAverageHealth`, but this
+We could write a new function that is flexible like `calcGDP`, but this
 also takes a substantial amount of effort and testing to get right.
 
-The abstract problem we're encountering here is known as "split-apply-combine":
+The abstract problem we're encountering here is know as "split-apply-combine":
 
 ![Split apply combine](fig/splitapply.png)
 
-We want to *split* our data into groups, in this case education levels, *apply*
+We want to *split* our data into groups, in this case continents, *apply*
 some calculations on that group, then optionally *combine* the results
 together afterwards.
 
@@ -68,7 +77,7 @@ going to introduce you to another method for solving the "split-apply-combine"
 problem. The [plyr](http://had.co.nz/plyr/) package provides a set of
 functions that we find more user friendly for solving this problem.
 
-Let's load plyr now:
+We installed this package in an earlier challenge. Let's load it now:
 
 ```{r}
 library(plyr)
@@ -110,13 +119,13 @@ xxply(.data, .variables, .fun)
 * .variables - identifies the splitting variables
 * .fun - gives the function to be called on each piece
 
-Now we can quickly calculate the mean birth year per education level:
+Now we can quickly calculate the mean GDP per continent:
 
 ``` {r}
 ddply(
- .data = healthData,
- .variables = "education",
- .fun = function(x) mean(x$health)
+ .data = calcGDP(gapminder),
+ .variables = "continent",
+ .fun = function(x) mean(x$gdp)
 )
 ```
 
@@ -125,8 +134,9 @@ Let's walk through what just happened:
 - The `ddply` function feeds in a `data.frame` (function starts with **d**) and
 returns another `data.frame` (2nd letter is a **d**) i
 - the first argument we gave was the data.frame we wanted to operate on: in this
-  case the healthData dataset.
-- The second argument indicated our split criteria: in this case the "education"
+  case the gapminder data. We called `calcGDP` on it first so that it would have
+  the additional `gdp` column added to it.
+- The second argument indicated our split criteria: in this case the "continent"
   column. Note that we just gave the name of the column, not the actual column
   itself like we've done previously with subsetting. Plyr takes care of these
   implementation details for you.
@@ -138,11 +148,11 @@ returns another `data.frame` (2nd letter is a **d**) i
 
 What if we want a different type of output data structure?:
 
-``` {r}
+```{r}
 dlply(
- .data = healthData,
- .variables = "education",
- .fun = function(x) mean(x$health)
+ .data = calcGDP(gapminder),
+ .variables = "continent",
+ .fun = function(x) mean(x$gdp)
 )
 ```
 
@@ -153,17 +163,17 @@ We can specify multiple columns to group by:
 
 ``` {r}
 ddply(
- .data = healthData,
- .variables = c("education","sex"),
- .fun = function(x) mean(x$health)
+ .data = calcGDP(gapminder),
+ .variables = c("continent", "year"),
+ .fun = function(x) mean(x$gdp)
 )
 ```
 
-``` {r}
+```{r}
 daply(
- .data = healthData,
- .variables = c("education","sex"),
- .fun = function(x) mean(x$health)
+ .data = calcGDP(gapminder),
+ .variables = c("continent", "year"),
+ .fun = function(x) mean(x$gdp)
 )
 ```
 
@@ -172,48 +182,57 @@ do so): just write the body of the for loop in the anonymous function:
 
 ```{r}
 d_ply(
-  .data=healthData,
-  .variables = "education",
+  .data=gapminder,
+  .variables = "continent",
   .fun = function(x) {
-    meanHealth <- mean(x$health)
+    meanGDPperCap <- mean(x$gdpPercap)
     print(paste(
-      "The mean health metric for education level", unique(x$education),
-      "is", meanHealth
+      "The mean GDP per capita for", unique(x$continent),
+      "is", format(meanGDPperCap, big.mark=",")
    ))
   }
 )
 ```
 
+> ## Tip: printing numbers {.callout}
+>
+> The `format` function can be used to make numeric
+> values "pretty" for printing out in messages.
+>
+
+
 > ## Challenge 1 {.challenge}
 >
-> Calculate the average intellect per education level. Which has the highest?
-> Which had the lowest?
+> Calculate the average life expectancy per continent. Which has the longest?
+> Which had the shortest?
 >
 
 > ## Challenge 2 {.challenge}
 >
-> Calculate the average intellect per mental adjustment value and sex. Which had the
-> highest and lowest in HIGroup 2? Which had the greatest change across between groups?
+> Calculate the average life expectancy per continent and year. Which had the
+> longest and shortest in 2007? Which had the greatest change in between 1952
+> and 2007?
 >
 
 > ## Advanced Challenge {.challenge}
 >
-> Calculate the difference in intellect between
-> education level 5 and 9 from the output of challenge 2
+> Calculate the difference in mean life expectancy between
+> the years 1952 and 2007 from the output of challenge 2
 > using one of the `plyr` functions.
 >
 
 > ## Alternate Challenge if class seems lost {.challenge}
 >
-> Without running them, which of the following will calculate the average conscientiousness > per education year:
+> Without running them, which of the following will calculate the average
+> life expectancy per continent:
 >
 > 1.
 > ```{r, eval=FALSE}
 > ddply(
->   .data = healthData,
->   .variables = healthData$education,
+>   .data = gapminder,
+>   .variables = gapminder$continent,
 >   .fun = function(dataGroup) {
->      mean(dataGroup$conscientiousness)
+>      mean(dataGroup$lifeExp)
 >   }
 > )
 > ```
@@ -221,19 +240,19 @@ d_ply(
 > 2.
 > ```{r, eval=FALSE}
 > ddply(
->   .data = healthData,
->   .variables = "education",
->   .fun = mean(dataGroup$conscientiousness)
+>   .data = gapminder,
+>   .variables = "continent",
+>   .fun = mean(dataGroup$lifeExp)
 > )
 > ```
 >
 > 3.
 > ```{r, eval=FALSE}
 > ddply(
->   .data = healthData,
->   .variables = "education",
+>   .data = gapminder,
+>   .variables = "continent",
 >   .fun = function(dataGroup) {
->      mean(dataGroup$concientiousness)
+>      mean(dataGroup$lifeExp)
 >   }
 > )
 > ```
@@ -241,10 +260,10 @@ d_ply(
 > 4.
 > ```{r, eval=FALSE}
 > adply(
->   .data = healthData,
->   .variables = "education",
+>   .data = gapminder,
+>   .variables = "continent",
 >   .fun = function(dataGroup) {
->      mean(dataGroup$conscientiousness)
+>      mean(dataGroup$lifeExp)
 >   }
 > )
 > ```

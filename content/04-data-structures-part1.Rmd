@@ -16,7 +16,7 @@ source("tools/chunk-options.R")
 > - To be able to ask questions from R about the type, class, and structure of an object.
 >
 
-One of R's most powerful features is its ability to deal with tabular data - like what you might already have in a spreadsheet or a CSV. Let's start by making a toy dataset in your current directory, called `feline-data.csv`:
+One of R's most powerful features is its ability to deal with tabular data - like what you might already have in a spreadsheet or a CSV. Let's start by making a toy dataset in your `data/` directory, called `feline-data.csv`:
 
 ```{r, eval=FALSE}
 coat,weight,likes_string
@@ -29,13 +29,13 @@ tabby,3.2,TRUE
 cats.df <- data.frame(coat = c("calico", "black", "tabby"), 
                       weight = c(2.1, 5.0, 3.2), 
                       likes_string = c(TRUE, FALSE, TRUE))
-write.csv(cats.df, "feline-data.csv", row.names = FALSE)
+write.csv(cats.df, "data/feline-data.csv", row.names = FALSE)
 ```
 
 We can load this into R via the following:
 
 ```{r}
-cats <- read.csv(file = "feline-data.csv")
+cats <- read.csv(file = "data/feline-data.csv")
 cats
 ```
 
@@ -79,19 +79,11 @@ Note the `L` suffix to insist that a number is an integer. No matter how complic
 ```{r, eval=FALSE}
 tabby,2.3 or 2.4,TRUE
 ```
-```{r, echo = FALSE}
-cats_old <- cats
-cats$weight <- as.character(cats$weight)
-cats <- rbind(cats,data.frame(coat = "tabby",weight="2.3 or 2.4",likes_string = TRUE))
-cats$weight <- as.factor(cats$weight)
-```
 
 Reload your cats data like before, and check what type of data we find in the `weight` column:
 
-```{r, eval=FALSE}
-cats <- read.csv(file="feline-data.csv")
-```
 ```{r}
+cats <- read.csv(file="data/feline-data.csv")
 typeof(cats$weight[1])
 ```
 
@@ -114,8 +106,8 @@ tabby,3.2,TRUE
 
 And back in RStudio:
 
-```{r}
-cats <- read.csv(file="feline-data.csv")
+```
+cats <- read.csv(file="data/feline-data.csv")
 ```
 
 ## Vectors & Type Coercion
@@ -194,7 +186,7 @@ Concatenate will also append things to an existing vector:
 ```{r}
 ab_vector <- c('a', 'b')
 ab_vector
-concat_example <- c(ab_vector, 'RES')
+concat_example <- c(ab_vector, 'SWC')
 concat_example
 ```
 
@@ -228,7 +220,7 @@ names_example['b']
 > ## Challenge 1 {.challenge}
 > Start by making a vector with the numbers 11 to 20.
 > Then use the functions we just learned to extract the 3rd through 5th element in that vector into a new vector;
-> name the elements in that new vector 'R', 'E', 'S'.
+> name the elements in that new vector 'S', 'W', 'C'.
 >
 
 ## Factors
@@ -396,13 +388,13 @@ matrix_example
 > ```{r}
 > x <- c(11:20)
 > subset <- x[3:5]
-> names(subset) <- c('R', 'E', 'S')
+> names(subset) <- c('S', 'W', 'C')
 > ```
 >
 
 > ## Solution to Challenge 2 {.challenge}
 > ```{r}
-> cats <- read.csv(file="feline-data.csv", stringsAsFactors=FALSE)
+> cats <- read.csv(file="data/feline-data.csv", stringsAsFactors=FALSE)
 > str(cats$coat)
 > ```
 > Note: new students find the help files difficult to understand; make sure to let them know

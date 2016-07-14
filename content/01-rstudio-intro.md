@@ -12,6 +12,15 @@ Introduction to R and RStudio
 -   Introduction to package management
 
 <!--endsec-->
+
+------------------------------------------------------------------------
+
+**Table of Contents**
+
+<!-- toc -->
+
+------------------------------------------------------------------------
+
 Introduction to RStudio
 -----------------------
 
@@ -394,7 +403,7 @@ function!
     ##     }
     ##     else all.names
     ## }
-    ## <bytecode: 0x12eb458>
+    ## <bytecode: 0x15d6458>
     ## <environment: namespace:base>
 
 You can use `rm` to delete objects you no longer need:

@@ -18,8 +18,11 @@ output:
 <!--endsec-->
 
 ---
+
 **Table of Contents**
+
 <!-- toc -->
+
 ---
 
 ## Introduction to RStudio

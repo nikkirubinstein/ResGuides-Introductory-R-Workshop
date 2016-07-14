@@ -6,6 +6,15 @@ Project management with RStudio
 -   To be able to use git from within RStudio
 
 <!--endsec-->
+
+------------------------------------------------------------------------
+
+**Table of Contents**
+
+<!-- toc -->
+
+------------------------------------------------------------------------
+
 Introduction
 ------------
 
