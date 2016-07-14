@@ -17,6 +17,11 @@ output:
 
 <!--endsec-->
 
+---
+**Table of Contents**
+<!-- toc -->
+---
+
 ## Introduction to RStudio
 
 Throughout this lesson, we're going to teach you some of the fundamentals of
