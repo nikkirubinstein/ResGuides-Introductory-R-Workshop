@@ -12,12 +12,14 @@ Introduction to R and RStudio
 -   Introduction to package management
 
 <!--endsec-->
+<br>
 
 ------------------------------------------------------------------------
 
 **Table of Contents**
 
 <!-- toc -->
+<br>
 
 ------------------------------------------------------------------------
 
@@ -43,6 +45,8 @@ When you first open RStudio, you will be greeted by three panels:
 
 Once you open files, such as R scripts, an editor panel will also open
 in the top left.
+
+<br>
 
 ------------------------------------------------------------------------
 
@@ -79,6 +83,7 @@ reselct the section and `Run`, you can use the next button along,
 inculding the modifications you have made.
 
 <!--endsec-->
+<br>
 
 ------------------------------------------------------------------------
 
@@ -97,6 +102,8 @@ this is similar to the shell environment you learned about during the
 shell lessons: it operates on the same idea of a "Read, evaluate, print
 loop": you type in commands, R tries to execute them, and then returns a
 result.
+
+<br>
 
 ------------------------------------------------------------------------
 
@@ -188,6 +195,8 @@ You can write numbers in scientific notation too:
 
     ## [1] 5000
 
+<br>
+
 ------------------------------------------------------------------------
 
 Mathematical functions
@@ -226,6 +235,8 @@ that command. As well as providing a detailed description of the command
 and how it works, scrolling ot the bottom of the help page will usually
 show a collection of code examples which illustrate command usage. We'll
 go through an example later.
+
+<br>
 
 ------------------------------------------------------------------------
 
@@ -273,6 +284,7 @@ Instead you should use the `all.equal` function.
 Further reading: <http://floating-point-gui.de/>
 
 <!--endsec-->
+<br>
 
 ------------------------------------------------------------------------
 
@@ -337,6 +349,8 @@ places where it is less confusing to use `<-` than `=`, and it is the
 most common symbol used in the community. So the recommendation is to
 use `<-`.
 
+<br>
+
 ------------------------------------------------------------------------
 
 Vectorization
@@ -360,6 +374,8 @@ variables and functions can have vectors as values. For example
 
 This is incredibly powerful; we will discuss this further in an upcoming
 lesson.
+
+<br>
 
 ------------------------------------------------------------------------
 
@@ -421,7 +437,7 @@ function!
     ##     }
     ##     else all.names
     ## }
-    ## <bytecode: 0x2895458>
+    ## <bytecode: 0x315a458>
     ## <environment: namespace:base>
 
 You can use `rm` to delete objects you no longer need:
@@ -457,6 +473,7 @@ In both cases, the message that R prints out usually give you clues how
 to fix a problem.
 
 <!--endsec-->
+<br>
 
 ------------------------------------------------------------------------
 
