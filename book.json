@@ -18,7 +18,8 @@
         "section",
         "sections",
         "sectionx-collapse",
-        "sectionx-modified"
+        "sectionx-modified",
+        "sectionx-strong"
     ],
     "pluginsConfig": {
         "edit-link": {
