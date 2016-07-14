@@ -17,7 +17,8 @@
         "youtubex",
         "section",
         "sections",
-        "sectionx-collapse"
+        "sectionx-collapse",
+        "sectionx-modified"
     ],
     "pluginsConfig": {
         "edit-link": {
