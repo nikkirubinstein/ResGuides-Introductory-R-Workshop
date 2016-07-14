@@ -1,7 +1,7 @@
 Introduction to R and RStudio
------------------------------
+=============================
 
-<!--sec data-title="Learning Objectives" data-id="obj" data-show=true data-collapse=true ces--> 
+<!--sec data-title="Learning Objectives" data-id="obj" data-show=true data-collapse=false ces-->
 -   To gain familiarity with the various panes in the RStudio IDE
 -   To gain familiarity with the buttons, short cuts and options in the
     RStudio IDE
@@ -399,7 +399,7 @@ function!
     ##     }
     ##     else all.names
     ## }
-    ## <bytecode: 0x14c1458>
+    ## <bytecode: 0x2713458>
     ## <environment: namespace:base>
 
 You can use `rm` to delete objects you no longer need:
