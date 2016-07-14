@@ -69,6 +69,8 @@ But what about
 Understanding what happened here is key to successfully analyzing data
 in R.
 
+------------------------------------------------------------------------
+
 Data Types
 ----------
 
@@ -137,6 +139,8 @@ feline-data.csv:
 And back in RStudio:
 
     cats <- read.csv(file="../data/feline-data.csv")
+
+------------------------------------------------------------------------
 
 Vectors & Type Coercion
 -----------------------
@@ -307,6 +311,9 @@ vector into a new vector; name the elements in that new vector 'S', 'W',
 'C'.
 
 <!--endsec-->
+
+------------------------------------------------------------------------
+
 Factors
 -------
 
@@ -320,14 +327,11 @@ We said that columns in data.frames were vectors:
 
     ##  logi [1:3] TRUE FALSE TRUE
 
-But what about
+But what about:
 
     str(cats$coat)
 
     ##  Factor w/ 3 levels "black","calico",..: 2 1 3
-
-Factors
--------
 
 Another important data structure is called a *factor*. Factors usually
 look like character data, but are typically used to represent
@@ -386,6 +390,8 @@ In this case, we've explicitly told R that "control" should represented
 by 1, and "case" by 2. This designation can be very important for
 interpreting the results of statistical models!
 
+------------------------------------------------------------------------
+
 Lists
 -----
 
@@ -437,6 +443,8 @@ because a data.frame is really a list of vectors and factors, as they
 have to be - in order to hold those columns that are a mix of vectors
 and factors, the data.frame needs something a bit more flexible than a
 vector to put all the columns together into a familiar table.
+
+------------------------------------------------------------------------
 
 Matrices
 --------
@@ -519,6 +527,9 @@ about what matrices the other commands will produce.
 4.  `matrix(c(4, 1, 9, 5, 10, 7), ncol = 2, byrow = TRUE)`
 
 <!--endsec-->
+
+------------------------------------------------------------------------
+
 Challenge solutions
 -------------------
 

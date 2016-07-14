@@ -61,6 +61,8 @@ cats$weight[1] + cats$coat[2]
 
 Understanding what happened here is key to successfully analyzing data in R.
 
+---
+
 ## Data Types
 
 If you guessed that the last command will return an error because 2.1 plus black is nonsense, you're right - and you already have some intuition for an important concept in programming called *data types*. We can ask what type of data something is:
@@ -128,6 +130,8 @@ And back in RStudio:
 ```
 cats <- read.csv(file="../data/feline-data.csv")
 ```
+
+---
 
 ## Vectors & Type Coercion
 
@@ -243,6 +247,8 @@ Start by making a vector with the numbers 11 to 20. Then use the functions we ju
 
 <!--endsec-->
 
+---
+
 ## Factors
 
 We said that columns in data.frames were vectors:
@@ -252,13 +258,11 @@ str(cats$weight)
 str(cats$likes_string)
 ```
 
-But what about
+But what about:
 
 ```{r}
 str(cats$coat)
 ```
-
-## Factors
 
 Another important data structure is called a *factor*. Factors usually look like character data, but are typically used to represent categorical information. For example, let's make a vector of strings labeling cat colorations for all the cats in our study:
 
@@ -301,6 +305,8 @@ In this case, we've explicitly told R that "control" should represented by 1, an
 "case" by 2. This designation can be very important for interpreting the
 results of statistical models!
 
+---
+
 ## Lists
 
 Another data structure you'll want in your bag of tricks is the `list`. A list is simpler in some ways than the other types, because you can put anything you want in it:
@@ -320,6 +326,8 @@ typeof(cats)
 ```
 
 We see that data.frames look like lists 'under the hood' - this is because a data.frame is really a list of vectors and factors, as they have to be - in order to hold those columns that are a mix of vectors and factors, the data.frame needs something a bit more flexible than a vector to put all the columns together into a familiar table.
+
+---
 
 ## Matrices
 
@@ -383,7 +391,7 @@ What was the correct command used to write this matrix? Examine each command and
 
 
 
-
+---
 
 ## Challenge solutions
 
