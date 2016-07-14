@@ -26,7 +26,7 @@
         }
     },
     "styles": {
-        "website": "styles/all.css",
+        "website": ["styles/all.css","styles/sectionx.js"],
         "ebook": "styles/all.css",
         "pdf": "styles/all.css",
         "mobi": "styles/all.css",

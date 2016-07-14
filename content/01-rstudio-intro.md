@@ -1,21 +1,15 @@
-R for reproducible scientific analysis
-======================================
-
 Introduction to R and RStudio
 -----------------------------
 
-<!--sec data-title="Figure Description Structure" data-id="eg1" data-show=true data-collapse=false ces-->
-> Learning Objectives
-> -------------------
->
-> -   To gain familiarity with the various panes in the RStudio IDE
-> -   To gain familiarity with the buttons, short cuts and options in
->     the RStudio IDE
-> -   To understand variables and how to assign to them
-> -   To be able to manage your workspace in an interactive R session
-> -   To be able to use mathematical and comparison operations
-> -   To be able to call functions
-> -   Introduction to package management
+<!--sec data-title="Learning Objectives" data-id="obj" data-show=true data-collapse=false ces-->
+-   To gain familiarity with the various panes in the RStudio IDE
+-   To gain familiarity with the buttons, short cuts and options in the
+    RStudio IDE
+-   To understand variables and how to assign to them
+-   To be able to manage your workspace in an interactive R session
+-   To be able to use mathematical and comparison operations
+-   To be able to call functions
+-   Introduction to package management
 
 <!--endsec-->
 Introduction to RStudio
@@ -405,7 +399,7 @@ function!
     ##     }
     ##     else all.names
     ## }
-    ## <bytecode: 0x2fe9458>
+    ## <bytecode: 0x18e7458>
     ## <environment: namespace:base>
 
 You can use `rm` to delete objects you no longer need:
