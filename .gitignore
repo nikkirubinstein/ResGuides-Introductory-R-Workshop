@@ -19,3 +19,4 @@ _book
 
 #language/lessons specific ignores
 .ipynb_checkpoints
+.Rproj.user
