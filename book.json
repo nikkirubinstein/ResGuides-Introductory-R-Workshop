@@ -32,10 +32,9 @@
         }
     },
     "styles": {
-        "website": [
-            "styles/all.css",
-            "styles/sectionx.js"
-        ],
+        "website": 
+            "styles/all.css"
+        ,
         "ebook": "styles/all.css",
         "pdf": "styles/all.css",
         "mobi": "styles/all.css",
