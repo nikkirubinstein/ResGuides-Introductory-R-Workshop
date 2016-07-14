@@ -1,7 +1,7 @@
 Introduction to R and RStudio
------------------------------
+=============================
 
-<!--sec data-title="Learning Objectives" data-id="obj" data-show=true data-collapse=true ces--> 
+<!--sec data-title="Learning Objectives" data-id="obj" data-show=true data-collapse=false ces-->
 -   To gain familiarity with the various panes in the RStudio IDE
 -   To gain familiarity with the buttons, short cuts and options in the
     RStudio IDE
@@ -54,21 +54,20 @@ There are two main ways one can work within RStudio.
 -   You will be able to run the file you create from within RStudio or
     using R's `source()` function.
 
-> Tip: Running segments of your code
-> ----------------------------------
->
-> RStudio offers you great flexibility in running code from within the
-> editor window. There are buttons, menu choices, and keyboard
-> shortcuts. To run the current line, you can 1. click on the `Run`
-> button just above the editor panel, or 2. select "Run Lines" from the
-> "Code" menu, or 3. hit Ctrl-Enter in Windows or Linux or Command-Enter
-> on OS X. (This shortcut can also be seen by hovering the mouse over
-> the button). To run a block of code, select it and then `Run`. If you
-> have modified a line of code within a block of code you have just run,
-> there is no need to reselct the section and `Run`, you can use the
-> next button along, `Re-run the previous region`. This will run the
-> previous code block inculding the modifications you have made.
+<!--sec data-title="Tip: Running segments of your code" data-id="tip1" data-show=true data-collapse=true ces-->
+RStudio offers you great flexibility in running code from within the
+editor window. There are buttons, menu choices, and keyboard shortcuts.
+To run the current line, you can 1. click on the `Run` button just above
+the editor panel, or 2. select "Run Lines" from the "Code" menu, or 3.
+hit Ctrl-Enter in Windows or Linux or Command-Enter on OS X. (This
+shortcut can also be seen by hovering the mouse over the button). To run
+a block of code, select it and then `Run`. If you have modified a line
+of code within a block of code you have just run, there is no need to
+reselct the section and `Run`, you can use the next button along,
+`Re-run the previous region`. This will run the previous code block
+inculding the modifications you have made.
 
+<!--endsec-->
 Introduction to R
 -----------------
 
@@ -110,18 +109,17 @@ Any time you hit return and the R session shows a "+" instead of a
 want to cancel a command you can simply hit "Esc" and RStudio will give
 you back the "&gt;" prompt.
 
-> Tip: Cancelling commands
-> ------------------------
->
-> If you're using R from the commandline instead of from within RStudio,
-> you need to use `Ctrl+C` instead of `Esc` to cancel the command. This
-> applies to Mac users as well!
->
-> Cancelling a command isn't just useful for killing incomplete
-> commands: you can also use it to tell R to stop running code (for
-> example if its taking much longer than you expect), or to get rid of
-> the code you're currently writing.
+<!--sec data-title="Tip: Cancelling commands" data-id="tip2" data-show=true data-collapse=true ces-->
+If you're using R from the commandline instead of from within RStudio,
+you need to use `Ctrl+C` instead of `Esc` to cancel the command. This
+applies to Mac users as well!
 
+Cancelling a command isn't just useful for killing incomplete commands:
+you can also use it to tell R to stop running code (for example if its
+taking much longer than you expect), or to get rid of the code you're
+currently writing.
+
+<!--endsec-->
 When using R as a calculator, the order of operations is the same as you
 would have learnt back in school.
 
@@ -240,23 +238,21 @@ We can also do comparison in R:
 
     ## [1] TRUE
 
-> Tip: Comparing Numbers
-> ----------------------
->
-> A word of warning about comparing numbers: you should never use `==`
-> to compare two numbers unless they are integers (a data type which can
-> specifically represent only whole numbers).
->
-> Computers may only represent decimal numbers with a certain degree of
-> precision, so two numbers which look the same when printed out by R,
-> may actually have different underlying representations and therefore
-> be different by a small margin of error (called Machine numeric
-> tolerance).
->
-> Instead you should use the `all.equal` function.
->
-> Further reading: <http://floating-point-gui.de/>
+<!--sec data-title="Tip: Comparing numbers" data-id="tip3" data-show=true data-collapse=true ces-->
+A word of warning about comparing numbers: you should never use `==` to
+compare two numbers unless they are integers (a data type which can
+specifically represent only whole numbers).
 
+Computers may only represent decimal numbers with a certain degree of
+precision, so two numbers which look the same when printed out by R, may
+actually have different underlying representations and therefore be
+different by a small margin of error (called Machine numeric tolerance).
+
+Instead you should use the `all.equal` function.
+
+Further reading: <http://floating-point-gui.de/>
+
+<!--endsec-->
 Variables and assignment
 ------------------------
 
@@ -353,13 +349,12 @@ environment (your working R session):
 
     ## [1] "x"
 
-> Tip: hidden objects
-> -------------------
->
-> Just like in the shell, `ls` will hide any variables or functions
-> starting with a "." by default. To list all objects, type
-> `ls(all.names=TRUE)` instead
+<!--sec data-title="Tip: Hidden objects" data-id="tip4" data-show=true data-collapse=true ces-->
+Just like in the shell, `ls` will hide any variables or functions
+starting with a "." by default. To list all objects, type
+`ls(all.names=TRUE)` instead
 
+<!--endsec-->
 Note here that we didn't given any arguments to `ls`, but we still
 needed to give the parentheses to tell R to call the function.
 
@@ -399,7 +394,7 @@ function!
     ##     }
     ##     else all.names
     ## }
-    ## <bytecode: 0x2713458>
+    ## <bytecode: 0x1557458>
     ## <environment: namespace:base>
 
 You can use `rm` to delete objects you no longer need:
@@ -425,17 +420,16 @@ may just get an error message:
 
     ## Error in rm(list <- ls()): ... must contain names or character strings
 
-> Tip: Warnings vs. Errors
-> ------------------------
->
-> Pay attention when R does something unexpected! Errors, like above,
-> are thrown when R cannot proceed with a calculation. Warnings on the
-> other hand usually mean that the function has run, but it probably
-> hasn't worked as expected.
->
-> In both cases, the message that R prints out usually give you clues
-> how to fix a problem.
+<!--sec data-title="Tip: Warnings vs. Errors" data-id="tip5" data-show=true data-collapse=true ces-->
+Pay attention when R does something unexpected! Errors, like above, are
+thrown when R cannot proceed with a calculation. Warnings on the other
+hand usually mean that the function has run, but it probably hasn't
+worked as expected.
 
+In both cases, the message that R prints out usually give you clues how
+to fix a problem.
+
+<!--endsec-->
 R Packages
 ----------
 
@@ -453,44 +447,40 @@ network). R and RStudio have functionality for managing packages:
 -   You can remove a package with `remove.packages("packagename")`
 -   You can make a package available for use with `library(packagename)`
 
-> Challenge 1
-> -----------
->
-> Which of the following are valid R variable names?
->
->     min_height
->     max.height
->     _age
->     .mass
->     MaxLength
->     min-length
->     2widths
->     celsius2kelvin
+<!--sec data-title="Challenge 1" data-id="ch1" data-show=true data-collapse=false ces-->
+Which of the following are valid R variable names?
 
-> Challenge 2
-> -----------
->
-> What will be the value of each variable after each statement in the
-> following program?
->
->     mass <- 47.5
->     age <- 122
->     mass <- mass * 2.3
->     age <- age - 20
+    > min_height
+    > max.height
+    > _age
+    > .mass
+    > MaxLength
+    > min-length
+    > 2widths
+    > celsius2kelvin
 
-> Challenge 3
-> -----------
->
-> Run the code from the previous challenge, and write a command to
-> compare mass to age. Is mass larger than age?
+<!--endsec-->
+<!--sec data-title="Challenge 2" data-id="ch2" data-show=true data-collapse=false ces-->
+What will be the value of each variable after each statement in the
+following program?
 
-> Challenge 4
-> -----------
->
-> Clean up your working environment by deleting the mass and age
-> variables.
+    > mass <- 47.5
+    > age <- 122
+    > mass <- mass * 2.3
+    > age <- age - 20
 
-> Challenge 5
-> -----------
->
-> Install the following packages: `dplyr`, `tidyr`
+<!--endsec-->
+<!--sec data-title="Challenge 3" data-id="ch3" data-show=true data-collapse=false ces-->
+Run the code from the previous challenge, and write a command to compare
+mass to age. Is mass larger than age?
+
+<!--endsec-->
+<!--sec data-title="Challenge 4" data-id="ch4" data-show=true data-collapse=false ces-->
+Clean up your working environment by deleting the mass and age
+variables.
+
+<!--endsec-->
+<!--sec data-title="Chellenge 5" data-id="ch5" data-show=true data-collapse=false ces-->
+Install the following packages: `dplyr`, `tidyr`
+
+<!--endsec-->
