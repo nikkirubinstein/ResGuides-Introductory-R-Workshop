@@ -4,7 +4,7 @@ R for reproducible scientific analysis
 Introduction to R and RStudio
 -----------------------------
 
-<!--sec data-title="Figure Description Structure" data-id="eg1" data-show=true data-collapse=false ces-->
+<!--sec data-title="Figure Description Structure" data-id="eg1" data-show=true data-collapse=true ces-->
 > Learning Objectives
 > -------------------
 >
