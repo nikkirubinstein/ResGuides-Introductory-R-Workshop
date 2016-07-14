@@ -15,7 +15,8 @@
         "mathjax",
         "sectionx",
         "youtubex",
-        "section"
+        "section",
+        "sections"
     ],
     "pluginsConfig": {
         "edit-link": {
