@@ -18,6 +18,8 @@ Introduction to R and RStudio
 > -   Introduction to package management
 
 <!--endsec-->
+<button class="section" target="eg1" show="Show next section" hide="Hide next section"></button>
+
 Introduction to RStudio
 -----------------------
 
