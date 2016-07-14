@@ -3,7 +3,7 @@ output:
   md_document
 ---
 
-# Introduction to R and RStudio 
+## Introduction to R and RStudio 
 
 <!--sec data-title="Learning Objectives" data-id="obj" data-show=true data-collapse=false ces-->
 
