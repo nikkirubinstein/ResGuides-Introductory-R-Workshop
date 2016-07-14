@@ -14,13 +14,7 @@
         "toggle-chapters",
         "mathjax",
         "sectionx",
-        "youtubex",
-        "section",
-        "sections",
-        "sectionx-collapse",
-        "sectionx-modified",
-        "sectionx-strong",
-        "special-sections"
+        "youtubex"
     ],
     "pluginsConfig": {
         "edit-link": {
