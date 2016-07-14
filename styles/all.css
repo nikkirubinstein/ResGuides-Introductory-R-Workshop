@@ -85,10 +85,22 @@ color: #00779c;
 
 
 
+.atoc {
+  list-style-type: circle;
+}
+
 
 .panel-default>.panel-heading {
-background-color: #FF6700;
+background-color: #00779c;
 color: white;
+}
+
+.ex {
+  color: White;
+  background-color:#532176;
+  border: 2px solid #303;
+  border-radius: 10px;
+  text-align: center;
 }
 
 
