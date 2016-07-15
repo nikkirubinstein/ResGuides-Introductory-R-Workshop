@@ -114,24 +114,29 @@ class. */
 
 /* Error messages. */
 .err {
-    color: darkred;
+    color: #8B0000;
     font-style: italic;
 }
 
 
 /* Highlighted changes in code. */
 .highlight {
-    background-color: mistyrose;
+    background-color: #ffe4e1;
 }
 
 /* Manual input. */
-.input .r {
-    color: darkgreen;
+.input {
+    color: #006400;
 }
+
+.r {
+    color: #006400;
+}
+
 
 /* Program output. */
 .output {
-    color: darkblue;
+    color: #00008B;
     font-style: italic;
 }
 
@@ -144,51 +149,4 @@ blockquote {
     font-size: inherit;
 }
 
-
-
-/* Code sample */
-pre.sourceCode,
-pre.input {
-    color: ForestGreen;
-}
-pre.output {
-    color: MediumBlue;
-}
-pre.error {
-    color: Red;
-}
-
-@media (max-width: 700px) {
-    div.banner a img {
-        padding: 20px 0px;
-    }
-}
-
-/*----------------------------------------*/
-/* Override Bootstrap CSS                 */
-/*----------------------------------------*/
-
-blockquote p {
-    font-size: inherit;
-    font-weight: inherit;
-    line-height: inherit;
-}
-
-blockquote h2{
-   margin-top: 0px;
-}
-
-/* YouTube video embed. */
-div.youtube {
-    text-align: center;
-    padding: 10px;
-}
-
-/* Displaying YouTube videos. */
-iframe.youtube_player {
-    border: 0;
-    text-align: center;
-    width: 640px;
-    height: 500px;
-}
 
