@@ -25,12 +25,10 @@ data - like what you might already have in a spreadsheet or a CSV. Let's
 start by making a toy dataset in your `data/` directory, called
 `feline-data.csv`:
 
-```r
     coat,weight,likes_string
     calico,2.1,TRUE
     black,5.0,FALSE
     tabby,3.2,TRUE
-```
 
 We can load this into R via the following:
 

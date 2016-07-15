@@ -185,10 +185,9 @@ Given the following code:
     strategies?
 
 <!--endsec-->
+<br>
 
 ------------------------------------------------------------------------
-
-<br>
 
 Subsetting by name
 ------------------
@@ -348,9 +347,9 @@ print out a warning message:
 This difference between `==` and `%in%` is important to remember,
 because it can introduce hard to find and subtle bugs!
 
-------------------------------------------------------------------------
-
 <br>
+
+------------------------------------------------------------------------
 
 Subsetting through other logical operations
 -------------------------------------------
@@ -422,10 +421,9 @@ Write a subsetting command to return the values in x that are greater
 than 4 and less than 7.
 
 <!--endsec-->
+<br>
 
 ------------------------------------------------------------------------
-
-<br>
 
 Handling special values
 -----------------------

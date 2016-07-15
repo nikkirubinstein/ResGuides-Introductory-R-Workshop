@@ -11,13 +11,12 @@ Exploring data frames
 
 ------------------------------------------------------------------------
 
-**Table of Contents**
+<!--**Table of Contents**
 
 <!-- toc -->
-<br>
+<!--<br>
 
-------------------------------------------------------------------------
-
+--- -->
 At this point, you've see it all - in the last lesson, we toured all the
 basic data types and data structures in R. Everything you do will be a
 manipulation of those tools. But a whole lot of the time, the star of

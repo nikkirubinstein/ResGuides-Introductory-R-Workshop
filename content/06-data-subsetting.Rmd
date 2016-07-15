@@ -178,9 +178,9 @@ x[2:4]
 
 <!--endsec-->
 
----
-
 <br>
+
+---
 
 ## Subsetting by name
 
@@ -323,9 +323,9 @@ names(x) == c('a', 'c', 'e')
 This difference between `==` and `%in%` is important to remember,
 because it can introduce hard to find and subtle bugs!
 
----
-
 <br>
+
+---
 
 ## Subsetting through other logical operations
 
@@ -380,9 +380,9 @@ Write a subsetting command to return the values in x that are greater than 4 and
 
 <!--endsec-->
 
----
-
 <br>
+
+---
 
 ## Handling special values
 
