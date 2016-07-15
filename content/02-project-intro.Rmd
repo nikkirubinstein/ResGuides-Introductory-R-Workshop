@@ -11,11 +11,15 @@ output:
 
 <!--endsec-->
 
+<br>
+
 ---
 
 **Table of Contents**
 
 <!-- toc -->
+
+<br>
 
 ---
 
@@ -50,6 +54,8 @@ A good project layout will ultimately make your life easier:
 * It allows you to easily upload your code with your manuscript submission;
 * It makes it easier to pick the project back up after a break.
 
+<br>
+
 ---
 
 ## A possible solution
@@ -76,12 +82,16 @@ We're going to create a new project in RStudio:
 Now when we start R in this project directory, or open this project with RStudio,
 all of our work on this project will be entirely self-contained in this directory.
 
+<br>
+
 ---
 
 ## Best practices for project organisation
 
 Although there is no "best" way to lay out a project, there are some general
 principles to adhere to that will make project management easier:
+
+<br>
 
 ---
 
@@ -93,6 +103,8 @@ interactively (e.g., in Excel) where they can be modified means you are never
 sure of where the data came from, or how it has been modified since collection.
 It is therefore a good idea to treat your data as "read-only".
 
+<br>
+
 ---
 
 ## Data Cleaning
@@ -102,6 +114,8 @@ to get into a format R (or any other programming language) will find useful. Thi
 task is sometimes called "data munging". I find it useful to store these scripts
 in a separate folder, and create a second "read-only" data folder to hold the
 "cleaned" data sets.
+
+<br>
 
 ---
 
@@ -134,6 +148,8 @@ For more information on ProjectTemplate and its functionality visit the home pag
 
 <!--endsec-->
 
+<br>
+
 ---
 
 ## Separate function definition and application
@@ -157,6 +173,8 @@ You may find yourself using data or analysis scripts across several projects. Ty
 In this case I find it useful to make "symbolic links", which are essentially shortcuts to files somewhere else on a filesystem. On Linux and OS X you can use the `ln -s` command, and on windows you can either create a shortcut or use the `mklink` command from the windows terminal.
 
 <!--endsec-->
+
+<br>
 
 ---
 
@@ -185,6 +203,8 @@ It is useful to get some general idea about the dataset, directly from the comma
 3. What are the data types of values stored in this file?
 
 <!--endsec-->
+
+<br>
 
 ---
 

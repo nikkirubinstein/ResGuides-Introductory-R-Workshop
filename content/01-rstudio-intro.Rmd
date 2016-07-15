@@ -1,7 +1,5 @@
 ---
-output: 
-  md_document:
-    variant: markdown_github
+output: md_document
 ---
 
 # Introduction to R and RStudio 

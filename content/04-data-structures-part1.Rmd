@@ -13,11 +13,15 @@ output:
 
 <!--endsec-->
 
+<br>
+
 ---
 
 **Table of Contents**
 
 <!-- toc -->
+
+<br>
 
 ---
 
@@ -60,6 +64,8 @@ cats$weight[1] + cats$coat[2]
 ```
 
 Understanding what happened here is key to successfully analyzing data in R.
+
+<br>
 
 ---
 
@@ -131,6 +137,8 @@ And back in RStudio:
 cats <- read.csv(file="../data/feline-data.csv")
 ```
 
+<br>
+
 ---
 
 ## Vectors & Type Coercion
@@ -163,7 +171,7 @@ str(cats$weight)
 
 we see that that's a vector, too - *the columns of data we load into R data.frames are all vectors*, and that's the root of why R forces everything in a column to be the same basic data type.
 
-<!--sec data-title="Discussion 1" data-id="disc1" data-show=true data-collapse=true ces-->
+<!--sec data-title="Discussion 1" data-id="disc1" data-show=true data-collapse=false ces-->
 
 Why is R so opinionated about what we put in our columns of data?
 How does this help us?
@@ -247,6 +255,8 @@ Start by making a vector with the numbers 11 to 20. Then use the functions we ju
 
 <!--endsec-->
 
+<br>
+
 ---
 
 ## Factors
@@ -305,6 +315,8 @@ In this case, we've explicitly told R that "control" should represented by 1, an
 "case" by 2. This designation can be very important for interpreting the
 results of statistical models!
 
+<br>
+
 ---
 
 ## Lists
@@ -326,6 +338,8 @@ typeof(cats)
 ```
 
 We see that data.frames look like lists 'under the hood' - this is because a data.frame is really a list of vectors and factors, as they have to be - in order to hold those columns that are a mix of vectors and factors, the data.frame needs something a bit more flexible than a vector to put all the columns together into a familiar table.
+
+<br>
 
 ---
 
@@ -389,7 +403,7 @@ What was the correct command used to write this matrix? Examine each command and
 
 
 
-
+<br>
 
 ---
 

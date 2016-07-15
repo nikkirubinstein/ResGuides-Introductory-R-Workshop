@@ -8,12 +8,14 @@ Seeking help
 -   To be able to seek help from your peers
 
 <!--endsec-->
+<br>
 
 ------------------------------------------------------------------------
 
 **Table of Contents**
 
 <!-- toc -->
+<br>
 
 ------------------------------------------------------------------------
 
@@ -50,6 +52,7 @@ correct usage for every function you use. Luckily, the help files mean
 you don't have to!
 
 <!--endsec-->
+<br>
 
 ------------------------------------------------------------------------
 
@@ -59,6 +62,8 @@ Special Operators
 To seek help on special operators, use quotes:
 
     ?"+"
+
+<br>
 
 ------------------------------------------------------------------------
 
@@ -74,6 +79,8 @@ will list all available vignettes for `package-name`, and
 If a package doesn't have any vignettes, you can usually find help by
 typing `help("package-name")`.
 
+<br>
+
 ------------------------------------------------------------------------
 
 When you kind of remember the function
@@ -84,6 +91,8 @@ specifically spelled you can do a fuzzy search:
 
     ??function_name
 
+<br>
+
 ------------------------------------------------------------------------
 
 When you have no idea where to begin
@@ -92,6 +101,8 @@ When you have no idea where to begin
 If you don't know what function or package you need to use [CRAN Task
 Views](http://cran.at.r-project.org/web/views) is a specially maintained
 list of packages grouped into fields. This can be a good starting point.
+
+<br>
 
 ------------------------------------------------------------------------
 
@@ -160,6 +171,7 @@ conventions for the decimal point (i.e. comma vs period). hint: use
 `??csv` to lookup csv related functions.
 
 <!--endsec-->
+<br>
 
 ------------------------------------------------------------------------
 
@@ -170,6 +182,8 @@ Other ports of call
 -   [RStudio cheat
     sheets](http://www.rstudio.com/resources/cheatsheets/)
 -   [Cookbook for R](http://www.cookbook-r.com/)
+
+<br>
 
 ------------------------------------------------------------------------
 

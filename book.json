@@ -14,8 +14,7 @@
         "sectionx",
         "youtubex",
         "edit-link",
-        "atoc",
-        "addcssjs"
+        "atoc"
     ],
     "pluginsConfig": {
         "ga": {
@@ -24,10 +23,6 @@
         "edit-link": {
             "base": "https://github.com/resbaz/ResGuides-Gitbook/edit/master",
             "label": "Edit This Page"
-        },
-        "addcssjs": {
-            "js": ["styles/highlight.pack.js"],
-            "css": ["styles/styles/zenburn.css"]
         }
     },
     "styles": {

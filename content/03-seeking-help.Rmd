@@ -13,11 +13,15 @@ output:
 
 <!--endsec-->
 
+<br>
+
 ---
 
 **Table of Contents**
 
 <!-- toc -->
+
+<br>
 
 ---
 
@@ -53,6 +57,8 @@ One of the most daunting aspects of R is the large number of functions available
 
 <!--endsec-->
 
+<br>
+
 ---
 
 ## Special Operators
@@ -62,6 +68,8 @@ To seek help on special operators, use quotes:
 ```{r, eval=FALSE}
 ?"+"
 ```
+
+<br>
 
 ---
 
@@ -75,6 +83,8 @@ Without any arguments, `vignette()` will list all vignettes for all installed pa
 If a package doesn't have any vignettes, you can usually find help by typing
 `help("package-name")`.
 
+<br>
+
 ---
 
 ## When you kind of remember the function
@@ -85,6 +95,8 @@ If you're not sure what package a function is in, or how it's specifically spell
 ??function_name
 ```
 
+<br>
+
 ---
 
 ## When you have no idea where to begin
@@ -93,6 +105,8 @@ If you don't know what function or package you need to use
 [CRAN Task Views](http://cran.at.r-project.org/web/views)
 is a specially maintained list of packages grouped into
 fields. This can be a good starting point.
+
+<br>
 
 ---
 
@@ -145,6 +159,8 @@ hint: use `??csv` to lookup csv related functions.
 
 <!--endsec-->
 
+<br>
+
 ---
 
 ## Other ports of call
@@ -152,6 +168,8 @@ hint: use `??csv` to lookup csv related functions.
 * [Quick R](http://www.statmethods.net/)
 * [RStudio cheat sheets](http://www.rstudio.com/resources/cheatsheets/)
 * [Cookbook for R](http://www.cookbook-r.com/)
+
+<br>
 
 ---
 

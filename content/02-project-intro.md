@@ -6,12 +6,14 @@ Project management with RStudio
 -   To be able to use git from within RStudio
 
 <!--endsec-->
+<br>
 
 ------------------------------------------------------------------------
 
 **Table of Contents**
 
 <!-- toc -->
+<br>
 
 ------------------------------------------------------------------------
 
@@ -55,6 +57,8 @@ A good project layout will ultimately make your life easier:
     submission;
 -   It makes it easier to pick the project back up after a break.
 
+<br>
+
 ------------------------------------------------------------------------
 
 A possible solution
@@ -84,6 +88,8 @@ Now when we start R in this project directory, or open this project with
 RStudio, all of our work on this project will be entirely self-contained
 in this directory.
 
+<br>
+
 ------------------------------------------------------------------------
 
 Best practices for project organisation
@@ -92,6 +98,8 @@ Best practices for project organisation
 Although there is no "best" way to lay out a project, there are some
 general principles to adhere to that will make project management
 easier:
+
+<br>
 
 ------------------------------------------------------------------------
 
@@ -105,6 +113,8 @@ are never sure of where the data came from, or how it has been modified
 since collection. It is therefore a good idea to treat your data as
 "read-only".
 
+<br>
+
 ------------------------------------------------------------------------
 
 Data Cleaning
@@ -115,6 +125,8 @@ preprocessing to get into a format R (or any other programming language)
 will find useful. This task is sometimes called "data munging". I find
 it useful to store these scripts in a separate folder, and create a
 second "read-only" data folder to hold the "cleaned" data sets.
+
+<br>
 
 ------------------------------------------------------------------------
 
@@ -153,6 +165,7 @@ For more information on ProjectTemplate and its functionality visit the
 home page [ProjectTemplate](http://projecttemplate.net/index.html)
 
 <!--endsec-->
+<br>
 
 ------------------------------------------------------------------------
 
@@ -182,6 +195,7 @@ and OS X you can use the `ln -s` command, and on windows you can either
 create a shortcut or use the `mklink` command from the windows terminal.
 
 <!--endsec-->
+<br>
 
 ------------------------------------------------------------------------
 
@@ -214,6 +228,7 @@ command-line shell to answer the following questions:
 3.  What are the data types of values stored in this file?
 
 <!--endsec-->
+<br>
 
 ------------------------------------------------------------------------
 
