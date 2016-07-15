@@ -6,8 +6,7 @@ output: md_document
 
 <!--sec data-title="Learning Objective" data-id="obj" data-show=true data-collapse=false ces-->
 
-* To review the best practices for using R for
-   scientific analysis.
+* To review the best practices for using R for scientific analysis.
 
 <!--endsec--->
 
