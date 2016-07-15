@@ -27,7 +27,7 @@
         },
         "addcssjs": {
             "js": ["styles/highlight.pack.js"],
-            "css": ["styles/styles/default.css"]
+            "css": ["styles/styles/zenburn.css"]
         }
     },
     "styles": {
