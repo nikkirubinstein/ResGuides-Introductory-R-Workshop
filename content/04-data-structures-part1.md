@@ -9,12 +9,14 @@ Data structures
     structure of an object.
 
 <!--endsec-->
+<br>
 
 ------------------------------------------------------------------------
 
 **Table of Contents**
 
 <!-- toc -->
+<br>
 
 ------------------------------------------------------------------------
 
@@ -23,10 +25,12 @@ data - like what you might already have in a spreadsheet or a CSV. Let's
 start by making a toy dataset in your `data/` directory, called
 `feline-data.csv`:
 
+```r
     coat,weight,likes_string
     calico,2.1,TRUE
     black,5.0,FALSE
     tabby,3.2,TRUE
+```
 
 We can load this into R via the following:
 
@@ -68,6 +72,8 @@ But what about
 
 Understanding what happened here is key to successfully analyzing data
 in R.
+
+<br>
 
 ------------------------------------------------------------------------
 
@@ -140,6 +146,8 @@ And back in RStudio:
 
     cats <- read.csv(file="../data/feline-data.csv")
 
+<br>
+
 ------------------------------------------------------------------------
 
 Vectors & Type Coercion
@@ -182,7 +190,7 @@ we see that that's a vector, too - *the columns of data we load into R
 data.frames are all vectors*, and that's the root of why R forces
 everything in a column to be the same basic data type.
 
-<!--sec data-title="Discussion 1" data-id="disc1" data-show=true data-collapse=true ces-->
+<!--sec data-title="Discussion 1" data-id="disc1" data-show=true data-collapse=false ces-->
 Why is R so opinionated about what we put in our columns of data? How
 does this help us?
 
@@ -311,6 +319,7 @@ vector into a new vector; name the elements in that new vector 'S', 'W',
 'C'.
 
 <!--endsec-->
+<br>
 
 ------------------------------------------------------------------------
 
@@ -390,6 +399,8 @@ In this case, we've explicitly told R that "control" should represented
 by 1, and "case" by 2. This designation can be very important for
 interpreting the results of statistical models!
 
+<br>
+
 ------------------------------------------------------------------------
 
 Lists
@@ -443,6 +454,8 @@ because a data.frame is really a list of vectors and factors, as they
 have to be - in order to hold those columns that are a mix of vectors
 and factors, the data.frame needs something a bit more flexible than a
 vector to put all the columns together into a familiar table.
+
+<br>
 
 ------------------------------------------------------------------------
 
@@ -527,6 +540,7 @@ about what matrices the other commands will produce.
 4.  `matrix(c(4, 1, 9, 5, 10, 7), ncol = 2, byrow = TRUE)`
 
 <!--endsec-->
+<br>
 
 ------------------------------------------------------------------------
 
