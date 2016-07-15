@@ -102,51 +102,11 @@ color: white;
 }
 
 
-
-/* Headings */
-h1, h2, h3, h4, h5, h6 {
-    font-family: "Open Sans", "Helvetica", "Arial", sans-serif;
-    font-weight: bold;
-}
-
-h1, h2 {
-    margin-top: 40px;
-    margin-bottom: 10px;
-}
-
-h1.title {
-    margin: 40px 0px;
-}
-
-h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
-    color: inherit;
-}
-
-h2 code, h3 code, h4 code, h5 code, h6 code {
-    font-size: inherit;
-}
-
 /* Objectives, Callout Box, Challenges and prerequisites are now rendered as
 Bootstrap panels.  There's a pandoc error with rendering headers nested under
 blockquote: these headers don't preserve attributes.  It means we have to
 manually set styles for these headers to look like Bootstrap's "panel-title"
 class. */
-.panel-heading h1,
-.panel-heading h2,
-.panel-heading h3,
-.panel-heading h4,
-.panel-heading h5,
-.panel-heading h6 {
-    margin-top: 0px;
-    margin-bottom: 0px;
-    color: inherit;
-    font-size: 16px;
-    font-family: inherit;
-    font-weight: 500;
-    line-height: 1.1;
-}
-
-
 /* Comments in code. */
 .comment {
     color: purple;
@@ -165,12 +125,12 @@ class. */
 }
 
 /* Manual input. */
-.in {
+.input .r {
     color: darkgreen;
 }
 
 /* Program output. */
-.out {
+.output {
     color: darkblue;
     font-style: italic;
 }
