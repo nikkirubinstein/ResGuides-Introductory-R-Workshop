@@ -8,7 +8,7 @@ output: md_document
 
 * To review the best practices for using R for scientific analysis.
 
-<!--endsec--->
+<!--endsec-->
 
 <br>
 
