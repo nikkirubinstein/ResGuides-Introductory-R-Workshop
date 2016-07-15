@@ -28,7 +28,7 @@
         "addcssjs": {
             "js": ["styles/highlight.pack.js"],
             "css": ["styles/styles/default.css"]
-  }
+        }
     },
     "styles": {
         "website": "styles/all.css",
