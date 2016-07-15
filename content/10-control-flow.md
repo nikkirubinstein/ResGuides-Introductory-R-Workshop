@@ -17,6 +17,9 @@ Control flow
 
 ------------------------------------------------------------------------
 
+Conditionals
+------------
+
 Often when we're coding we want to control the flow of our actions. This
 can be done by setting actions to occur only if a condition or a set of
 conditions are met. Alternatively, we can also set an action to occur a
@@ -291,14 +294,6 @@ time print out whether the health measure is smaller than 5, between 5
 and 8, or greater than 8.
 
 <!--endsec-->
-<!-- I don't think so
-> ## Challenge 5 - Advanced {.challenge}
->
-> Write a script that loops over each country in the `gapminder` dataset,
-> tests whether the country starts with a 'B', and graphs life expectancy
-> against time as a line graph if the mean life expectancy is under 50 years.
->
--->
 <br>
 
 ------------------------------------------------------------------------

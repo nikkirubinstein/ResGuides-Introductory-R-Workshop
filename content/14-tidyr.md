@@ -35,7 +35,7 @@ However, many of `R`'s functions have been designed assuming you have
 'long' format data. This tutorial will help you efficiently transform
 your data regardless of original format.
 
-![](fig/14-tidyr-fig1.png)
+![](../images/14-tidyr-fig1.png)
 
 These data formats mainly affect readability. For humans, the wide
 format is often more intuitive since we can often see more of the data
@@ -392,9 +392,7 @@ Challenge solutions
 -------------------
 
 <!--sec data-title="Solution to Challenge 1" data-id="ch1sol" data-show=true data-collapse=true ces-->
-The original gapminder data.frame is in an intermediate format. It is
-not purely long since it had multiple observation variables
-(`pop`,`lifeExp`,`gdpPercap`).
+The original healthData data.frame is in a wide format.
 
 <!--endsec-->
 <!--sec data-title="Solution to Challenge 2" data-id="ch2sol" data-show=true data-collapse=true ces-->

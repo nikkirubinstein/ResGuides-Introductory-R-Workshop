@@ -23,8 +23,6 @@ output: md_document
 
 ---
 
-## Best practices for writing nice code
-
 ## Make code readable
 
 The most important part of writing code is making it readable and understandable.

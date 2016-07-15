@@ -52,7 +52,7 @@ In the 'long' format, you usually have 1 column for the observed variable and th
 
 For the 'wide' format each row is often a site/subject/patient and you have multiple observation variables containing the same type of data. These can be either repeated observations over time, or observation of multiple variables (or a mix of both). You may find data input may be simpler or some other applications may prefer the 'wide' format. However, many of `R`'s functions have been designed assuming you have 'long' format data. This tutorial will help you efficiently transform your data regardless of original format.
 
-![](fig/14-tidyr-fig1.png)
+![](../images/14-tidyr-fig1.png)
 
 These data formats mainly affect readability. For humans, the wide format is often more intuitive since we can often see more of the data on the screen due to it's shape. However, the long format is more machine readable and is closer to the formating of databases. The ID variables in our dataframes are similar to the fields in a database and observed variables are like the database values.
 
@@ -184,7 +184,7 @@ Convert the original healthData data.frame to a wide format which has the 2 orig
 
 <!--sec data-title="Solution to Challenge 1" data-id="ch1sol" data-show=true data-collapse=true ces-->
 
-The original gapminder data.frame is in an intermediate format. It is not purely long since it had multiple observation variables (`pop`,`lifeExp`,`gdpPercap`).
+The original healthData data.frame is in a wide format.
 
 <!--endsec-->
 

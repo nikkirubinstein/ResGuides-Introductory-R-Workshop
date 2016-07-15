@@ -78,7 +78,7 @@ If, for example, we wanted to move forward with only a few of the variables in o
 sex_health_neuroticism <- select(healthData,sex,health,neuroticism)
 ```
 
-![](fig/13-dplyr-fig1.png)
+![](../images/13-dplyr-fig1.png)
 
 If we open up `sex_health_neuroticism` we'll see that it only contains the sex, health and neuroticism columns. Above we used 'normal' grammar, but the strengths of `dplyr` lie in combining several functions using pipes. Since the pipes grammar is unlike anything we've seen in R before, let's repeat what we've done above using pipes.
 
@@ -125,7 +125,7 @@ str(healthData %>% group_by(sex))
 ```
 You will notice that the structure of the dataframe where we used `group_by()` (`grouped_df`) is not the same as the original `healthData` (`data.frame`). A `grouped_df` can be thought of as a `list` where each item in the `list`is a `data.frame` which contains only the rows that correspond to the a particular value `sex` (at least in the example above).
 
-![](fig/13-dplyr-fig2.png)
+![](../images/13-dplyr-fig2.png)
 
 <br>
 
@@ -142,7 +142,7 @@ conscientiousness_by_sex <- healthData %>%
 conscientiousness_by_sex
 ```
 
-![](fig/13-dplyr-fig3.png)
+![](../images/13-dplyr-fig3.png)
 
 That allowed us to calculate the mean conscientiousness for each sex, but it gets even better.
 
@@ -205,7 +205,7 @@ Calculate the average intellect for 5 randomly selected females in each sample g
 
 <!--sec data-title="Solution to Challenge 1" data-id="ch1sol" data-show=true data-collapse=true ces-->
 
-``{r}
+```{r}
 conscientiousness_extraversion_intellect_males <- healthData %>%
                             filter(sex=="Male") %>%
                             select(conscientiousness,extraversion,intellect)

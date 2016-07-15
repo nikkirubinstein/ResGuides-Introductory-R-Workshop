@@ -79,7 +79,7 @@ will keep only the variables you select.
 
     sex_health_neuroticism <- select(healthData,sex,health,neuroticism)
 
-![](fig/13-dplyr-fig1.png)
+![](../images/13-dplyr-fig1.png)
 
 If we open up `sex_health_neuroticism` we'll see that it only contains
 the sex, health and neuroticism columns. Above we used 'normal' grammar,
@@ -196,7 +196,7 @@ item in the `list`is a `data.frame` which contains only the rows that
 correspond to the a particular value `sex` (at least in the example
 above).
 
-![](fig/13-dplyr-fig2.png)
+![](../images/13-dplyr-fig2.png)
 
 <br>
 
@@ -223,7 +223,7 @@ can run functions (e.g. `mean()` or `sd()`) within `summarize()`.
     ## 1 Female               6.086473
     ## 2   Male               5.685394
 
-![](fig/13-dplyr-fig3.png)
+![](../images/13-dplyr-fig3.png)
 
 That allowed us to calculate the mean conscientiousness for each sex,
 but it gets even better.
@@ -285,9 +285,9 @@ Challenge solutions
 -------------------
 
 <!--sec data-title="Solution to Challenge 1" data-id="ch1sol" data-show=true data-collapse=true ces-->
-\`\`{r} conscientiousness\_extraversion\_intellect\_males &lt;-
-healthData %&gt;% filter(sex=="Male") %&gt;%
-select(conscientiousness,extraversion,intellect) \`\`\`
+    conscientiousness_extraversion_intellect_males <- healthData %>%
+                                filter(sex=="Male") %>%
+                                select(conscientiousness,extraversion,intellect)
 
 <!--endsec-->
 <!--sec data-title="Solution to Challenge 2" data-id="ch2sol" data-show=true data-collapse=true ces-->

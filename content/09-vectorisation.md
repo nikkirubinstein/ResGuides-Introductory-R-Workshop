@@ -53,16 +53,6 @@ to make sure it worked.
 **Hint**: R has a round() function
 
 <!--endsec-->
-<!--
-> ## Challenge 2 {.challenge}
->
-> On a single graph, plot neuroticism against health rounded to the nearest integer, 
-> for each of the study groups.
->
-> Repeat the exercise, graphing only for people with: conscientiousnss greater than 5, 
-> self-rated health below 7, and alcohol use in young adulthood of 2.
->
--->
 Comparison operators, logical operators, and many functions are also
 vectorized:
 
@@ -198,34 +188,6 @@ Hint: R has a round() function
 
 <!--endsec-->
 <!--sec data-title="Solution to Challenge 2" data-id="ch2sol" data-show=true data-collapse=true ces-->
-<!--
-> ## Solution to challenge 2 {.challenge}
->
->
-> On a single graph, plot neuroticism against health rounded to the nearest integer, 
-> for each of the study groups.
->
-> Repeat the exercise, graphing only for people with: conscientiousnss greater than 5, 
-> self-rated health below 7, and alcohol use in young adulthood of 2.
->
->
-> 
-> ```r
->  ggplot(healthData, aes(x = healthInteger, y = neuroticism)) + 
->   geom_point()
-> ```
-> 
-> ![](09-vectorisation_files/figure-markdown_strict/ch2-sol-1.png)
-> 
-> ```r
->  ggplot(healthData[healthData$conscientiousness > 5 & healthData$selfRatedHealth < 7 & healthData$alcoholUseInYoungAdulthood == 2,],
->         aes(x = healthInteger, y = neuroticism)) + 
->    geom_point()
-> ```
-> 
-> ![](09-vectorisation_files/figure-markdown_strict/ch2-sol-2.png)
->
--->
 Given the following matrix:
 
     m <- matrix(1:12, nrow=3, ncol=4)
