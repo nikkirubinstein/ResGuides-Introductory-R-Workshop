@@ -129,7 +129,7 @@ class. */
     color: #006400;
 }
 
-.r code {
+.r, pre, pre code, code {
     color: #006400;
 }
 
