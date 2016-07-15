@@ -383,6 +383,7 @@ columns (`conscientiousness`,`extraversion`,`intellect` etc) into a
 single pair of columns - one which hold observation type, and one with
 the observation value.
 
+<!--endsec-->
 <br>
 
 ------------------------------------------------------------------------

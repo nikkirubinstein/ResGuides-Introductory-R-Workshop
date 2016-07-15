@@ -227,6 +227,8 @@ Modify the color and size of the points on the point layer in the previous examp
 
 Hint: do not use the `aes` function.
 
+<!--endsec-->
+
 <br>
 
 ---

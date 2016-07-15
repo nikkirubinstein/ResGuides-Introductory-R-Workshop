@@ -208,6 +208,7 @@ previous example.
 
 Hint: do not use the `aes` function.
 
+<!--endsec-->
 <br>
 
 ------------------------------------------------------------------------
