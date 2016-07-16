@@ -103,9 +103,11 @@ returns a result.
 
 The simplest thing you could do with R is do arithmetic:
 
-<!--rcode-->
+<rcode>
+```
 1 + 100
-<!--endrcode-->
+```
+<\rcode>
 
 
 ~~~{.r}

@@ -105,6 +105,10 @@ color: white;
   color: blue;
 } 
 
+rcode {
+  color: blue;
+}
+
 /* Objectives, Callout Box, Challenges and prerequisites are now rendered as
 Bootstrap panels.  There's a pandoc error with rendering headers nested under
 blockquote: these headers don't preserve attributes.  It means we have to
