@@ -103,6 +103,10 @@ returns a result.
 
 The simplest thing you could do with R is do arithmetic:
 
+<!--rcode-->
+1 + 100
+<!--endrcode-->
+
 
 ~~~{.r}
 1 + 100

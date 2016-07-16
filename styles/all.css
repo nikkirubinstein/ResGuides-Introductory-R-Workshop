@@ -101,7 +101,7 @@ color: white;
   text-align: center;
 }
 
-.book.color-theme-2 > .book-body > .body-inner > .page-wrapper > .page-inner > section > .r {
+.book.color-theme-2 > .book-body > .body-inner > .page-wrapper > .page-inner > section > rcode {
   color: blue;
 } 
 
