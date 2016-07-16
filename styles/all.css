@@ -101,6 +101,9 @@ color: white;
   text-align: center;
 }
 
+.book.color-theme-2 > .book-body > .body-inner > .page-wrapper > .page-inner > section > .r {
+  color: blue;
+} 
 
 /* Objectives, Callout Box, Challenges and prerequisites are now rendered as
 Bootstrap panels.  There's a pandoc error with rendering headers nested under
