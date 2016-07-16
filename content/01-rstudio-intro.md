@@ -103,8 +103,11 @@ returns a result.
 
 The simplest thing you could do with R is do arithmetic:
 
-<code style="color:blue;"> 1 + 100 </code>
+<pre><code style="color:blue;"> 1 + 100 </code></pre>
 
+```{.r}
+1+100
+```
 
 ~~~{.r}
 1 + 100
