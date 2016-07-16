@@ -103,7 +103,9 @@ returns a result.
 
 The simplest thing you could do with R is do arithmetic:
 
-<code style="color:blue;"> 1 + 100 </code>
+<!--rcode edocr--> 
+1 + 100 
+<!--endrcode-->
 
 <pre><code style="color:darkgreen">1 + 100</code></pre>
 <pre><code style="color:blue">[1] 101

@@ -101,8 +101,12 @@ color: white;
   text-align: center;
 }
 
-.book.color-theme-2 > .book-body > .body-inner > .page-wrapper > .page-inner > section > rcode {
+
+.book.color-theme-2 > .book-body > .body-inner > .page-wrapper > .page-inner > section > rcode > .panel {
   color: blue;
+  border-style: solid;
+	border-color: rgba(0,0,0,0.1);
+	border-width: 1px;
 } 
 
 rcode {
