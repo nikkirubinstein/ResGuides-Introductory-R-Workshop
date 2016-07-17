@@ -1,5 +1,9 @@
 ---
-output: md_document
+output: 
+  md_document:
+    pandoc_args: [
+      "--filter=../tools/filters/blockquote2div.py"
+    ]
 ---
 
 
@@ -104,11 +108,11 @@ returns a result.
 The simplest thing you could do with R is do arithmetic:
 <code style="color:blue;"> 1 + 100 </code>
 
-<div class="sourcecode">
-~~~
+
+~~~sourcecode
 1 + 100
 ~~~
-</div>
+
 
 
 ~~~{.output}
@@ -606,7 +610,7 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
     }
     else all.names
 }
-<bytecode: 0x2c9c4c8>
+<bytecode: 0x214c4c8>
 <environment: namespace:base>
 
 ~~~
