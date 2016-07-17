@@ -1,6 +1,5 @@
----
-output: md_document
----
+
+
 
 # Subsetting data
 
@@ -38,16 +37,19 @@ different subsetting operators for the different data structures.
 Let's start with the workhorse of R: atomic vectors.
 
 
-```r
+~~~sourcecode
 x <- c(5.4, 6.2, 7.1, 4.8, 7.5)
 names(x) <- c('a', 'b', 'c', 'd', 'e')
 x
-```
+~~~
 
-```
-##   a   b   c   d   e 
-## 5.4 6.2 7.1 4.8 7.5
-```
+
+
+~~~output
+  a   b   c   d   e 
+5.4 6.2 7.1 4.8 7.5 
+
+~~~
 
 So now that we've created a dummy vector to play with, how do we get at its
 contents?
@@ -62,24 +64,30 @@ To extract elements of a vector we can give their corresponding index, starting
 from one:
 
 
-```r
+~~~sourcecode
 x[1]
-```
-
-```
-##   a 
-## 5.4
-```
+~~~
 
 
-```r
+
+~~~output
+  a 
+5.4 
+
+~~~
+
+
+~~~sourcecode
 x[4]
-```
+~~~
 
-```
-##   d 
-## 4.8
-```
+
+
+~~~output
+  d 
+4.8 
+
+~~~
 
 The square brackets operator is just like any other function. For atomic vectors
 (and matrices), it means "get me the nth element".
@@ -87,26 +95,32 @@ The square brackets operator is just like any other function. For atomic vectors
 We can ask for multiple elements at once:
 
 
-```r
+~~~sourcecode
 x[c(1, 3)]
-```
+~~~
 
-```
-##   a   c 
-## 5.4 7.1
-```
+
+
+~~~output
+  a   c 
+5.4 7.1 
+
+~~~
 
 Or slices of the vector:
 
 
-```r
+~~~sourcecode
 x[1:4]
-```
+~~~
 
-```
-##   a   b   c   d 
-## 5.4 6.2 7.1 4.8
-```
+
+
+~~~output
+  a   b   c   d 
+5.4 6.2 7.1 4.8 
+
+~~~
 
 the `:` operator just creates a sequence of numbers from the left element to the right.
 I.e. `x[1:4]` is equivalent to `x[c(1,2,3,4)]`.
@@ -114,39 +128,48 @@ I.e. `x[1:4]` is equivalent to `x[c(1,2,3,4)]`.
 We can ask for the same element multiple times:
 
 
-```r
+~~~sourcecode
 x[c(1,1,3)]
-```
+~~~
 
-```
-##   a   a   c 
-## 5.4 5.4 7.1
-```
+
+
+~~~output
+  a   a   c 
+5.4 5.4 7.1 
+
+~~~
 
 If we ask for a number outside of the vector, R will return missing values:
 
 
-```r
+~~~sourcecode
 x[6]
-```
+~~~
 
-```
-## <NA> 
-##   NA
-```
+
+
+~~~output
+<NA> 
+  NA 
+
+~~~
 
 This is a vector of length one containing an `NA`, whose name is also `NA`.
 
 If we ask for the 0th element, we get an empty vector:
 
 
-```r
+~~~sourcecode
 x[0]
-```
+~~~
 
-```
-## named numeric(0)
-```
+
+
+~~~output
+named numeric(0)
+
+~~~
 
 <!--sec data-title="Tip: Vector numbering in R starts at 1" data-id="tip1" data-show=true data-collapse=true ces-->
 
@@ -164,40 +187,49 @@ If we use a negative number as the index of a vector, R will return
 every element *except* for the one specified:
 
 
-```r
+~~~sourcecode
 x[-2]
-```
+~~~
 
-```
-##   a   c   d   e 
-## 5.4 7.1 4.8 7.5
-```
+
+
+~~~output
+  a   c   d   e 
+5.4 7.1 4.8 7.5 
+
+~~~
 
 
 We can skip multiple elements:
 
 
-```r
+~~~sourcecode
 x[c(-1, -5)]  # or x[-c(1,5)]
-```
+~~~
 
-```
-##   b   c   d 
-## 6.2 7.1 4.8
-```
+
+
+~~~output
+  b   c   d 
+6.2 7.1 4.8 
+
+~~~
 
 <!--sec data-title="Tip: Order of operations" data-id="tip2" data-show=true data-collapse=true ces-->
 
 A common trip up for novices occurs when trying to skip slices of a vector. Most people first try to negate a sequence like so:
 
 
-```r
+~~~sourcecode
 x[-1:3]
-```
+~~~
 
-```
-## Error in x[-1:3]: only 0's may be mixed with negative subscripts
-```
+
+
+~~~err
+Error in x[-1:3]: only 0's may be mixed with negative subscripts
+
+~~~
 
 This gives a somewhat cryptic error:
 
@@ -206,14 +238,17 @@ But remember the order of operations. `:` is really a function, so what happens 
 The correct solution is to wrap that function call in brackets, so that the `-` operator applies to the results:
 
 
-```r
+~~~sourcecode
 x[-(1:3)]
-```
+~~~
 
-```
-##   d   e 
-## 4.8 7.5
-```
+
+
+~~~output
+  d   e 
+4.8 7.5 
+
+~~~
 
 <!--endsec-->
 
@@ -221,39 +256,46 @@ To remove elements from a vector, we need to assign the results back
 into the variable:
 
 
-```r
+~~~sourcecode
 x <- x[-4]
 x
-```
+~~~
 
-```
-##   a   b   c   e 
-## 5.4 6.2 7.1 7.5
-```
+
+
+~~~output
+  a   b   c   e 
+5.4 6.2 7.1 7.5 
+
+~~~
 
 <!--sec data-title="Challenge 1" data-id="ch1" data-show=true data-collapse=false ces-->
 
 Given the following code:
 
 
-```r
+~~~sourcecode
 x <- c(5.4, 6.2, 7.1, 4.8, 7.5)
 names(x) <- c('a', 'b', 'c', 'd', 'e')
 print(x)
-```
+~~~
 
-```
-##   a   b   c   d   e 
-## 5.4 6.2 7.1 4.8 7.5
-```
+
+
+~~~output
+  a   b   c   d   e 
+5.4 6.2 7.1 4.8 7.5 
+
+~~~
 
 1. Come up with at least 3 different commands that will produce the following output:
 
 
-```
-##   b   c   d 
-## 6.2 7.1 4.8
-```
+~~~output
+  b   c   d 
+6.2 7.1 4.8 
+
+~~~
 
 2. Compare notes with your neighbour. Did you have different strategies?
 
@@ -268,14 +310,17 @@ print(x)
 We can extract elements by using their name, instead of index:
 
 
-```r
+~~~sourcecode
 x[c("a", "c")]
-```
+~~~
 
-```
-##   a   c 
-## 5.4 7.1
-```
+
+
+~~~output
+  a   c 
+5.4 7.1 
+
+~~~
 
 This is usually a much more reliable way to subset objects: the
 position of various elements can often change when chaining together
@@ -286,14 +331,17 @@ Unfortunately we can't skip or remove elements so easily.
 To skip (or remove) a single named element:
 
 
-```r
+~~~sourcecode
 x[-which(names(x) == "a")]
-```
+~~~
 
-```
-##   b   c   d   e 
-## 6.2 7.1 4.8 7.5
-```
+
+
+~~~output
+  b   c   d   e 
+6.2 7.1 4.8 7.5 
+
+~~~
 
 The `which` function returns the indices of all `TRUE` elements of its argument.
 Remember that expressions evaluate before being passed to functions. Let's break
@@ -302,13 +350,16 @@ this down so that its clearer what's happening.
 First this happens:
 
 
-```r
+~~~sourcecode
 names(x) == "a"
-```
+~~~
 
-```
-## [1]  TRUE FALSE FALSE FALSE FALSE
-```
+
+
+~~~output
+[1]  TRUE FALSE FALSE FALSE FALSE
+
+~~~
 
 The condition operator is applied to every name of the vector `x`. Only the
 first name is "a" so that element is TRUE.
@@ -316,13 +367,16 @@ first name is "a" so that element is TRUE.
 `which` then converts this to an index:
 
 
-```r
+~~~sourcecode
 which(names(x) == "a")
-```
+~~~
 
-```
-## [1] 1
-```
+
+
+~~~output
+[1] 1
+
+~~~
 
 
 
@@ -333,14 +387,17 @@ Skipping multiple named indices is similar, but uses a different comparison
 operator:
 
 
-```r
+~~~sourcecode
 x[-which(names(x) %in% c("a", "c"))]
-```
+~~~
 
-```
-##   b   d   e 
-## 6.2 4.8 7.5
-```
+
+
+~~~output
+  b   d   e 
+6.2 4.8 7.5 
+
+~~~
 
 The `%in%` goes through each element of its left argument, in this case the
 names of `x`, and asks, "Does this element occur in the second argument?".
@@ -350,22 +407,25 @@ names of `x`, and asks, "Does this element occur in the second argument?".
 Run the following code to define vector `x` as above:
 
 
-```r
+~~~sourcecode
 x <- c(5.4, 6.2, 7.1, 4.8, 7.5)
 names(x) <- c('a', 'b', 'c', 'd', 'e')
 print(x)
-```
+~~~
 
-```
-##   a   b   c   d   e 
-## 5.4 6.2 7.1 4.8 7.5
-```
+
+
+~~~output
+  a   b   c   d   e 
+5.4 6.2 7.1 4.8 7.5 
+
+~~~
 
 Given this vector `x`, what would you expect the following to do?
 
-```r
+~~~sourcecode
 x[-which(names(x) == "g")]
-```
+~~~
 
 Try out this command and see what you get. Did this match your expectation? Why did we get this result? (Tip: test out each part of the command on it's own like we just did above - this is a useful debugging strategy)
 
@@ -384,42 +444,60 @@ Which of the following are true:
 You should be aware that it is possible for multiple elements in a vector to have the same name. (For a data frame, columns can have the same name --- although R tries to avoid this --- but row names must be unique.) Consider these examples:
 
 
-```r
+~~~sourcecode
 x <- 1:3
 x
-```
+~~~
 
-```
-## [1] 1 2 3
-```
 
-```r
+
+~~~output
+[1] 1 2 3
+
+~~~
+
+
+
+~~~sourcecode
 names(x) <- c('a', 'a', 'a')  
 x
-```
+~~~
 
-```
-## a a a 
-## 1 2 3
-```
 
-```r
+
+~~~output
+a a a 
+1 2 3 
+
+~~~
+
+
+
+~~~sourcecode
 x['a']  # only returns first value
-```
+~~~
 
-```
-## a 
-## 1
-```
 
-```r
+
+~~~output
+a 
+1 
+
+~~~
+
+
+
+~~~sourcecode
 x[which(names(x) == 'a')]  # returns all three values
-```
+~~~
 
-```
-## a a a 
-## 1 2 3
-```
+
+
+~~~output
+a a a 
+1 2 3 
+
+~~~
 
 <!--endsec-->
 
@@ -434,18 +512,24 @@ So why can't we use `==` like before? That's an excellent question.
 Let's take a look at just the comparison component:
 
 
-```r
+~~~sourcecode
 names(x) == c('a', 'c')
-```
+~~~
 
-```
-## Warning in names(x) == c("a", "c"): longer object length is not a multiple
-## of shorter object length
-```
 
-```
-## [1]  TRUE FALSE  TRUE
-```
+
+~~~err
+Warning in names(x) == c("a", "c"): longer object length is not a multiple
+of shorter object length
+
+~~~
+
+
+
+~~~output
+[1]  TRUE FALSE  TRUE
+
+~~~
 
 Obviously "c" is in the names of `x`, so why didn't this work? `==` works
 slightly differently than `%in%`. It will compare each element of its left argument
@@ -454,33 +538,36 @@ to the corresponding element of its right argument.
 Here's a mock illustration:
 
 
-```r
+~~~sourcecode
 c("a", "b", "c", "e")  # names of x
    |    |    |    |    # The elements == is comparing
 c("a", "c")
-```
+~~~
 
 When one vector is shorter than the other, it gets *recycled*:
 
 
-```r
+~~~sourcecode
 c("a", "b", "c", "e")  # names of x
    |    |    |    |    # The elements == is comparing
 c("a", "c", "a", "c")
-```
+~~~
 
 In this case R simply repeats `c("a", "c")` twice. If the longer
 vector length isn't a multiple of the shorter vector length, then
 R will also print out a warning message:
 
 
-```r
+~~~sourcecode
 names(x) == c('a', 'c', 'e')
-```
+~~~
 
-```
-## [1]  TRUE FALSE FALSE
-```
+
+
+~~~output
+[1]  TRUE FALSE FALSE
+
+~~~
 
 This difference between `==` and `%in%` is important to remember,
 because it can introduce hard to find and subtle bugs!
@@ -494,39 +581,48 @@ because it can introduce hard to find and subtle bugs!
 We can also more simply subset through logical operations:
 
 
-```r
+~~~sourcecode
 x[c(TRUE, TRUE, FALSE, FALSE)]
-```
+~~~
 
-```
-## a a 
-## 1 2
-```
+
+
+~~~output
+a a 
+1 2 
+
+~~~
 
 Note that in this case, the logical vector is also recycled to the
 length of the vector we're subsetting!
 
 
-```r
+~~~sourcecode
 x[c(TRUE, FALSE)]
-```
+~~~
 
-```
-## a a 
-## 1 3
-```
+
+
+~~~output
+a a 
+1 3 
+
+~~~
 
 Since comparison operators evaluate to logical vectors, we can also
 use them to succinctly subset vectors:
 
 
-```r
+~~~sourcecode
 x[x > 7]
-```
+~~~
 
-```
-## named integer(0)
-```
+
+
+~~~output
+named integer(0)
+
+~~~
 
 
 <!--sec data-title="Tip: Combining logical conditions" data-id="tip5" data-show=true data-collapse=true ces-->
@@ -550,16 +646,19 @@ Additionally, you can compare the elements within a single vector using the `all
 Given the following code:
 
 
-```r
+~~~sourcecode
 x <- c(5.4, 6.2, 7.1, 4.8, 7.5)
 names(x) <- c('a', 'b', 'c', 'd', 'e')
 print(x)
-```
+~~~
 
-```
-##   a   b   c   d   e 
-## 5.4 6.2 7.1 4.8 7.5
-```
+
+
+~~~output
+  a   b   c   d   e 
+5.4 6.2 7.1 4.8 7.5 
+
+~~~
 
 Write a subsetting command to return the values in x that are greater than 4 and less than 7.
 
@@ -595,46 +694,62 @@ do we subset the other data structures?
 Factor subsetting works the same way as vector subsetting.
 
 
-```r
+~~~sourcecode
 f <- factor(c("a", "a", "b", "c", "c", "d"))
 f[f == "a"]
-```
+~~~
 
-```
-## [1] a a
-## Levels: a b c d
-```
 
-```r
+
+~~~output
+[1] a a
+Levels: a b c d
+
+~~~
+
+
+
+~~~sourcecode
 f[f %in% c("b", "c")]
-```
+~~~
 
-```
-## [1] b c c
-## Levels: a b c d
-```
 
-```r
+
+~~~output
+[1] b c c
+Levels: a b c d
+
+~~~
+
+
+
+~~~sourcecode
 f[1:3]
-```
+~~~
 
-```
-## [1] a a b
-## Levels: a b c d
-```
+
+
+~~~output
+[1] a a b
+Levels: a b c d
+
+~~~
 
 An important note is that skipping elements will not remove the level
 even if no more of that category exists in the factor:
 
 
-```r
+~~~sourcecode
 f[-3]
-```
+~~~
 
-```
-## [1] a a c c d
-## Levels: a b c d
-```
+
+
+~~~output
+[1] a a c c d
+Levels: a b c d
+
+~~~
 
 <br>
 
@@ -647,68 +762,80 @@ it takes two arguments: the first applying to the rows, the second
 to its columns:
 
 
-```r
+~~~sourcecode
 set.seed(1)
 m <- matrix(rnorm(6*4), ncol=4, nrow=6)
 m[3:4, c(3,1)]
-```
+~~~
 
-```
-##             [,1]       [,2]
-## [1,]  1.12493092 -0.8356286
-## [2,] -0.04493361  1.5952808
-```
+
+
+~~~output
+            [,1]       [,2]
+[1,]  1.12493092 -0.8356286
+[2,] -0.04493361  1.5952808
+
+~~~
 
 You can leave the first or second arguments blank to retrieve all the
 rows or columns respectively:
 
 
-```r
+~~~sourcecode
 m[, c(3,4)]
-```
+~~~
 
-```
-##             [,1]        [,2]
-## [1,] -0.62124058  0.82122120
-## [2,] -2.21469989  0.59390132
-## [3,]  1.12493092  0.91897737
-## [4,] -0.04493361  0.78213630
-## [5,] -0.01619026  0.07456498
-## [6,]  0.94383621 -1.98935170
-```
+
+
+~~~output
+            [,1]        [,2]
+[1,] -0.62124058  0.82122120
+[2,] -2.21469989  0.59390132
+[3,]  1.12493092  0.91897737
+[4,] -0.04493361  0.78213630
+[5,] -0.01619026  0.07456498
+[6,]  0.94383621 -1.98935170
+
+~~~
 
 If we only access one row or column, R will automatically convert the result
 to a vector:
 
 
-```r
+~~~sourcecode
 m[3,]
-```
+~~~
 
-```
-## [1] -0.8356286  0.5757814  1.1249309  0.9189774
-```
+
+
+~~~output
+[1] -0.8356286  0.5757814  1.1249309  0.9189774
+
+~~~
 
 If you want to keep the output as a matrix, you need to specify a *third* argument;
 `drop = FALSE`:
 
 
-```r
+~~~sourcecode
 m[3, , drop=FALSE]
-```
+~~~
 
-```
-##            [,1]      [,2]     [,3]      [,4]
-## [1,] -0.8356286 0.5757814 1.124931 0.9189774
-```
+
+
+~~~output
+           [,1]      [,2]     [,3]      [,4]
+[1,] -0.8356286 0.5757814 1.124931 0.9189774
+
+~~~
 
 Unlike vectors, if we try to access a row or column outside of the matrix,
 R will throw an error:
 
 
-```r
+~~~sourcecode
 m[, c(3,6)]
-```
+~~~
 
 
 <!--sec data-title="Tip: Higher dimensional arrays" data-id="tip6" data-show=true data-collapse=true ces-->
@@ -721,13 +848,16 @@ Because matrices are really just vectors underneath the hood, we can
 also subset using only one argument:
 
 
-```r
+~~~sourcecode
 m[5]
-```
+~~~
 
-```
-## [1] 0.3295078
-```
+
+
+~~~output
+[1] 0.3295078
+
+~~~
 
 
 This usually isn't useful. However it is useful to note that matrices
@@ -735,28 +865,34 @@ are laid out in *column-major format* by default. That is the elements of the
 vector are arranged column-wise:
 
 
-```r
+~~~sourcecode
 matrix(1:6, nrow=2, ncol=3)
-```
+~~~
 
-```
-##      [,1] [,2] [,3]
-## [1,]    1    3    5
-## [2,]    2    4    6
-```
+
+
+~~~output
+     [,1] [,2] [,3]
+[1,]    1    3    5
+[2,]    2    4    6
+
+~~~
 
 If you wish to populate the matrix by row, use `byrow=TRUE`:
 
 
-```r
+~~~sourcecode
 matrix(1:6, nrow=2, ncol=3, byrow=TRUE)
-```
+~~~
 
-```
-##      [,1] [,2] [,3]
-## [1,]    1    2    3
-## [2,]    4    5    6
-```
+
+
+~~~output
+     [,1] [,2] [,3]
+[1,]    1    2    3
+[2,]    4    5    6
+
+~~~
 
 Matrices can also be subsetted using their rownames and column names
 instead of their row and column indices.
@@ -766,17 +902,20 @@ instead of their row and column indices.
 Given the following code:
 
 
-```r
+~~~sourcecode
 m <- matrix(1:18, nrow=3, ncol=6)
 print(m)
-```
+~~~
 
-```
-##      [,1] [,2] [,3] [,4] [,5] [,6]
-## [1,]    1    4    7   10   13   16
-## [2,]    2    5    8   11   14   17
-## [3,]    3    6    9   12   15   18
-```
+
+
+~~~output
+     [,1] [,2] [,3] [,4] [,5] [,6]
+[1,]    1    4    7   10   13   16
+[2,]    2    5    8   11   14   17
+[3,]    3    6    9   12   15   18
+
+~~~
 
 1. Which of the following commands will extract the values 11 and 14?
 
@@ -804,15 +943,18 @@ Using `[` will always return a list. If you want to *subset* a list, but not
 *extract* an element, then you will likely use `[`.
 
 
-```r
+~~~sourcecode
 xlist <- list(a = "Research Bazaar", b = 1:10, data = head(iris))
 xlist[1]
-```
+~~~
 
-```
-## $a
-## [1] "Research Bazaar"
-```
+
+
+~~~output
+$a
+[1] "Research Bazaar"
+
+~~~
 
 This returns a *list with one element*.
 
@@ -823,88 +965,106 @@ in each element of the list, not the individual elements within those
 data structures.
 
 
-```r
+~~~sourcecode
 xlist[1:2]
-```
+~~~
 
-```
-## $a
-## [1] "Research Bazaar"
-## 
-## $b
-##  [1]  1  2  3  4  5  6  7  8  9 10
-```
+
+
+~~~output
+$a
+[1] "Research Bazaar"
+
+$b
+ [1]  1  2  3  4  5  6  7  8  9 10
+
+~~~
 
 To extract individual elements of a list, you need to use the double-square
 bracket function: `[[`.
 
 
-```r
+~~~sourcecode
 xlist[[1]]
-```
+~~~
 
-```
-## [1] "Research Bazaar"
-```
+
+
+~~~output
+[1] "Research Bazaar"
+
+~~~
 
 Notice that now the result is a vector, not a list.
 
 You can't extract more than one element at once:
 
 
-```r
+~~~sourcecode
 xlist[[1:2]]
-```
+~~~
 
-```
-## Error in xlist[[1:2]]: subscript out of bounds
-```
+
+
+~~~err
+Error in xlist[[1:2]]: subscript out of bounds
+
+~~~
 
 Nor use it to skip elements:
 
 
-```r
+~~~sourcecode
 xlist[[-1]]
-```
+~~~
 
-```
-## Error in xlist[[-1]]: attempt to select more than one element in get1index <real>
-```
+
+
+~~~err
+Error in xlist[[-1]]: attempt to select more than one element in get1index <real>
+
+~~~
 
 But you can use names to both subset and extract elements:
 
 
-```r
+~~~sourcecode
 xlist[["a"]]
-```
+~~~
 
-```
-## [1] "Research Bazaar"
-```
+
+
+~~~output
+[1] "Research Bazaar"
+
+~~~
 
 The `$` function is a shorthand way for extracting elements by name:
 
 
-```r
+~~~sourcecode
 xlist$data
-```
+~~~
 
-```
-##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-## 1          5.1         3.5          1.4         0.2  setosa
-## 2          4.9         3.0          1.4         0.2  setosa
-## 3          4.7         3.2          1.3         0.2  setosa
-## 4          4.6         3.1          1.5         0.2  setosa
-## 5          5.0         3.6          1.4         0.2  setosa
-## 6          5.4         3.9          1.7         0.4  setosa
-```
+
+
+~~~output
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+4          4.6         3.1          1.5         0.2  setosa
+5          5.0         3.6          1.4         0.2  setosa
+6          5.4         3.9          1.7         0.4  setosa
+
+~~~
 
 <!--sec data-title="Challenge 5" data-id="ch5" data-show=true data-collapse=false ces-->
 
 
-```r
+~~~sourcecode
 xlist <- list(a = "Research Bazaar", b = 1:10, data = head(iris))
-```
+~~~
 
 Using your knowledge of both list and vector subsetting, extract the number 2 from xlist.  Hint: the number 2 is contained within the "b" item in the list.
 
@@ -915,9 +1075,9 @@ Using your knowledge of both list and vector subsetting, extract the number 2 fr
 Given a linear model:
 
 
-```r
+~~~sourcecode
 mod <- aov(intellect ~ education, data=healthData)
-```
+~~~
 
 Extract the residual degrees of freedom (hint: `attributes()` will help you)
 
@@ -936,80 +1096,95 @@ apply. However they are also two dimensional objects:
 element corresponds to a column. The resulting object will be a data frame:
 
 
-```r
+~~~sourcecode
 head(healthData[3])
-```
+~~~
 
-```
-##   extraversion
-## 1        3.986
-## 2        7.016
-## 3        2.697
-## 4        2.504
-## 5        5.147
-## 6        3.535
-```
+
+
+~~~output
+  extraversion
+1        3.986
+2        7.016
+3        2.697
+4        2.504
+5        5.147
+6        3.535
+
+~~~
 
 Similarly, `[[` will act to extract *a single column*:
 
 
-```r
+~~~sourcecode
 head(healthData[["health"]])
-```
+~~~
 
-```
-## [1]  6.74 11.96  8.05  6.48  6.74  9.01
-```
+
+
+~~~output
+[1]  6.74 11.96  8.05  6.48  6.74  9.01
+
+~~~
 
 And `$` provides a convenient shorthand to extract columns by name:
 
 
-```r
+~~~sourcecode
 head(healthData$birthYear)
-```
+~~~
 
-```
-## [1] 1909 1905 1910 1905 1910 1911
-```
+
+
+~~~output
+[1] 1909 1905 1910 1905 1910 1911
+
+~~~
 
 With two arguments, `[` behaves the same way as for matrices:
 
 
-```r
+~~~sourcecode
 healthData[1:3,]
-```
+~~~
 
-```
-##   id conscientiousness extraversion intellect agreeableness neuroticism
-## 1  3             5.825        3.986     6.044         4.613       3.649
-## 2  4             7.732        7.016     6.821         6.649       6.299
-## 3  7             6.498        2.697     5.527         3.087       4.091
-##    sex selfRatedHealth mentalAdjustment illnessReversed health
-## 1 Male               4                2               3   6.74
-## 2 Male               5                3               5  11.96
-## 3 Male               3                3               4   8.05
-##   alcoholUseInYoungAdulthood education birthYear HIGroup
-## 1                          2         9      1909 Group 1
-## 2                          3         8      1905 Group 1
-## 3                          2         6      1910 Group 1
-```
+
+
+~~~output
+  id conscientiousness extraversion intellect agreeableness neuroticism
+1  3             5.825        3.986     6.044         4.613       3.649
+2  4             7.732        7.016     6.821         6.649       6.299
+3  7             6.498        2.697     5.527         3.087       4.091
+   sex selfRatedHealth mentalAdjustment illnessReversed health
+1 Male               4                2               3   6.74
+2 Male               5                3               5  11.96
+3 Male               3                3               4   8.05
+  alcoholUseInYoungAdulthood education birthYear HIGroup
+1                          2         9      1909 Group 1
+2                          3         8      1905 Group 1
+3                          2         6      1910 Group 1
+
+~~~
 
 If we subset a single row, the result will be a data frame (because
 the elements are mixed types):
 
 
-```r
+~~~sourcecode
 healthData[3,]
-```
+~~~
 
-```
-##   id conscientiousness extraversion intellect agreeableness neuroticism
-## 3  7             6.498        2.697     5.527         3.087       4.091
-##    sex selfRatedHealth mentalAdjustment illnessReversed health
-## 3 Male               3                3               4   8.05
-##   alcoholUseInYoungAdulthood education birthYear HIGroup
-## 3                          2         6      1910 Group 1
-```
+
+
+~~~output
+  id conscientiousness extraversion intellect agreeableness neuroticism
+3  7             6.498        2.697     5.527         3.087       4.091
+   sex selfRatedHealth mentalAdjustment illnessReversed health
+3 Male               3                3               4   8.05
+  alcoholUseInYoungAdulthood education birthYear HIGroup
+3                          2         6      1910 Group 1
+
+~~~
 
 But for a single column the result will be a vector (this can
 be changed with the third argument, `drop = FALSE`).
@@ -1021,37 +1196,37 @@ Fix each of the following common data frame subsetting errors:
 1. Extract observations collected for birth year = 1909
 
 
-```r
+~~~sourcecode
 healthData[healthData$birthYear = 1909,]
-```
+~~~
 
 2. Extract all columns except 1 through to 4
 
 
-```r
+~~~sourcecode
 healthData[,-1:4]
-```
+~~~
 
 3. Extract the rows where the health metric is greater than 7
 
 
-```r
+~~~sourcecode
 healthData[healthData$health > 7]
-```
+~~~
 
 4. Extract the first row, and the fourth and fifth columns (`intellect` and `agreeableness`).
 
 
-```r
+~~~sourcecode
 healthData[1, 4, 5]
-```
+~~~
 
 5. Advanced: extract rows that contain information for those in education level 7 and 9
 
 
-```r
+~~~sourcecode
 healthData[healthData$education == 7 | 9,]
-```
+~~~
 
 <!--endsec-->
 
@@ -1074,32 +1249,36 @@ healthData[healthData$education == 7 | 9,]
 Given the following code:
 
 
-```r
+~~~sourcecode
 x <- c(5.4, 6.2, 7.1, 4.8, 7.5)
 names(x) <- c('a', 'b', 'c', 'd', 'e')
 print(x)
-```
+~~~
 
-```
-##   a   b   c   d   e 
-## 5.4 6.2 7.1 4.8 7.5
-```
+
+
+~~~output
+  a   b   c   d   e 
+5.4 6.2 7.1 4.8 7.5 
+
+~~~
 
 1. Come up with at least 3 different commands that will produce the following output:
 
 
-```
-##   b   c   d 
-## 6.2 7.1 4.8
-```
+~~~output
+  b   c   d 
+6.2 7.1 4.8 
+
+~~~
 
 
-```r
+~~~sourcecode
 x[2:4] 
 x[-c(1,5)]
 x[c("b", "c", "d")]
 x[c(2,3,4)]
-```
+~~~
 
 <!--endsec-->
 
@@ -1108,22 +1287,25 @@ x[c(2,3,4)]
 Run the following code to define vector `x` as above:
 
 
-```r
+~~~sourcecode
 x <- c(5.4, 6.2, 7.1, 4.8, 7.5)
 names(x) <- c('a', 'b', 'c', 'd', 'e')
 print(x)
-```
+~~~
 
-```
-##   a   b   c   d   e 
-## 5.4 6.2 7.1 4.8 7.5
-```
+
+
+~~~output
+  a   b   c   d   e 
+5.4 6.2 7.1 4.8 7.5 
+
+~~~
 
 Given this vector `x`, what would you expect the following to do?
 
-```r
+~~~sourcecode
 x[-which(names(x) == "g")]
-```
+~~~
 
 Try out this command and see what you get. Did this match your expectation?
 
@@ -1148,17 +1330,20 @@ The `which` command returns the index of every `TRUE` value in its input. The `n
 Given the following code:
 
 
-```r
+~~~sourcecode
 m <- matrix(1:18, nrow=3, ncol=6)
 print(m)
-```
+~~~
 
-```
-##      [,1] [,2] [,3] [,4] [,5] [,6]
-## [1,]    1    4    7   10   13   16
-## [2,]    2    5    8   11   14   17
-## [3,]    3    6    9   12   15   18
-```
+
+
+~~~output
+     [,1] [,2] [,3] [,4] [,5] [,6]
+[1,]    1    4    7   10   13   16
+[2,]    2    5    8   11   14   17
+[3,]    3    6    9   12   15   18
+
+~~~
 
 1. Which of the following commands will extract the values 11 and 14?
 
@@ -1179,18 +1364,18 @@ Answer: D
 Given the following list:
 
 
-```r
+~~~sourcecode
 xlist <- list(a = "Research Bazaar", b = 1:10, data = head(iris))
-```
+~~~
 
 Using your knowledge of both list and vector subsetting, extract the number 2 from xlist. Hint: the number 2 is contained within the "b" item in the list.
 
 
-```r
+~~~sourcecode
 xlist$b[2]
 xlist[[2]][2]
 xlist[["b"]][2]
-```
+~~~
 
 <!--endsec-->
 
@@ -1199,17 +1384,17 @@ xlist[["b"]][2]
 Given a linear model:
 
 
-```r
+~~~sourcecode
 mod <- aov(intellect ~ education, data=healthData)
-```
+~~~
 
 Extract the residual degrees of freedom (hint: `attributes()` will help you)
 
 
-```r
+~~~sourcecode
 attributes(mod) ## `df.residual` is one of the names of `mod`
 mod$df.residual
-```
+~~~
 
 <!--endsec-->
 
@@ -1220,43 +1405,43 @@ Fix each of the following common data frame subsetting errors:
 1. Extract observations collected for birth year = 1909
 
 
-```r
+~~~sourcecode
 # healthData[healthData$birthYear = 1909,]
 healthData[healthData$birthYear == 1909,]
-```
+~~~
 
 2. Extract all columns except 1 through to 4
 
 
-```r
+~~~sourcecode
 # healthData[,-1:4]
 healthData[,-c(1:4)]
-```
+~~~
 
 3. Extract the rows where the health metric is greater than 7
 
 
-```r
+~~~sourcecode
 # healthData[healthData$health > 7]
 healthData[healthData$health > 7,]
-```
+~~~
 
 4. Extract the first row, and the fourth and fifth columns (`intellect` and `agreeableness`).
 
 
-```r
+~~~sourcecode
 # healthData[1, 4, 5]
 healthData[1, c(4, 5)]
-```
+~~~
 
 5. Advanced: extract rows that contain information for those in education level 7 and 9
 
 
-```r
+~~~sourcecode
 # healthData[healthData$education == 7 | 9,]
 healthData[healthData$education == 7 | healthData$education == 9,]
 healthData[healthData$education %in% c(7, 9),]
-```
+~~~
 
 <!--endsec-->
 
@@ -1269,8 +1454,8 @@ Answer: `healthData` is a data.frame so needs to be subsetted on two dimensions.
 2. Create a new `data.frame` called `healthData_small` that only contains rows 1 through 9 and 19 through 23. You can do this in one or two steps.
 
 
-```r
+~~~sourcecode
 healthData_small <- healthData[c(1:9, 19:23),]
-```
+~~~
 
 <!--endsec-->

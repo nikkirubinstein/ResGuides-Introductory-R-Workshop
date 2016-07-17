@@ -1,6 +1,5 @@
----
-output: md_document
----
+
+
 
 # Split-apply-combine
 
@@ -30,14 +29,14 @@ and calculates the average health metric in the data. We can also define an
 additional argument so we can filter by HIGroup:
 
 
-```r
+~~~sourcecode
 # Takes a dataset and calculates the average health metric for a
 # specified study group.
 calcAverageHealth <- function(dat, group = "Group 1") {
   healthAverage <- mean(dat[dat$HIGroup == group, ]$health)
   return(healthAverage)
 }
-```
+~~~
 
 A common task you'll encounter when working with data is that you'll want to
 run calculations on different groups within the data. In the above, we are
@@ -47,29 +46,42 @@ we wanted to calculated the mean health per group, or per education level?
 We could, for example, run `calcAverageHealth` and on each subsetted dataset:
 
 
-```r
+~~~sourcecode
 calcAverageHealth(healthData[healthData$education == 4,],"Group 2")
-```
+~~~
 
-```
-## [1] 9.246495
-```
 
-```r
+
+~~~output
+[1] 9.246495
+
+~~~
+
+
+
+~~~sourcecode
 calcAverageHealth(healthData[healthData$education == 5,],"Group 2")
-```
+~~~
 
-```
-## [1] 9.801333
-```
 
-```r
+
+~~~output
+[1] 9.801333
+
+~~~
+
+
+
+~~~sourcecode
 calcAverageHealth(healthData[healthData$education == 6,],"Group 2")
-```
+~~~
 
-```
-## [1] 9.162941
-```
+
+
+~~~output
+[1] 9.162941
+
+~~~
 
 But this isn't very *nice*. Yes, by using a function, you have reduced a
 substantial amount of repetition. That *is* nice. But there is still
@@ -98,9 +110,9 @@ functions that we find more user friendly for solving this problem.
 Let's load plyr now:
 
 
-```r
+~~~sourcecode
 library(plyr)
-```
+~~~
 
 Plyr has functions for operating on `lists`, `data.frames` and `arrays`
 (matrices, or n-dimensional vectors). Each function performs:
@@ -130,9 +142,9 @@ Each of the xxply functions (`daply`, `ddply`, `llply`, `laply`, ...) has the
 same structure and has 4 key features and structure:
 
 
-```r
+~~~sourcecode
 xxply(.data, .variables, .fun)
-```
+~~~
 
 * The first letter of the function name gives the input type and the second gives the output type.
 * .data - gives the data object to be processed
@@ -142,26 +154,29 @@ xxply(.data, .variables, .fun)
 Now we can quickly calculate the mean birth year per education level:
 
 
-```r
+~~~sourcecode
 ddply(
  .data = healthData,
  .variables = "education",
  .fun = function(x) mean(x$health)
 )
-```
+~~~
 
-```
-##   education       V1
-## 1         1 6.487500
-## 2         2 9.967500
-## 3         3 8.620682
-## 4         4 9.340258
-## 5         5 9.069877
-## 6         6 8.976614
-## 7         7 9.321495
-## 8         8 9.525871
-## 9         9 9.653661
-```
+
+
+~~~output
+  education       V1
+1         1 6.487500
+2         2 9.967500
+3         3 8.620682
+4         4 9.340258
+5         5 9.069877
+6         6 8.976614
+7         7 9.321495
+8         8 9.525871
+9         9 9.653661
+
+~~~
 
 Let's walk through what just happened:
 
@@ -182,56 +197,59 @@ returns another `data.frame` (2nd letter is a **d**) i
 What if we want a different type of output data structure?:
 
 
-```r
+~~~sourcecode
 dlply(
  .data = healthData,
  .variables = "education",
  .fun = function(x) mean(x$health)
 )
-```
+~~~
 
-```
-## $`1`
-## [1] 6.4875
-## 
-## $`2`
-## [1] 9.9675
-## 
-## $`3`
-## [1] 8.620682
-## 
-## $`4`
-## [1] 9.340258
-## 
-## $`5`
-## [1] 9.069877
-## 
-## $`6`
-## [1] 8.976614
-## 
-## $`7`
-## [1] 9.321495
-## 
-## $`8`
-## [1] 9.525871
-## 
-## $`9`
-## [1] 9.653661
-## 
-## attr(,"split_type")
-## [1] "data.frame"
-## attr(,"split_labels")
-##   education
-## 1         1
-## 2         2
-## 3         3
-## 4         4
-## 5         5
-## 6         6
-## 7         7
-## 8         8
-## 9         9
-```
+
+
+~~~output
+$`1`
+[1] 6.4875
+
+$`2`
+[1] 9.9675
+
+$`3`
+[1] 8.620682
+
+$`4`
+[1] 9.340258
+
+$`5`
+[1] 9.069877
+
+$`6`
+[1] 8.976614
+
+$`7`
+[1] 9.321495
+
+$`8`
+[1] 9.525871
+
+$`9`
+[1] 9.653661
+
+attr(,"split_type")
+[1] "data.frame"
+attr(,"split_labels")
+  education
+1         1
+2         2
+3         3
+4         4
+5         5
+6         6
+7         7
+8         8
+9         9
+
+~~~
 
 We called the same function again, but changed the second letter to an `l`, so
 the output was returned as a list.
@@ -239,64 +257,70 @@ the output was returned as a list.
 We can specify multiple columns to group by:
 
 
-```r
+~~~sourcecode
 ddply(
  .data = healthData,
  .variables = c("education","sex"),
  .fun = function(x) mean(x$health)
 )
-```
-
-```
-##    education    sex        V1
-## 1          1 Female  4.145000
-## 2          1   Male  8.830000
-## 3          2 Female  9.885000
-## 4          2   Male 10.050000
-## 5          3 Female  7.688125
-## 6          3   Male  9.153571
-## 7          4 Female  9.158053
-## 8          4   Male  9.470570
-## 9          5 Female  8.764062
-## 10         5   Male  9.269592
-## 11         6 Female  8.760938
-## 12         6   Male  9.195714
-## 13         7 Female  9.059946
-## 14         7   Male  9.562327
-## 15         8 Female  9.517341
-## 16         8   Male  9.535098
-## 17         9 Female  9.469059
-## 18         9   Male  9.755552
-```
+~~~
 
 
-```r
+
+~~~output
+   education    sex        V1
+1          1 Female  4.145000
+2          1   Male  8.830000
+3          2 Female  9.885000
+4          2   Male 10.050000
+5          3 Female  7.688125
+6          3   Male  9.153571
+7          4 Female  9.158053
+8          4   Male  9.470570
+9          5 Female  8.764062
+10         5   Male  9.269592
+11         6 Female  8.760938
+12         6   Male  9.195714
+13         7 Female  9.059946
+14         7   Male  9.562327
+15         8 Female  9.517341
+16         8   Male  9.535098
+17         9 Female  9.469059
+18         9   Male  9.755552
+
+~~~
+
+
+~~~sourcecode
 daply(
  .data = healthData,
  .variables = c("education","sex"),
  .fun = function(x) mean(x$health)
 )
-```
+~~~
 
-```
-##          sex
-## education   Female      Male
-##         1 4.145000  8.830000
-##         2 9.885000 10.050000
-##         3 7.688125  9.153571
-##         4 9.158053  9.470570
-##         5 8.764062  9.269592
-##         6 8.760938  9.195714
-##         7 9.059946  9.562327
-##         8 9.517341  9.535098
-##         9 9.469059  9.755552
-```
+
+
+~~~output
+         sex
+education   Female      Male
+        1 4.145000  8.830000
+        2 9.885000 10.050000
+        3 7.688125  9.153571
+        4 9.158053  9.470570
+        5 8.764062  9.269592
+        6 8.760938  9.195714
+        7 9.059946  9.562327
+        8 9.517341  9.535098
+        9 9.469059  9.755552
+
+~~~
 
 You can use these functions in place of `for` loops (and its usually faster to
 do so): just write the body of the for loop in the anonymous function:
 
 
-```r
+~~~sourcecode
 d_ply(
   .data=healthData,
   .variables = "education",
@@ -308,19 +332,22 @@ d_ply(
    ))
   }
 )
-```
+~~~
 
-```
-## [1] "The mean health metric for education level 1 is 6.4875"
-## [1] "The mean health metric for education level 2 is 9.9675"
-## [1] "The mean health metric for education level 3 is 8.62068181818182"
-## [1] "The mean health metric for education level 4 is 9.34025830258303"
-## [1] "The mean health metric for education level 5 is 9.06987654320988"
-## [1] "The mean health metric for education level 6 is 8.97661417322835"
-## [1] "The mean health metric for education level 7 is 9.32149484536082"
-## [1] "The mean health metric for education level 8 is 9.52587127158556"
-## [1] "The mean health metric for education level 9 is 9.65366108786611"
-```
+
+
+~~~output
+[1] "The mean health metric for education level 1 is 6.4875"
+[1] "The mean health metric for education level 2 is 9.9675"
+[1] "The mean health metric for education level 3 is 8.62068181818182"
+[1] "The mean health metric for education level 4 is 9.34025830258303"
+[1] "The mean health metric for education level 5 is 9.06987654320988"
+[1] "The mean health metric for education level 6 is 8.97661417322835"
+[1] "The mean health metric for education level 7 is 9.32149484536082"
+[1] "The mean health metric for education level 8 is 9.52587127158556"
+[1] "The mean health metric for education level 9 is 9.65366108786611"
+
+~~~
 
 <!--sec data-title="Challenge 1" data-id="ch1" data-show=true data-collapse=false ces-->
 
@@ -346,7 +373,7 @@ Without running them, which of the following will calculate the average conscien
 
 
 
-```r
+~~~sourcecode
 ddply(
    .data = healthData,
    .variables = healthData$education,
@@ -354,19 +381,19 @@ ddply(
       mean(dataGroup$conscientiousness)
    }
 )
-```
+~~~
 
 
-```r
+~~~sourcecode
 ddply(
    .data = healthData,
    .variables = "education",
    .fun = mean(dataGroup$conscientiousness)
 )
-```
+~~~
 
 
-```r
+~~~sourcecode
 ddply(
    .data = healthData,
    .variables = "education",
@@ -374,10 +401,10 @@ ddply(
       mean(dataGroup$concientiousness)
    }
 )
-```
+~~~
 
 
-```r
+~~~sourcecode
 adply(
    .data = healthData,
    .variables = "education",
@@ -385,6 +412,6 @@ adply(
       mean(dataGroup$conscientiousness)
    }
 )
-```
+~~~
 
 <!--endsec-->

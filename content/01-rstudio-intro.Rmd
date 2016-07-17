@@ -1,10 +1,4 @@
----
-output: 
-  md_document:
-    pandoc_args: [
-      "--filter=../tools/filters/blockquote2div.py"
-    ]
----
+
 
 ```{r include = FALSE}
 source("../tools/chunk-options.R")
@@ -108,7 +102,6 @@ returns a result.
 ## Using R as a calculator
 
 The simplest thing you could do with R is do arithmetic:
-<code style="color:blue;"> 1 + 100 </code>
 
 ```{r}
 1 + 100
@@ -120,11 +113,11 @@ for now, we'll explain that later. For now think of it as indicating ouput.
 Just like bash, if you type in an incomplete command, R will wait for you to
 complete it:
 
-~~~ {.r}
+~~~sourcecode
 > 1 +
 ~~~
 
-~~~ {.output}
+~~~output
 +
 ~~~
 

@@ -100,7 +100,6 @@ returns a result.
 ## Using R as a calculator
 
 The simplest thing you could do with R is do arithmetic:
-<code style="color:blue;"> 1 + 100 </code>
 
 
 ~~~sourcecode
@@ -604,7 +603,7 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
     }
     else all.names
 }
-<bytecode: 0x18594c8>
+<bytecode: 0x33214c8>
 <environment: namespace:base>
 
 ~~~

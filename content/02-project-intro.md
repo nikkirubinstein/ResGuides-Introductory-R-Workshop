@@ -1,7 +1,6 @@
----
-output: 
-  md_document
----
+
+
+
 # Project management with RStudio
 
 <!--sec data-title="Learning Objectives" data-id="obj" data-show=true data-collapse=false ces-->
@@ -139,11 +138,11 @@ One way to automate the management of projects is to install the third-party pac
 3. Initialise the project:
 
 
-```r
+~~~sourcecode
 > install.packages("ProjectTemplate")
 > library(ProjectTemplate)
 > create.project("../my_project", merge.strategy = "allow.non.conflict")
-```
+~~~
 
 For more information on ProjectTemplate and its functionality visit the home page [ProjectTemplate](http://projecttemplate.net/index.html)
 

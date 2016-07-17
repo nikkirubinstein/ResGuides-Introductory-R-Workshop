@@ -1,10 +1,11 @@
----
-output: md_document
----
+
+```{r include = FALSE}
+source("../tools/chunk-options.R")
+```
+
 # Control flow
 
 ```{r, include=FALSE}
-#source("tools/chunk-options.R")
 # Silently load in the data so the rest of the lesson works
 healthData <- read.csv("https://goo.gl/oqQGKF", header=TRUE)
 # Silently set seed for random number generation, so we don't have to explain it

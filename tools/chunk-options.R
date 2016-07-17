@@ -17,13 +17,13 @@ hook_in <- function(x, options) {
 }
 
 hook_out <- function(x, options) {
-  stringr::str_c("\n\n~~~{.output}\n",
+  stringr::str_c("\n\n~~~output\n",
                  paste0(x, collapse="\n"),
                  "\n~~~\n\n")
 }
 
 hook_error <- function(x, options) {
-  stringr::str_c("\n\n~~~{.error}\n",
+  stringr::str_c("\n\n~~~err\n",
                  paste0(x, collapse="\n"),
                  "\n~~~\n\n")
 }

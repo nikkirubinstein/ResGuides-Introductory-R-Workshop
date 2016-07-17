@@ -1,6 +1,5 @@
----
-output: md_document
----
+
+
 
 # Creating publication quality graphics
 
@@ -59,13 +58,13 @@ Inkscape.
 Let's start off with an example:
 
 
-```r
+~~~sourcecode
 library("ggplot2")
 ggplot(data = healthData, aes(x = selfRatedHealth, y = health)) +
   geom_point()
-```
+~~~
 
-![plot of chunk lifeExp-vs-gdpPercap-scatter](figure/lifeExp-vs-gdpPercap-scatter-1.png)
+<img src="images/lifeExp-vs-gdpPercap-scatter-1.png" title="plot of chunk lifeExp-vs-gdpPercap-scatter" alt="plot of chunk lifeExp-vs-gdpPercap-scatter" style="display: block; margin: auto;" />
 
 So the first thing we do is call the `ggplot` function. This function lets R
 know that we're creating a new plot, and any of the arguments we give the
@@ -85,11 +84,11 @@ pass `aes` these columns (e.g. `x = healthData[, "education"]`), this is because
 By itself, the call to `ggplot` isn't enough to draw a figure:
 
 
-```r
+~~~sourcecode
 ggplot(healthData,aes(x=selfRatedHealth,y=health))
-```
+~~~
 
-![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png)
+<img src="images/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
 
 We need to tell `ggplot` how we want to visually represent the data, which we
 do by adding a new **geom** layer. In our example, we used `geom_point`, which
@@ -97,12 +96,12 @@ tells `ggplot` we want to visually represent the relationship between **x** and
 **y** as a scatterplot of points:
 
 
-```r
+~~~sourcecode
 ggplot(healthData,aes(x=selfRatedHealth,y=health)) +
   geom_point()
-```
+~~~
 
-![plot of chunk education-vs-health-scatter2](figure/education-vs-health-scatter2-1.png)
+<img src="images/education-vs-health-scatter2-1.png" title="plot of chunk education-vs-health-scatter2" alt="plot of chunk education-vs-health-scatter2" style="display: block; margin: auto;" />
 
 
 <!--sec data-title="Challenge 1" data-id="ch1" data-show=true data-collapse=false ces-->
@@ -110,10 +109,10 @@ ggplot(healthData,aes(x=selfRatedHealth,y=health)) +
 Modify the following example so that the figure visualises how illnessReversed varies with health:
 
 
-```r
+~~~sourcecode
 ggplot(healthData,aes(x=selfRatedHealth,y=health)) +
   geom_point()
-```
+~~~
 
 <!--endsec-->
 
@@ -138,11 +137,11 @@ We could also make a line plot.
 Instead, let's tell `ggplot` to visualise the data as a line plot:
 
 
-```r
+~~~sourcecode
 ggplot(healthData,aes(x=health,y=illnessReversed,color=as.factor(education),by=sex)) + geom_line()
-```
+~~~
 
-![plot of chunk health-line](figure/health-line-1.png)
+<img src="images/health-line-1.png" title="plot of chunk health-line" alt="plot of chunk health-line" style="display: block; margin: auto;" />
 
 Instead of adding a `geom_point` layer, we've added a `geom_line` layer. We've
 added the **by** *aesthetic*, which tells `ggplot` to draw a line for each
@@ -152,22 +151,22 @@ But what if we want to visualise both lines and points on the plot? We can
 simply add another layer to the plot:
 
 
-```r
+~~~sourcecode
 ggplot(healthData,aes(x=health,y=illnessReversed,color=as.factor(education),by=sex)) + geom_point() + geom_line()
-```
+~~~
 
-![plot of chunk health-line-point](figure/health-line-point-1.png)
+<img src="images/health-line-point-1.png" title="plot of chunk health-line-point" alt="plot of chunk health-line-point" style="display: block; margin: auto;" />
 
 It's important to note that each layer is drawn on top of the previous layer. In
 this example, the points have been drawn *on top of* the lines. Here's a
 demonstration:
 
 
-```r
+~~~sourcecode
 ggplot(healthData,aes(x=health,y=illnessReversed,by=sex)) + geom_line(aes(color=as.factor(education))) + geom_point()
-```
+~~~
 
-![plot of chunk health-layer-example-1](figure/health-layer-example-1-1.png)
+<img src="images/health-layer-example-1-1.png" title="plot of chunk health-layer-example-1" alt="plot of chunk health-layer-example-1" style="display: block; margin: auto;" />
 
 In this example, the *aesthetic* mapping of **color** has been moved from the
 global plot options in `ggplot` to the `geom_line` layer so it no longer applies
@@ -190,12 +189,12 @@ Ggplot also makes it easy to overlay statistical models over the data. To
 demonstrate we'll go back to our first example:
 
 
-```r
+~~~sourcecode
 ggplot(data = healthData, aes(x = selfRatedHealth, y = health,color=as.factor(education))) +
   geom_point()
-```
+~~~
 
-![plot of chunk health-vs-gdpPercap-scatter3](figure/health-vs-gdpPercap-scatter3-1.png)
+<img src="images/health-vs-gdpPercap-scatter3-1.png" title="plot of chunk health-vs-gdpPercap-scatter3" alt="plot of chunk health-vs-gdpPercap-scatter3" style="display: block; margin: auto;" />
 
 <!-- not useful ???
 
@@ -205,12 +204,12 @@ the *scale* functions. These control the mapping between the data values and
 visual values of an aesthetic.
 
 
-```r
+~~~sourcecode
 ggplot(data = healthData, aes(x = health, y = education, color=sex)) +
   geom_point() + scale_y_log10()
-```
+~~~
 
-![plot of chunk axis-scale](figure/axis-scale-1.png)
+<img src="images/axis-scale-1.png" title="plot of chunk axis-scale" alt="plot of chunk axis-scale" style="display: block; margin: auto;" />
 
 The `log10` function applied a transformation to the values of the gdpPercap
 column before rendering them on the plot, so that each multiple of 10 now only
@@ -223,23 +222,23 @@ We can fit a simple relationship to the data by adding another layer,
 `geom_smooth`:
 
 
-```r
+~~~sourcecode
 ggplot(data = healthData, aes(x = selfRatedHealth, y = health,color=as.factor(education))) +
   geom_point() + geom_smooth(method="lm")
-```
+~~~
 
-![plot of chunk lm-fit](figure/lm-fit-1.png)
+<img src="images/lm-fit-1.png" title="plot of chunk lm-fit" alt="plot of chunk lm-fit" style="display: block; margin: auto;" />
 
 We can make the line thicker by *setting* the **size** aesthetic in the
 `geom_smooth` layer:
 
 
-```r
+~~~sourcecode
 ggplot(data = healthData, aes(x = selfRatedHealth, y = health,color=as.factor(education))) +
   geom_point() + geom_smooth(method="lm", size = 1.5)
-```
+~~~
 
-![plot of chunk lm-fit2](figure/lm-fit2-1.png)
+<img src="images/lm-fit2-1.png" title="plot of chunk lm-fit2" alt="plot of chunk lm-fit2" style="display: block; margin: auto;" />
 
 There are two ways an *aesthetic* can be specified. Here we *set* the **size**
 aesthetic by passing it as an argument to `geom_smooth`. Previously in the
@@ -265,11 +264,11 @@ in one plot. Alternatively, we can split out different groups in the data into m
 by adding a layer of **facet** panels:
 
 
-```r
+~~~sourcecode
 ggplot(data = healthData, aes(x = selfRatedHealth, y = health,color=paste(sex,HIGroup))) + geom_smooth(method="lm") + facet_wrap( ~ alcoholUseInYoungAdulthood)
-```
+~~~
 
-![plot of chunk facet](figure/facet-1.png)
+<img src="images/facet-1.png" title="plot of chunk facet" alt="plot of chunk facet" style="display: block; margin: auto;" />
 
 The `facet_wrap` layer took a "formula" as its argument, denoted by the tilde
 (~). This tells R to draw a panel for each unique value in the alcohol column
@@ -290,14 +289,14 @@ for changing the axis labels. To change the legend title, we need to use the
 **scales** layer.
 
 
-```r
+~~~sourcecode
 ggplot(data = healthData, aes(x = selfRatedHealth, y = health,color=paste(sex,HIGroup))) + geom_smooth(method="lm") + facet_wrap( ~ alcoholUseInYoungAdulthood) +
   xlab("Self-reported health") + ylab("Health rating from teacher") + ggtitle("Figure 1") +
   scale_colour_discrete(name="Study group and gender", labels= c("Hawaii - Female","Teman - Female","Hawaii - Male","Teman - Male")) +
   theme(axis.text.x=element_blank(), axis.ticks.x=element_blank())
-```
+~~~
 
-![plot of chunk theme](figure/theme-1.png)
+<img src="images/theme-1.png" title="plot of chunk theme" alt="plot of chunk theme" style="display: block; margin: auto;" />
 
 
 This is just a taste of what you can do with `ggplot2`. RStudio provides a
@@ -319,13 +318,16 @@ What would you like to visualise from the dataset? Go ahead and try to do it usi
 Lastly, `ggplot2` has a very handy function, `ggsave()` for saving the current plot to a file:
 
 
-```r
+~~~sourcecode
 ggsave("../images/Figure1.pdf")
-```
+~~~
 
-```
-## Saving 7 x 7 in image
-```
+
+
+~~~output
+Saving 7 x 7 in image
+
+~~~
 
 <br>
 
@@ -338,11 +340,11 @@ ggsave("../images/Figure1.pdf")
 Modify the example so that the figure visualises how illnessReversed  varies with health:
 
 
-```r
+~~~sourcecode
 ggplot(healthData, aes(x = health, y = illnessReversed)) + geom_point()
-```
+~~~
 
-![plot of chunk ch1-sol](figure/ch1-sol-1.png)
+<img src="images/ch1-sol-1.png" title="plot of chunk ch1-sol" alt="plot of chunk ch1-sol" style="display: block; margin: auto;" />
 
 <!--endsec-->
 
@@ -352,12 +354,12 @@ In the previous examples and challenge we've used the `aes` function to tell the
 Another *aesthetic* property we can modify is the point *color*. Modify the code from the previous challenge to **color** the points by the "education" column.
 
 
-```r
+~~~sourcecode
 ggplot(healthData, aes(x = health, y = illnessReversed, colour=as.factor(education))) + 
 geom_point()
-```
+~~~
 
-![plot of chunk ch2-sol](figure/ch2-sol-1.png)
+<img src="images/ch2-sol-1.png" title="plot of chunk ch2-sol" alt="plot of chunk ch2-sol" style="display: block; margin: auto;" />
 
 <!--endsec-->
 
@@ -366,11 +368,11 @@ geom_point()
 Switch the order of the point and line layers from the previous example. What happened?
 
 
-```r
+~~~sourcecode
 ggplot(healthData,aes(x=health,y=illnessReversed,by=sex)) + geom_point() + geom_line(aes(color=as.factor(education)))
-```
+~~~
 
-![plot of chunk ch3-sol](figure/ch3-sol-1.png)
+<img src="images/ch3-sol-1.png" title="plot of chunk ch3-sol" alt="plot of chunk ch3-sol" style="display: block; margin: auto;" />
  
 The lines now get drawn over the points!
 
@@ -383,11 +385,11 @@ Modify the color and size of the points on the point layer in the previous examp
 Hint: do not use the `aes` function.
 
 
-```r
+~~~sourcecode
 ggplot(data = healthData, aes(x = selfRatedHealth, y = health)) +
   geom_point(size=3,color="red") + geom_smooth(method="lm", size = 1.5)
-```
+~~~
 
-![plot of chunk ch4-sol](figure/ch4-sol-1.png)
+<img src="images/ch4-sol-1.png" title="plot of chunk ch4-sol" alt="plot of chunk ch4-sol" style="display: block; margin: auto;" />
 
 <!--endsec-->

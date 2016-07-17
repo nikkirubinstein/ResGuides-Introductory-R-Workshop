@@ -1,7 +1,5 @@
----
-output: 
-  md_document
----
+
+
 
 # Exploring data frames 
 
@@ -32,28 +30,34 @@ We learned last time that the columns in a data.frame were vectors, so that our 
 
 
 
-```r
+~~~sourcecode
 newCol <- c(2,3,5,12)
 cats
-```
+~~~
 
-```
-##     coat weight likes_string
-## 1 calico    2.1         TRUE
-## 2  black    5.0        FALSE
-## 3  tabby    3.2         TRUE
-```
+
+
+~~~output
+    coat weight likes_string
+1 calico    2.1         TRUE
+2  black    5.0        FALSE
+3  tabby    3.2         TRUE
+
+~~~
 
 We can then add this as a column via:
 
 
-```r
+~~~sourcecode
 cats <- cbind(cats,  newCol)
-```
+~~~
 
-```
-## Error in data.frame(..., check.names = FALSE): arguments imply differing number of rows: 3, 4
-```
+
+
+~~~err
+Error in data.frame(..., check.names = FALSE): arguments imply differing number of rows: 3, 4
+
+~~~
 
 
 
@@ -61,131 +65,161 @@ cats <- cbind(cats,  newCol)
 Why didn't this work? Of course, R wants to see one element in our new column for every row in the table:
 
 
-```r
+~~~sourcecode
 cats
-```
+~~~
 
-```
-##     coat weight likes_string
-## 1 calico    2.1         TRUE
-## 2  black    5.0        FALSE
-## 3  tabby    3.2         TRUE
-```
 
-```r
+
+~~~output
+    coat weight likes_string
+1 calico    2.1         TRUE
+2  black    5.0        FALSE
+3  tabby    3.2         TRUE
+
+~~~
+
+
+
+~~~sourcecode
 newCol <- c(4,5,8)
 cats <- cbind(cats, newCol)
 cats
-```
+~~~
 
-```
-##     coat weight likes_string newCol
-## 1 calico    2.1         TRUE      4
-## 2  black    5.0        FALSE      5
-## 3  tabby    3.2         TRUE      8
-```
+
+
+~~~output
+    coat weight likes_string newCol
+1 calico    2.1         TRUE      4
+2  black    5.0        FALSE      5
+3  tabby    3.2         TRUE      8
+
+~~~
 
 Our new column has appeared, but it's got that ugly name at the top; let's give it something a little easier to understand:
 
 
-```r
+~~~sourcecode
 names(cats)[4] <- 'age'
-```
+~~~
 
 Now how about adding rows - in this case, we saw last time that the rows of a data.frame are made of lists:
 
 
-```r
+~~~sourcecode
 newRow <- list("tortoiseshell", 3.3, TRUE, 9)
 cats <- rbind(cats, newRow)
-```
+~~~
 
-```
-## Warning in `[<-.factor`(`*tmp*`, ri, value = "tortoiseshell"): invalid
-## factor level, NA generated
-```
+
+
+~~~err
+Warning in `[<-.factor`(`*tmp*`, ri, value = "tortoiseshell"): invalid
+factor level, NA generated
+
+~~~
 
 Another thing to look out for has emerged - when R creates a factor, it only allows whatever is originally there when our data was first loaded, which was 'black', 'calico' and 'tabby' in our case. Anything new that doesn't fit into one of its categories is rejected as nonsense, until we explicitly add that as a *level* in the factor:
 
 
-```r
+~~~sourcecode
 levels(cats$coat)
-```
+~~~
 
-```
-## [1] "black"  "calico" "tabby"
-```
 
-```r
+
+~~~output
+[1] "black"  "calico" "tabby" 
+
+~~~
+
+
+
+~~~sourcecode
 levels(cats$coat) <- c(levels(cats$coat), 'tortoiseshell')
 cats <- rbind(cats, list("tortoiseshell", 3.3, TRUE, 9))
-```
+~~~
 
 Alternatively, we can change a factor column to a character vector; we lose the handy categories of the factor, but can subsequently add any word we want to the column without babysitting the factor levels:
 
 
-```r
+~~~sourcecode
 str(cats)
-```
+~~~
 
-```
-## 'data.frame':	5 obs. of  4 variables:
-##  $ coat        : Factor w/ 4 levels "black","calico",..: 2 1 3 NA 4
-##  $ weight      : num  2.1 5 3.2 3.3 3.3
-##  $ likes_string: logi  TRUE FALSE TRUE TRUE TRUE
-##  $ age         : num  4 5 8 9 9
-```
 
-```r
+
+~~~output
+'data.frame':	5 obs. of  4 variables:
+ $ coat        : Factor w/ 4 levels "black","calico",..: 2 1 3 NA 4
+ $ weight      : num  2.1 5 3.2 3.3 3.3
+ $ likes_string: logi  TRUE FALSE TRUE TRUE TRUE
+ $ age         : num  4 5 8 9 9
+
+~~~
+
+
+
+~~~sourcecode
 cats$coat <- as.character(cats$coat)
 str(cats)
-```
+~~~
 
-```
-## 'data.frame':	5 obs. of  4 variables:
-##  $ coat        : chr  "calico" "black" "tabby" NA ...
-##  $ weight      : num  2.1 5 3.2 3.3 3.3
-##  $ likes_string: logi  TRUE FALSE TRUE TRUE TRUE
-##  $ age         : num  4 5 8 9 9
-```
+
+
+~~~output
+'data.frame':	5 obs. of  4 variables:
+ $ coat        : chr  "calico" "black" "tabby" NA ...
+ $ weight      : num  2.1 5 3.2 3.3 3.3
+ $ likes_string: logi  TRUE FALSE TRUE TRUE TRUE
+ $ age         : num  4 5 8 9 9
+
+~~~
 
 We now know how to add rows and columns to our data.frame in R - but in our work we've accidentally added a garbage row. We can ask for a data.frame minus this offender:
 
 
-```r
+~~~sourcecode
 cats[-4,]
-```
+~~~
 
-```
-##            coat weight likes_string age
-## 1        calico    2.1         TRUE   4
-## 2         black    5.0        FALSE   5
-## 3         tabby    3.2         TRUE   8
-## 5 tortoiseshell    3.3         TRUE   9
-```
+
+
+~~~output
+           coat weight likes_string age
+1        calico    2.1         TRUE   4
+2         black    5.0        FALSE   5
+3         tabby    3.2         TRUE   8
+5 tortoiseshell    3.3         TRUE   9
+
+~~~
 
 Notice the comma with nothing after it to indicate we want to drop the entire fourth row. 
 Alternatively, we can drop all rows with `NA` values:
 
 
-```r
+~~~sourcecode
 na.omit(cats)
-```
+~~~
 
-```
-##            coat weight likes_string age
-## 1        calico    2.1         TRUE   4
-## 2         black    5.0        FALSE   5
-## 3         tabby    3.2         TRUE   8
-## 5 tortoiseshell    3.3         TRUE   9
-```
+
+
+~~~output
+           coat weight likes_string age
+1        calico    2.1         TRUE   4
+2         black    5.0        FALSE   5
+3         tabby    3.2         TRUE   8
+5 tortoiseshell    3.3         TRUE   9
+
+~~~
 
 In either case, we need to reassign our variable to persist the changes:
 
 
-```r
+~~~sourcecode
 cats <- na.omit(cats)
-```
+~~~
 
 <!--sec data-title="Discussion 1" data-id="disc1" data-show=true data-collapse=false ces-->
 
@@ -201,49 +235,55 @@ The key to remember when adding data to a data.frame is that *columns are vector
 We can also glue two dataframes together with `rbind`:
 
 
-```r
+~~~sourcecode
 cats <- rbind(cats, cats)
 cats
-```
+~~~
 
-```
-##             coat weight likes_string age
-## 1         calico    2.1         TRUE   4
-## 2          black    5.0        FALSE   5
-## 3          tabby    3.2         TRUE   8
-## 5  tortoiseshell    3.3         TRUE   9
-## 11        calico    2.1         TRUE   4
-## 21         black    5.0        FALSE   5
-## 31         tabby    3.2         TRUE   8
-## 51 tortoiseshell    3.3         TRUE   9
-```
+
+
+~~~output
+            coat weight likes_string age
+1         calico    2.1         TRUE   4
+2          black    5.0        FALSE   5
+3          tabby    3.2         TRUE   8
+5  tortoiseshell    3.3         TRUE   9
+11        calico    2.1         TRUE   4
+21         black    5.0        FALSE   5
+31         tabby    3.2         TRUE   8
+51 tortoiseshell    3.3         TRUE   9
+
+~~~
 But now the row names are unnecessarily complicated. We can ask R to re-name everything sequentially:
 
 
-```r
+~~~sourcecode
 rownames(cats) <- NULL
 cats
-```
+~~~
 
-```
-##            coat weight likes_string age
-## 1        calico    2.1         TRUE   4
-## 2         black    5.0        FALSE   5
-## 3         tabby    3.2         TRUE   8
-## 4 tortoiseshell    3.3         TRUE   9
-## 5        calico    2.1         TRUE   4
-## 6         black    5.0        FALSE   5
-## 7         tabby    3.2         TRUE   8
-## 8 tortoiseshell    3.3         TRUE   9
-```
+
+
+~~~output
+           coat weight likes_string age
+1        calico    2.1         TRUE   4
+2         black    5.0        FALSE   5
+3         tabby    3.2         TRUE   8
+4 tortoiseshell    3.3         TRUE   9
+5        calico    2.1         TRUE   4
+6         black    5.0        FALSE   5
+7         tabby    3.2         TRUE   8
+8 tortoiseshell    3.3         TRUE   9
+
+~~~
 
 <!--sec data-title="Challenge 1" data-id="ch1" data-show=true data-collapse=false ces-->
 
 You can create a new data.frame right from within R with the following syntax:
 
-```r
+~~~sourcecode
 df <- data.frame(id = c('a', 'b', 'c'), x = 1:3, y = c(TRUE, TRUE, FALSE), stringsAsFactors = FALSE)
-```
+~~~
 Make a data.frame that holds the following information for yourself:
 
 - first name
@@ -261,9 +301,9 @@ Kern, M. L., Hampson, S. E., Goldberg, L. R., & Friedman, H. S. (2014). Integrat
 The data is stored on the GitHub repository used for these training materials, and R can read the file directly from there:
 
 
-```r
+~~~sourcecode
 healthData <- read.csv("https://goo.gl/oqQGKF")
-```
+~~~
 
 
 <!--sec data-title="Miscellaneous Tips" data-id="tip1" data-show=true data-collapse=true ces-->
@@ -279,165 +319,209 @@ healthData <- read.csv("https://goo.gl/oqQGKF")
 Let's investigate healthData a bit; the first thing we should always do is check out what the data looks like with `str`:
 
 
-```r
+~~~sourcecode
 str(healthData)
-```
+~~~
 
-```
-## 'data.frame':	2034 obs. of  15 variables:
-##  $ id                        : int  3 4 7 8 10 12 15 17 18 20 ...
-##  $ conscientiousness         : num  5.83 7.73 6.5 5.88 4.25 ...
-##  $ extraversion              : num  3.99 7.02 2.7 2.5 5.15 ...
-##  $ intellect                 : num  6.04 6.82 5.53 4.23 4.75 ...
-##  $ agreeableness             : num  4.61 6.65 3.09 4.61 3.85 ...
-##  $ neuroticism               : num  3.65 6.3 4.09 3.65 3.21 ...
-##  $ sex                       : Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 2 2 2 2 ...
-##  $ selfRatedHealth           : int  4 5 3 3 4 4 4 4 5 4 ...
-##  $ mentalAdjustment          : int  2 3 3 2 2 2 3 1 3 3 ...
-##  $ illnessReversed           : int  3 5 4 4 3 5 2 4 5 4 ...
-##  $ health                    : num  6.74 11.96 8.05 6.48 6.74 ...
-##  $ alcoholUseInYoungAdulthood: int  2 3 2 1 2 2 1 1 1 2 ...
-##  $ education                 : int  9 8 6 8 9 4 6 7 9 9 ...
-##  $ birthYear                 : int  1909 1905 1910 1905 1910 1911 1903 1908 1909 1911 ...
-##  $ HIGroup                   : Factor w/ 2 levels "Group 1","Group 2": 1 1 1 1 1 1 1 1 1 1 ...
-```
+
+
+~~~output
+'data.frame':	2034 obs. of  15 variables:
+ $ id                        : int  3 4 7 8 10 12 15 17 18 20 ...
+ $ conscientiousness         : num  5.83 7.73 6.5 5.88 4.25 ...
+ $ extraversion              : num  3.99 7.02 2.7 2.5 5.15 ...
+ $ intellect                 : num  6.04 6.82 5.53 4.23 4.75 ...
+ $ agreeableness             : num  4.61 6.65 3.09 4.61 3.85 ...
+ $ neuroticism               : num  3.65 6.3 4.09 3.65 3.21 ...
+ $ sex                       : Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 2 2 2 2 ...
+ $ selfRatedHealth           : int  4 5 3 3 4 4 4 4 5 4 ...
+ $ mentalAdjustment          : int  2 3 3 2 2 2 3 1 3 3 ...
+ $ illnessReversed           : int  3 5 4 4 3 5 2 4 5 4 ...
+ $ health                    : num  6.74 11.96 8.05 6.48 6.74 ...
+ $ alcoholUseInYoungAdulthood: int  2 3 2 1 2 2 1 1 1 2 ...
+ $ education                 : int  9 8 6 8 9 4 6 7 9 9 ...
+ $ birthYear                 : int  1909 1905 1910 1905 1910 1911 1903 1908 1909 1911 ...
+ $ HIGroup                   : Factor w/ 2 levels "Group 1","Group 2": 1 1 1 1 1 1 1 1 1 1 ...
+
+~~~
 
 We can also examine individual columns of the data.frame with our `typeof` function:
 
 
-```r
+~~~sourcecode
 typeof(healthData$id)
-```
+~~~
 
-```
-## [1] "integer"
-```
 
-```r
+
+~~~output
+[1] "integer"
+
+~~~
+
+
+
+~~~sourcecode
 typeof(healthData$conscientiousness)
-```
+~~~
 
-```
-## [1] "double"
-```
 
-```r
+
+~~~output
+[1] "double"
+
+~~~
+
+
+
+~~~sourcecode
 typeof(healthData$sex)
-```
+~~~
 
-```
-## [1] "integer"
-```
 
-```r
+
+~~~output
+[1] "integer"
+
+~~~
+
+
+
+~~~sourcecode
 str(healthData$health)
-```
+~~~
 
-```
-##  num [1:2034] 6.74 11.96 8.05 6.48 6.74 ...
-```
+
+
+~~~output
+ num [1:2034] 6.74 11.96 8.05 6.48 6.74 ...
+
+~~~
 
 We can also interrogate the data.frame for information about its dimensions; remembering that `str(healthData)` said there were 2255 observations of 15 variables in healthData, what do you think the following will produce, and why?
 
 
-```r
+~~~sourcecode
 length(healthData)
-```
+~~~
 
-```
-## [1] 15
-```
+
+
+~~~output
+[1] 15
+
+~~~
 
 A fair guess would have been to say that the length of a data.frame would be the number of rows it has (2255), but this is not the case; remember, a data.frame is a *list of vectors and factors*:
 
 
-```r
+~~~sourcecode
 typeof(healthData)
-```
+~~~
 
-```
-## [1] "list"
-```
+
+
+~~~output
+[1] "list"
+
+~~~
 
 When `length` gave us 15, it's because healthData is built out of a list of 15 columns. To get the number of rows and columns in our dataset, try:
 
 
-```r
+~~~sourcecode
 nrow(healthData)
-```
+~~~
 
-```
-## [1] 2034
-```
 
-```r
+
+~~~output
+[1] 2034
+
+~~~
+
+
+
+~~~sourcecode
 ncol(healthData)
-```
+~~~
 
-```
-## [1] 15
-```
+
+
+~~~output
+[1] 15
+
+~~~
 
 Or, both at once:
 
 
-```r
+~~~sourcecode
 dim(healthData)
-```
+~~~
 
-```
-## [1] 2034   15
-```
+
+
+~~~output
+[1] 2034   15
+
+~~~
 
 We'll also likely want to know what the titles of all the columns are, so we can ask for them later:
 
-```r
+~~~sourcecode
 colnames(healthData)
-```
+~~~
 
-```
-##  [1] "id"                         "conscientiousness"         
-##  [3] "extraversion"               "intellect"                 
-##  [5] "agreeableness"              "neuroticism"               
-##  [7] "sex"                        "selfRatedHealth"           
-##  [9] "mentalAdjustment"           "illnessReversed"           
-## [11] "health"                     "alcoholUseInYoungAdulthood"
-## [13] "education"                  "birthYear"                 
-## [15] "HIGroup"
-```
+
+
+~~~output
+ [1] "id"                         "conscientiousness"         
+ [3] "extraversion"               "intellect"                 
+ [5] "agreeableness"              "neuroticism"               
+ [7] "sex"                        "selfRatedHealth"           
+ [9] "mentalAdjustment"           "illnessReversed"           
+[11] "health"                     "alcoholUseInYoungAdulthood"
+[13] "education"                  "birthYear"                 
+[15] "HIGroup"                   
+
+~~~
 
 At this stage, it's important to ask ourselves if the structure R is reporting matches our intuition or expectations; do the basic data types reported for each column make sense? If not, we need to sort any problems out now before they turn into bad surprises down the road, using what we've learned about how R interprets data, and the importance of *strict consistency* in how we record our data.
 
 Once we're happy that the data types and structures seem reasonable, it's time to start digging into our data proper. Check out the first few lines:
 
 
-```r
+~~~sourcecode
 head(healthData)
-```
+~~~
 
-```
-##   id conscientiousness extraversion intellect agreeableness neuroticism
-## 1  3             5.825        3.986     6.044         4.613       3.649
-## 2  4             7.732        7.016     6.821         6.649       6.299
-## 3  7             6.498        2.697     5.527         3.087       4.091
-## 4  8             5.881        2.504     4.234         4.613       3.649
-## 5 10             4.254        5.147     4.751         3.850       3.208
-## 6 12             7.508        3.535     6.821         4.613       5.415
-##    sex selfRatedHealth mentalAdjustment illnessReversed health
-## 1 Male               4                2               3   6.74
-## 2 Male               5                3               5  11.96
-## 3 Male               3                3               4   8.05
-## 4 Male               3                2               4   6.48
-## 5 Male               4                2               3   6.74
-## 6 Male               4                2               5   9.01
-##   alcoholUseInYoungAdulthood education birthYear HIGroup
-## 1                          2         9      1909 Group 1
-## 2                          3         8      1905 Group 1
-## 3                          2         6      1910 Group 1
-## 4                          1         8      1905 Group 1
-## 5                          2         9      1910 Group 1
-## 6                          2         4      1911 Group 1
-```
+
+
+~~~output
+  id conscientiousness extraversion intellect agreeableness neuroticism
+1  3             5.825        3.986     6.044         4.613       3.649
+2  4             7.732        7.016     6.821         6.649       6.299
+3  7             6.498        2.697     5.527         3.087       4.091
+4  8             5.881        2.504     4.234         4.613       3.649
+5 10             4.254        5.147     4.751         3.850       3.208
+6 12             7.508        3.535     6.821         4.613       5.415
+   sex selfRatedHealth mentalAdjustment illnessReversed health
+1 Male               4                2               3   6.74
+2 Male               5                3               5  11.96
+3 Male               3                3               4   8.05
+4 Male               3                2               4   6.48
+5 Male               4                2               3   6.74
+6 Male               4                2               5   9.01
+  alcoholUseInYoungAdulthood education birthYear HIGroup
+1                          2         9      1909 Group 1
+2                          3         8      1905 Group 1
+3                          2         6      1910 Group 1
+4                          1         8      1905 Group 1
+5                          2         9      1910 Group 1
+6                          2         4      1911 Group 1
+
+~~~
 
 To make sure our analysis is reproducible, we should put the code
 into a script file so we can come back to it later.
@@ -467,12 +551,12 @@ Note the difference between row indices, and default row names; even though ther
 <!--sec data-title="Solution to Challenge 1" data-id="ch1sol" data-show=true data-collapse=true ces-->
 
 
-```r
+~~~sourcecode
 df <- data.frame(first = c('Grace'), last = c('Hopper'), lucky_number = c(0), stringsAsFactors = FALSE)
 df <- rbind(df, list('Marie', 'Curie', 238) )
 df <- cbind(df, c(TRUE,TRUE))
 names(df)[4] <- 'coffeetime'
-```
+~~~
 
 <!--endsec-->
 
@@ -480,13 +564,13 @@ names(df)[4] <- 'coffeetime'
 
 The contents of `script/load-healthData.R`:
 
-```r
+~~~sourcecode
 healthData <- read.csv(file = "../data/THCombo051311.csv")
-```
+~~~
 To run the script and load the data into the `healthData` variable:
 
-```r
+~~~sourcecode
 source(file = "scripts/load-healthData.R")
-```
+~~~
 
 <!--endsec-->

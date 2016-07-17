@@ -1,12 +1,11 @@
----
-output: md_document
----
+
+```{r include = FALSE}
+source("../tools/chunk-options.R")
+```
 
 # Dataframe manipulation with tidyr
 
 ```{r, include=FALSE}
-#source("tools/chunk-options.R")
-#opts_chunk$set(fig.path = "fig/14-tidyr-")
 # Silently load in the data so the rest of the lesson works
 healthData <- read.csv("https://goo.gl/oqQGKF", header = TRUE, stringsAsFactors = FALSE)
 

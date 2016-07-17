@@ -1,6 +1,5 @@
----
-output: md_document
----
+
+
 
 # Wrapping up
 

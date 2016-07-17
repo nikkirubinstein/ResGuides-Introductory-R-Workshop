@@ -77,7 +77,7 @@ color: #00779c;
 }
 .book .book-body .page-wrapper .page-inner section.normal pre {
   background: #f1f1f1;
-  border-radius: 0;
+  border: 1px solid grey;
 }
 
 
@@ -101,63 +101,18 @@ color: white;
   text-align: center;
 }
 
+/* colour for input code */
 pre>.lang-sourcecode {
   color: darkgreen;
 }
 
+/* colour for ouptut code */
 pre>.lang-output {
   color: blue;
 }
 
+/* colour for error code */
 pre>.lang-err {
-  color: darkred;
+  color: red;
 }
 
-
-/* Objectives, Callout Box, Challenges and prerequisites are now rendered as
-Bootstrap panels.  There's a pandoc error with rendering headers nested under
-blockquote: these headers don't preserve attributes.  It means we have to
-manually set styles for these headers to look like Bootstrap's "panel-title"
-class. */
-/* Comments in code. 
-.comment {
-    color: purple;
-}
-
-/* Error messages. 
-.err {
-    color: #8B0000;
-    font-style: italic;
-}
-
-
-/* Highlighted changes in code. 
-.highlight {
-    background-color: #ffe4e1;
-}
-
-/* Manual input. 
-.input {
-    color: #006400;
-}
-
-.r, pre, pre code, code {
-    color: #006400;
-}
-
-
-/* Program output. 
-.output {
-    color: #00008B;
-    font-style: italic;
-}
-
-
-/* Block quotations. 
-blockquote {
-    margin: 1em;
-    padding: 1em 1em .5em 1em;
-    width: 90%;
-    font-size: inherit;
-}
-*/

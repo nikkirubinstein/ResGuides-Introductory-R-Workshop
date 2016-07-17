@@ -1,7 +1,8 @@
----
-output: 
-  md_document
----
+
+```{r include = FALSE}
+source("../tools/chunk-options.R")
+```
+
 # Project management with RStudio
 
 <!--sec data-title="Learning Objectives" data-id="obj" data-show=true data-collapse=false ces-->

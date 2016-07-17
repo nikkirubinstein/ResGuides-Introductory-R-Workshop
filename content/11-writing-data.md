@@ -1,6 +1,5 @@
----
-output: md_document
----
+
+
 
 # Writing data
 
@@ -30,9 +29,9 @@ You have already seen how to save the most recent plot you create in `ggplot2`,
 using the command `ggsave`. As a refresher:
 
 
-```r
+~~~sourcecode
 ggsave("My_most_recent_plot.pdf")
-```
+~~~
 
 You can save a plot from within RStudio using the 'Export' button
 in the 'Plot' window. This will give you the option of saving as a
@@ -50,7 +49,7 @@ In this case you can use a more flexible approach. The function
 using the arguments to this function.
 
 
-```r
+~~~sourcecode
 pdf("Health_vs_SelfRatedHealth.pdf", width=12, height=4)
 ggplot(data=healthData, aes(x=selfRatedHealth, y=health, colour=HIGroup)) +
   geom_point()
@@ -58,7 +57,7 @@ ggplot(data=healthData, aes(x=selfRatedHealth, y=health, colour=HIGroup)) +
 # You then have to make sure to turn off the pdf device!
 
 dev.off()
-```
+~~~
 
 Open up this document and have a look.
 
@@ -86,7 +85,7 @@ Let's create a data-cleaning script. For this analysis, we
 only want to focus on the health data for males from sample group 1:
 
 
-```r
+~~~sourcecode
 healthData_subset <- healthData[healthData$sex == "Male" & 
                                   healthData$HIGroup == "Group 1",]
 
@@ -94,7 +93,7 @@ write.table(healthData_subset,
   file="../cleaned-data/healthData_subset.csv",
   sep=","
 )
-```
+~~~
 
 Now let's have a look at the data. Provided data files aren't very large, this can be achieved easily in R by simply opening the file from the file explorer.
 
@@ -106,9 +105,9 @@ Let's look at the help file to work out how to change this
 behaviour.
 
 
-```r
+~~~sourcecode
 ?write.table
-```
+~~~
 
 By default R will wrap character vectors with quotation marks
 when writing out to file. It will also write out the row and
@@ -117,13 +116,13 @@ column names.
 Let's fix this:
 
 
-```r
+~~~sourcecode
 write.table(
   healthData_subset,
   file="../cleaned-data/healthData_subset.csv",
   sep=",", quote=FALSE, row.names=FALSE
 )
-```
+~~~
 
 Now lets look at the data again.
 

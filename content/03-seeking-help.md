@@ -1,7 +1,5 @@
----
-output: 
-  md_document
----
+
+
 
 # Seeking help
 
@@ -33,10 +31,10 @@ function from a specific function that is in a package loaded into your
 namespace (your interactive R session):
 
 
-```r
+~~~sourcecode
 ?function_name
 help(function_name)
-```
+~~~
 
 This will load up a help page in RStudio (or as plain text in R by itself).
 
@@ -67,9 +65,9 @@ One of the most daunting aspects of R is the large number of functions available
 To seek help on special operators, use quotes:
 
 
-```r
+~~~sourcecode
 ?"+"
-```
+~~~
 
 <br>
 
@@ -94,9 +92,9 @@ If a package doesn't have any vignettes, you can usually find help by typing
 If you're not sure what package a function is in, or how it's specifically spelled you can do a fuzzy search:
 
 
-```r
+~~~sourcecode
 ??function_name
-```
+~~~
 
 <br>
 
@@ -124,36 +122,42 @@ If you can't find the answer, there are a few useful functions to
 help you ask a question from your peers:
 
 
-```r
+~~~sourcecode
 ?dput
-```
+~~~
 
 Will dump the data you're working with into a format so that it can
 be copy and pasted by anyone else into their R session.
 
 
-```r
+~~~sourcecode
 sessionInfo()
-```
+~~~
 
-```
-## R version 3.3.1 (2016-06-21)
-## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Debian GNU/Linux 8 (jessie)
-## 
-## locale:
-##  [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
-##  [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
-##  [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
-## [10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
-## 
-## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  base     
-## 
-## loaded via a namespace (and not attached):
-## [1] magrittr_1.5  formatR_1.4   tools_3.3.1   stringi_1.1.1 knitr_1.13   
-## [6] methods_3.3.1 stringr_1.0.0 evaluate_0.9
-```
+
+
+~~~output
+R version 3.3.1 (2016-06-21)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Debian GNU/Linux 8 (jessie)
+
+locale:
+ [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
+ [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
+ [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
+[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  base     
+
+other attached packages:
+[1] knitr_1.13
+
+loaded via a namespace (and not attached):
+[1] magrittr_1.5  formatR_1.4   tools_3.3.1   stringi_1.1.1 methods_3.3.1
+[6] stringr_1.0.0 evaluate_0.9 
+
+~~~
 
 Will print out your current version of R, as well as any packages you
 have loaded. This can be useful for others to help reproduce and debug
@@ -163,11 +167,11 @@ your issue.
 
 Look at the help for the `c` function. What kind of vector do you expect you will create if you evaluate the following: 
 
-```r
+~~~sourcecode
 > c(1, 2, 3)
 > c('d', 'e', 'f')
 > c(1, 2, 'f')`
-```
+~~~
 
 <!--endsec-->
 
@@ -211,10 +215,10 @@ The `c()` function creates a vector, in which all elements are the same type. In
 Look at the help for the `paste` function. You'll need to use this later. 
  
 
-```r
+~~~sourcecode
 > help("paste")
 > ?paste
-```
+~~~
 
 <!--endsec-->
 

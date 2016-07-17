@@ -1,6 +1,7 @@
----
-output: md_document
----
+
+```{r include = FALSE}
+source("../tools/chunk-options.R")
+```
 
 # Subsetting data
 
