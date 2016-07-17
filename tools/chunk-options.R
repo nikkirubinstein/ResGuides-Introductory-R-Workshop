@@ -6,12 +6,12 @@
 
 library("knitr")
 opts_chunk$set(tidy = FALSE, results = "markup", comment = NA,
-               fig.align = "center", fig.path = "fig/")
+               fig.align = "center", fig.path = "images/")
 
 # The hooks below add html tags to the code chunks and their output so that they
 # are properly formatted when the site is built.
 hook_in <- function(x, options) {
-  stringr::str_c("\n\n~~~{.r}\n",
+  stringr::str_c("\n\n~~~sourcecode\n",
                  paste0(x, collapse="\n"),
                  "\n~~~\n\n")
 }

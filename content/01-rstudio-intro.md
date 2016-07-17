@@ -109,10 +109,18 @@ The simplest thing you could do with R is do arithmetic:
 <code style="color:blue;"> 1 + 100 </code>
 
 
+<<<<<<< HEAD
 ~~~sourcecode
 1 + 100
 ~~~
 
+=======
+```
+<span style="color:red">
+1 + 100
+</span>
+```
+>>>>>>> ac70334fd17b2d2d697c47b5b4bf972564c240d1
 
 
 ~~~{.output}
