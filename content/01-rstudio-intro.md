@@ -104,7 +104,9 @@ returns a result.
 The simplest thing you could do with R is do arithmetic:
 
 <!--rcode edocr--> 
-1 + 100 
+```
+1 + 100
+```
 <!--endrcode-->
 
 <pre><code style="color:darkgreen">1 + 100</code></pre>

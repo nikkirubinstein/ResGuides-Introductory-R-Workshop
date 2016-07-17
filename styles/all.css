@@ -101,6 +101,11 @@ color: white;
   text-align: center;
 }
 
+.lang-r {
+  color: blue;
+}
+
+
 
 .book.color-theme-2 > .book-body > .body-inner > .page-wrapper > .page-inner > section > rcode > .panel {
   color: blue;
