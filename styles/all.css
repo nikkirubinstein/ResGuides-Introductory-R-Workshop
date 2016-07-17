@@ -101,46 +101,37 @@ color: white;
   text-align: center;
 }
 
+
 .lang-sourcecode {
   color: blue;
 }
 
 
 
-.book.color-theme-2 > .book-body > .body-inner > .page-wrapper > .page-inner > section > rcode > .panel {
-  color: blue;
-  border-style: solid;
-	border-color: rgba(0,0,0,0.1);
-	border-width: 1px;
-} 
-
-rcode {
-  color: blue;
-}
 
 /* Objectives, Callout Box, Challenges and prerequisites are now rendered as
 Bootstrap panels.  There's a pandoc error with rendering headers nested under
 blockquote: these headers don't preserve attributes.  It means we have to
 manually set styles for these headers to look like Bootstrap's "panel-title"
 class. */
-/* Comments in code. */
+/* Comments in code. 
 .comment {
     color: purple;
 }
 
-/* Error messages. */
+/* Error messages. 
 .err {
     color: #8B0000;
     font-style: italic;
 }
 
 
-/* Highlighted changes in code. */
+/* Highlighted changes in code. 
 .highlight {
     background-color: #ffe4e1;
 }
 
-/* Manual input. */
+/* Manual input. 
 .input {
     color: #006400;
 }
@@ -150,19 +141,18 @@ class. */
 }
 
 
-/* Program output. */
+/* Program output. 
 .output {
     color: #00008B;
     font-style: italic;
 }
 
 
-/* Block quotations. */
+/* Block quotations. 
 blockquote {
     margin: 1em;
     padding: 1em 1em .5em 1em;
     width: 90%;
     font-size: inherit;
 }
-
-
+*/
