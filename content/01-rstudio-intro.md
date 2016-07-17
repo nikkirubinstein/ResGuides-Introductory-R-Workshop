@@ -102,16 +102,19 @@ returns a result.
 ## Using R as a calculator
 
 The simplest thing you could do with R is do arithmetic:
+<code style="color:blue;"> 1 + 100 </code>
 
-<!--rcode edocr--> 
-```
+
+~~~r
 1 + 100
-```
-<!--endrcode-->
+~~~
 
-<pre><code style="color:darkgreen">1 + 100</code></pre>
-<pre><code style="color:blue">[1] 101
-</code></pre>
+
+
+~~~{.output}
+[1] 101
+
+~~~
 
 And R will print out the answer, with a preceding "[1]". Don't worry about this
 for now, we'll explain that later. For now think of it as indicating ouput.
@@ -152,24 +155,43 @@ From highest to lowest precedence:
  * Add: `+`
  * Subtract: `-`
 
-<pre><code style="color:darkgreen">3 + 5 * 2</code></pre>
-<pre><code style="color:blue">[1] 13
-</code></pre>
+
+~~~r
+3 + 5 * 2
+~~~
+
+
+
+~~~{.output}
+[1] 13
+
+~~~
 
 Use parentheses to group operations in order to force the order of
 evaluation if it differs from the default, or to make clear what you 
 intend.
 
-<pre><code style="color:darkgreen">(3 + 5) * 2</code></pre>
-<pre><code style="color:blue">[1] 16
-</code></pre>
+
+~~~r
+(3 + 5) * 2
+~~~
+
+
+
+~~~{.output}
+[1] 16
+
+~~~
 
 This can get unwieldy when not needed, but  clarifies your intentions.
 Remember that others may later read your code.
 
-<pre><code style="color:darkgreen">(3 + (5 * (2 ^ 2))) # hard to read
+
+~~~r
+(3 + (5 * (2 ^ 2))) # hard to read
 3 + 5 * 2 ^ 2       # clear, if you remember the rules
-3 + 5 * (2 ^ 2)     # if you forget some rules, this might help</code></pre>
+3 + 5 * (2 ^ 2)     # if you forget some rules, this might help
+~~~
 
 
 The text after each line of code is called a
@@ -178,18 +200,34 @@ The text after each line of code is called a
 
 Really small or large numbers get a scientific notation:
 
-<pre><code style="color:darkgreen">2/10000</code></pre>
-<pre><code style="color:blue">[1] 2e-04
-</code></pre>
+
+~~~r
+2/10000
+~~~
+
+
+
+~~~{.output}
+[1] 2e-04
+
+~~~
 
 Which is shorthand for "multiplied by `10^XX`". So `2e-4`
 is shorthand for `2 * 10^(-4)`.
 
 You can write numbers in scientific notation too:
 
-<pre><code style="color:darkgreen">5e3  # Note the lack of minus here</code></pre>
-<pre><code style="color:blue">[1] 5000
-</code></pre>
+
+~~~r
+5e3  # Note the lack of minus here
+~~~
+
+
+
+~~~{.output}
+[1] 5000
+
+~~~
 
 <br>
 
@@ -202,21 +240,53 @@ we simply type its name, followed by  open and closing parentheses.
 Anything we type inside the parentheses is called the function's
 arguments:
 
-<pre><code style="color:darkgreen">sin(1)  # trigonometry functions</code></pre>
-<pre><code style="color:blue">[1] 0.841471
-</code></pre>
 
-<pre><code style="color:darkgreen">log(1)  # natural logarithm</code></pre>
-<pre><code style="color:blue">[1] 0
-</code></pre>
+~~~r
+sin(1)  # trigonometry functions
+~~~
 
-<pre><code style="color:darkgreen">log10(10) # base-10 logarithm</code></pre>
-<pre><code style="color:blue">[1] 1
-</code></pre>
 
-<pre><code style="color:darkgreen">exp(0.5) # e^(1/2)</code></pre>
-<pre><code style="color:blue">[1] 1.648721
-</code></pre>
+
+~~~{.output}
+[1] 0.841471
+
+~~~
+
+
+~~~r
+log(1)  # natural logarithm
+~~~
+
+
+
+~~~{.output}
+[1] 0
+
+~~~
+
+
+~~~r
+log10(10) # base-10 logarithm
+~~~
+
+
+
+~~~{.output}
+[1] 1
+
+~~~
+
+
+~~~r
+exp(0.5) # e^(1/2)
+~~~
+
+
+
+~~~{.output}
+[1] 1.648721
+
+~~~
 
 Don't worry about trying to remember every function in R. You
 can simply look them up on google, or if you can remember the
@@ -241,29 +311,77 @@ illustrate command usage. We'll go through an example later.
 
 We can also do comparison in R:
 
-<pre><code style="color:darkgreen">1 == 1  # equality (note two equals signs, read as "is equal to")</code></pre>
-<pre><code style="color:blue">[1] TRUE
-</code></pre>
 
-<pre><code style="color:darkgreen">1 != 2  # inequality (read as "is not equal to")</code></pre>
-<pre><code style="color:blue">[1] TRUE
-</code></pre>
+~~~r
+1 == 1  # equality (note two equals signs, read as "is equal to")
+~~~
 
-<pre><code style="color:darkgreen">1 <  2  # less than</code></pre>
-<pre><code style="color:blue">[1] TRUE
-</code></pre>
 
-<pre><code style="color:darkgreen">1 <= 1  # less than or equal to</code></pre>
-<pre><code style="color:blue">[1] TRUE
-</code></pre>
 
-<pre><code style="color:darkgreen">1 > 0  # greater than</code></pre>
-<pre><code style="color:blue">[1] TRUE
-</code></pre>
+~~~{.output}
+[1] TRUE
 
-<pre><code style="color:darkgreen">1 >= -9 # greater than or equal to</code></pre>
-<pre><code style="color:blue">[1] TRUE
-</code></pre>
+~~~
+
+
+~~~r
+1 != 2  # inequality (read as "is not equal to")
+~~~
+
+
+
+~~~{.output}
+[1] TRUE
+
+~~~
+
+
+~~~r
+1 <  2  # less than
+~~~
+
+
+
+~~~{.output}
+[1] TRUE
+
+~~~
+
+
+~~~r
+1 <= 1  # less than or equal to
+~~~
+
+
+
+~~~{.output}
+[1] TRUE
+
+~~~
+
+
+~~~r
+1 > 0  # greater than
+~~~
+
+
+
+~~~{.output}
+[1] TRUE
+
+~~~
+
+
+~~~r
+1 >= -9 # greater than or equal to
+~~~
+
+
+
+~~~{.output}
+[1] TRUE
+
+~~~
 
 <!--sec data-title="Tip: Comparing numbers" data-id="tip3" data-show=true data-collapse=true ces-->
 
@@ -285,14 +403,25 @@ Further reading: [http://floating-point-gui.de/](http://floating-point-gui.de/)
 
 We can store values in variables using the assignment operator `<-`, like this:
 
-<pre><code style="color:darkgreen">x <- 1/40</code></pre>
+
+~~~r
+x <- 1/40
+~~~
 
 Notice that assignment does not print a value. Instead, we stored it for later
 in something called a **variable**. `x` now contains the **value** `0.025`:
 
-<pre><code style="color:darkgreen">x</code></pre>
-<pre><code style="color:blue">[1] 0.025
-</code></pre>
+
+~~~r
+x
+~~~
+
+
+
+~~~{.output}
+[1] 0.025
+
+~~~
 
 More precisely, the stored value is a *decimal approximation* of
 this fraction called a [floating point number](http://en.wikipedia.org/wiki/Floating_point).
@@ -300,19 +429,33 @@ this fraction called a [floating point number](http://en.wikipedia.org/wiki/Floa
 Look for the `Environment` tab in one of the panes of RStudio, and you will see that `x` and its value
 have appeared. Our variable `x` can be used in place of a number in any calculation that expects a number:
 
-<pre><code style="color:darkgreen">log(x)</code></pre>
-<pre><code style="color:blue">[1] -3.688879
-</code></pre>
+
+~~~r
+log(x)
+~~~
+
+
+
+~~~{.output}
+[1] -3.688879
+
+~~~
 
 Notice also that variables can be reassigned:
 
-<pre><code style="color:darkgreen">x <- 100</code></pre>
+
+~~~r
+x <- 100
+~~~
 
 `x` used to contain the value 0.025 and and now it has the value 100.
 
 Assignment values can contain the variable being assigned to:
 
-<pre><code style="color:darkgreen">x <- x + 1 #notice how RStudio updates its description of x on the top right tab</code></pre>
+
+~~~r
+x <- x + 1 #notice how RStudio updates its description of x on the top right tab
+~~~
 
 The right hand side of the assignment can be any valid R expression.
 The right hand side is *fully evaluated* before the assignment occurs.
@@ -329,7 +472,10 @@ What you use is up to you, but **be consistent**.
 
 It is also possible to use the `=` operator for assignment:
 
-<pre><code style="color:darkgreen">x = 1/40</code></pre>
+
+~~~r
+x = 1/40
+~~~
 
 But this is much less common among R users.  The most important thing is to
 **be consistent** with the operator you use. There are occasionally places
@@ -345,16 +491,44 @@ symbol used in the community. So the recommendation is to use `<-`.
 One final thing to be aware of is that R is *vectorized*, meaning that
 variables and functions can have vectors as values. For example
 
-<pre><code style="color:darkgreen">1:5</code></pre>
-<pre><code style="color:blue">[1] 1 2 3 4 5
-</code></pre>
-<pre><code style="color:darkgreen">2^(1:5)</code></pre>
-<pre><code style="color:blue">[1]  2  4  8 16 32
-</code></pre>
-<pre><code style="color:darkgreen">x <- 1:5
-2^x</code></pre>
-<pre><code style="color:blue">[1]  2  4  8 16 32
-</code></pre>
+
+~~~r
+1:5
+~~~
+
+
+
+~~~{.output}
+[1] 1 2 3 4 5
+
+~~~
+
+
+
+~~~r
+2^(1:5)
+~~~
+
+
+
+~~~{.output}
+[1]  2  4  8 16 32
+
+~~~
+
+
+
+~~~r
+x <- 1:5
+2^x
+~~~
+
+
+
+~~~{.output}
+[1]  2  4  8 16 32
+
+~~~
 
 This is incredibly powerful; we will discuss this further in an
 upcoming lesson.
@@ -370,9 +544,17 @@ There are a few useful commands you can use to interact with the R session.
 `ls` will list all of the variables and functions stored in the global environment
 (your working R session):
 
-<pre><code style="color:darkgreen">ls()</code></pre>
-<pre><code style="color:blue">[1] "hook_error" "hook_in"    "hook_out"   "x"         
-</code></pre>
+
+~~~r
+ls()
+~~~
+
+
+
+~~~{.output}
+[1] "hook_error" "hook_in"    "hook_out"   "x"         
+
+~~~
 
 <!--sec data-title="Tip: Hidden objects" data-id="tip4" data-show=true data-collapse=true ces-->
 
@@ -385,8 +567,15 @@ needed to give the parentheses to tell R to call the function.
 
 If we type `ls` by itself, R will print out the source code for that function!
 
-<pre><code style="color:darkgreen">ls</code></pre>
-<pre><code style="color:blue">function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE, 
+
+~~~r
+ls
+~~~
+
+
+
+~~~{.output}
+function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE, 
     pattern, sorted = TRUE) 
 {
     if (!missing(name)) {
@@ -417,18 +606,25 @@ If we type `ls` by itself, R will print out the source code for that function!
     }
     else all.names
 }
-<bytecode: 0x21f04c8>
+<bytecode: 0x34a84c8>
 <environment: namespace:base>
-</code></pre>
+
+~~~
 
 You can use `rm` to delete objects you no longer need:
 
-<pre><code style="color:darkgreen">rm(x)</code></pre>
+
+~~~r
+rm(x)
+~~~
 
 If you have lots of things in your environment and want to delete all of them,
 you can pass the results of `ls` to the `rm` function:
 
-<pre><code style="color:darkgreen">rm(list = ls())</code></pre>
+
+~~~r
+rm(list = ls())
+~~~
 
 In this case we've combined the two. Just like the order of operations, anything
 inside the innermost parentheses is evaluated first, and so on.
@@ -440,9 +636,17 @@ use the `=` operator!!
 If instead we use `<-`, there will be unintended side effects, or you may just
 get an error message:
 
-<pre><code style="color:darkgreen">rm(list <- ls())</code></pre>
-<pre><code style="color:darkred">Error in rm(list <- ls()): ... must contain names or character strings
-</code></pre>
+
+~~~r
+rm(list <- ls())
+~~~
+
+
+
+~~~{.error}
+Error in rm(list <- ls()): ... must contain names or character strings
+
+~~~
 
 <!--sec data-title="Tip: Warnings vs. Errors" data-id="tip5" data-show=true data-collapse=true ces-->
 
@@ -473,14 +677,17 @@ network). R and RStudio have functionality for managing packages:
 
 <!--sec data-title="Challenge 1" data-id="ch1" data-show=true data-collapse=false ces-->
 Which of the following are valid R variable names?
-<pre><code style="color:darkgreen">> min_height
+
+~~~r
+> min_height
 > max.height
 > _age
 > .mass
 > MaxLength
 > min-length
 > 2widths
-> celsius2kelvin</code></pre>
+> celsius2kelvin
+~~~
 
 <!--endsec-->
 
@@ -489,10 +696,13 @@ Which of the following are valid R variable names?
 
 What will be the value of each  variable  after each statement in the following program?
 
-<pre><code style="color:darkgreen">> mass <- 47.5
+
+~~~r
+> mass <- 47.5
 > age <- 122
 > mass <- mass * 2.3
-> age <- age - 20</code></pre>
+> age <- age - 20
+~~~
 
 <!--endsec-->
 
