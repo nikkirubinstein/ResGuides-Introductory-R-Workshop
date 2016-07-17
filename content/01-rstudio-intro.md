@@ -1,11 +1,4 @@
----
-output: 
-  md_document:
-    variant: markdown
-    pandoc_args: [
-      "--filter=tools/filters/blockquote2div.py"
-    ]
----
+
 
 
 
@@ -110,13 +103,13 @@ The simplest thing you could do with R is do arithmetic:
 <code style="color:blue;"> 1 + 100 </code>
 
 
-
 ~~~sourcecode
 1 + 100
 ~~~
 
 
-~~~{.output}
+
+~~~output
 [1] 101
 
 ~~~
@@ -127,11 +120,11 @@ for now, we'll explain that later. For now think of it as indicating ouput.
 Just like bash, if you type in an incomplete command, R will wait for you to
 complete it:
 
-~~~ {.r}
+~~~sourcecode
 > 1 +
 ~~~
 
-~~~ {.output}
+~~~output
 +
 ~~~
 
@@ -167,7 +160,7 @@ From highest to lowest precedence:
 
 
 
-~~~{.output}
+~~~output
 [1] 13
 
 ~~~
@@ -183,7 +176,7 @@ intend.
 
 
 
-~~~{.output}
+~~~output
 [1] 16
 
 ~~~
@@ -212,7 +205,7 @@ Really small or large numbers get a scientific notation:
 
 
 
-~~~{.output}
+~~~output
 [1] 2e-04
 
 ~~~
@@ -229,7 +222,7 @@ You can write numbers in scientific notation too:
 
 
 
-~~~{.output}
+~~~output
 [1] 5000
 
 ~~~
@@ -252,7 +245,7 @@ sin(1)  # trigonometry functions
 
 
 
-~~~{.output}
+~~~output
 [1] 0.841471
 
 ~~~
@@ -264,7 +257,7 @@ log(1)  # natural logarithm
 
 
 
-~~~{.output}
+~~~output
 [1] 0
 
 ~~~
@@ -276,7 +269,7 @@ log10(10) # base-10 logarithm
 
 
 
-~~~{.output}
+~~~output
 [1] 1
 
 ~~~
@@ -288,7 +281,7 @@ exp(0.5) # e^(1/2)
 
 
 
-~~~{.output}
+~~~output
 [1] 1.648721
 
 ~~~
@@ -323,7 +316,7 @@ We can also do comparison in R:
 
 
 
-~~~{.output}
+~~~output
 [1] TRUE
 
 ~~~
@@ -335,7 +328,7 @@ We can also do comparison in R:
 
 
 
-~~~{.output}
+~~~output
 [1] TRUE
 
 ~~~
@@ -347,7 +340,7 @@ We can also do comparison in R:
 
 
 
-~~~{.output}
+~~~output
 [1] TRUE
 
 ~~~
@@ -359,7 +352,7 @@ We can also do comparison in R:
 
 
 
-~~~{.output}
+~~~output
 [1] TRUE
 
 ~~~
@@ -371,7 +364,7 @@ We can also do comparison in R:
 
 
 
-~~~{.output}
+~~~output
 [1] TRUE
 
 ~~~
@@ -383,7 +376,7 @@ We can also do comparison in R:
 
 
 
-~~~{.output}
+~~~output
 [1] TRUE
 
 ~~~
@@ -423,7 +416,7 @@ x
 
 
 
-~~~{.output}
+~~~output
 [1] 0.025
 
 ~~~
@@ -441,7 +434,7 @@ log(x)
 
 
 
-~~~{.output}
+~~~output
 [1] -3.688879
 
 ~~~
@@ -503,7 +496,7 @@ variables and functions can have vectors as values. For example
 
 
 
-~~~{.output}
+~~~output
 [1] 1 2 3 4 5
 
 ~~~
@@ -516,7 +509,7 @@ variables and functions can have vectors as values. For example
 
 
 
-~~~{.output}
+~~~output
 [1]  2  4  8 16 32
 
 ~~~
@@ -530,7 +523,7 @@ x <- 1:5
 
 
 
-~~~{.output}
+~~~output
 [1]  2  4  8 16 32
 
 ~~~
@@ -556,7 +549,7 @@ ls()
 
 
 
-~~~{.output}
+~~~output
 [1] "hook_error" "hook_in"    "hook_out"   "x"         
 
 ~~~
@@ -579,7 +572,7 @@ ls
 
 
 
-~~~{.output}
+~~~output
 function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE, 
     pattern, sorted = TRUE) 
 {
@@ -611,7 +604,7 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
     }
     else all.names
 }
-<bytecode: 0x214c4c8>
+<bytecode: 0x18594c8>
 <environment: namespace:base>
 
 ~~~
@@ -648,7 +641,7 @@ rm(list <- ls())
 
 
 
-~~~{.error}
+~~~err
 Error in rm(list <- ls()): ... must contain names or character strings
 
 ~~~

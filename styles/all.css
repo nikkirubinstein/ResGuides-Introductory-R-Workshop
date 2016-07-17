@@ -101,15 +101,17 @@ color: white;
   text-align: center;
 }
 
-
-.sourcecode {
-  color: blue;
-}
-
 pre>.lang-sourcecode {
+  color: darkgreen;
+}
+
+pre>.lang-output {
   color: blue;
 }
 
+pre>.lang-err {
+  color: darkred;
+}
 
 
 /* Objectives, Callout Box, Challenges and prerequisites are now rendered as
