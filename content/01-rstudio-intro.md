@@ -1,8 +1,9 @@
 ---
 output: 
   md_document:
+    variant: markdown
     pandoc_args: [
-      "--filter=../tools/filters/blockquote2div.py"
+      "--filter=tools/filters/blockquote2div.py"
     ]
 ---
 
