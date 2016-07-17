@@ -105,9 +105,9 @@ The simplest thing you could do with R is do arithmetic:
 <code style="color:blue;"> 1 + 100 </code>
 
 <div class="sourcecode">
-~~~
+```
 1 + 100
-~~~
+```
 </div>
 
 
