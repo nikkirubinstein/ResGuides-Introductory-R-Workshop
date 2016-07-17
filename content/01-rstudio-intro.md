@@ -483,9 +483,9 @@ symbol used in the community. So the recommendation is to use `<-`.
 
 ---
 
-## Vectorization
+## Vectorisation
 
-One final thing to be aware of is that R is *vectorized*, meaning that
+One final thing to be aware of is that R is *vectorised*, meaning that
 variables and functions can have vectors as values. For example
 
 
@@ -603,7 +603,7 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
     }
     else all.names
 }
-<bytecode: 0x33214c8>
+<bytecode: 0x34d54c8>
 <environment: namespace:base>
 
 ~~~

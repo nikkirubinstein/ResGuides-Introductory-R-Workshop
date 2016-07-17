@@ -82,7 +82,7 @@ Make a new column in the `healthData` data frame that contains health rounded to
 <!--endsec-->
 
 Comparison operators, logical operators, and many functions are also
-vectorized:
+vectorised:
 
 
 **Comparison operators**

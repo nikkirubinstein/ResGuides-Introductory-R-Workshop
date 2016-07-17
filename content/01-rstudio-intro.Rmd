@@ -344,9 +344,9 @@ symbol used in the community. So the recommendation is to use `<-`.
 
 ---
 
-## Vectorization
+## Vectorisation
 
-One final thing to be aware of is that R is *vectorized*, meaning that
+One final thing to be aware of is that R is *vectorised*, meaning that
 variables and functions can have vectors as values. For example
 
 ```{r}
