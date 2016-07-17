@@ -105,7 +105,7 @@ The simplest thing you could do with R is do arithmetic:
 <code style="color:blue;"> 1 + 100 </code>
 
 
-~~~sourcecode r
+~~~sourcecode
 1 + 100
 ~~~
 
@@ -156,7 +156,7 @@ From highest to lowest precedence:
  * Subtract: `-`
 
 
-~~~sourcecode r
+~~~sourcecode
 3 + 5 * 2
 ~~~
 
@@ -172,7 +172,7 @@ evaluation if it differs from the default, or to make clear what you
 intend.
 
 
-~~~sourcecode r
+~~~sourcecode
 (3 + 5) * 2
 ~~~
 
@@ -187,7 +187,7 @@ This can get unwieldy when not needed, but  clarifies your intentions.
 Remember that others may later read your code.
 
 
-~~~sourcecode r
+~~~sourcecode
 (3 + (5 * (2 ^ 2))) # hard to read
 3 + 5 * 2 ^ 2       # clear, if you remember the rules
 3 + 5 * (2 ^ 2)     # if you forget some rules, this might help
@@ -201,7 +201,7 @@ The text after each line of code is called a
 Really small or large numbers get a scientific notation:
 
 
-~~~sourcecode r
+~~~sourcecode
 2/10000
 ~~~
 
@@ -218,7 +218,7 @@ is shorthand for `2 * 10^(-4)`.
 You can write numbers in scientific notation too:
 
 
-~~~sourcecode r
+~~~sourcecode
 5e3  # Note the lack of minus here
 ~~~
 
@@ -241,7 +241,7 @@ Anything we type inside the parentheses is called the function's
 arguments:
 
 
-~~~sourcecode r
+~~~sourcecode
 sin(1)  # trigonometry functions
 ~~~
 
@@ -253,7 +253,7 @@ sin(1)  # trigonometry functions
 ~~~
 
 
-~~~sourcecode r
+~~~sourcecode
 log(1)  # natural logarithm
 ~~~
 
@@ -265,7 +265,7 @@ log(1)  # natural logarithm
 ~~~
 
 
-~~~sourcecode r
+~~~sourcecode
 log10(10) # base-10 logarithm
 ~~~
 
@@ -277,7 +277,7 @@ log10(10) # base-10 logarithm
 ~~~
 
 
-~~~sourcecode r
+~~~sourcecode
 exp(0.5) # e^(1/2)
 ~~~
 
@@ -312,7 +312,7 @@ illustrate command usage. We'll go through an example later.
 We can also do comparison in R:
 
 
-~~~sourcecode r
+~~~sourcecode
 1 == 1  # equality (note two equals signs, read as "is equal to")
 ~~~
 
@@ -324,7 +324,7 @@ We can also do comparison in R:
 ~~~
 
 
-~~~sourcecode r
+~~~sourcecode
 1 != 2  # inequality (read as "is not equal to")
 ~~~
 
@@ -336,7 +336,7 @@ We can also do comparison in R:
 ~~~
 
 
-~~~sourcecode r
+~~~sourcecode
 1 <  2  # less than
 ~~~
 
@@ -348,7 +348,7 @@ We can also do comparison in R:
 ~~~
 
 
-~~~sourcecode r
+~~~sourcecode
 1 <= 1  # less than or equal to
 ~~~
 
@@ -360,7 +360,7 @@ We can also do comparison in R:
 ~~~
 
 
-~~~sourcecode r
+~~~sourcecode
 1 > 0  # greater than
 ~~~
 
@@ -372,7 +372,7 @@ We can also do comparison in R:
 ~~~
 
 
-~~~sourcecode r
+~~~sourcecode
 1 >= -9 # greater than or equal to
 ~~~
 
@@ -404,7 +404,7 @@ Further reading: [http://floating-point-gui.de/](http://floating-point-gui.de/)
 We can store values in variables using the assignment operator `<-`, like this:
 
 
-~~~sourcecode r
+~~~sourcecode
 x <- 1/40
 ~~~
 
@@ -412,7 +412,7 @@ Notice that assignment does not print a value. Instead, we stored it for later
 in something called a **variable**. `x` now contains the **value** `0.025`:
 
 
-~~~sourcecode r
+~~~sourcecode
 x
 ~~~
 
@@ -430,7 +430,7 @@ Look for the `Environment` tab in one of the panes of RStudio, and you will see 
 have appeared. Our variable `x` can be used in place of a number in any calculation that expects a number:
 
 
-~~~sourcecode r
+~~~sourcecode
 log(x)
 ~~~
 
@@ -444,7 +444,7 @@ log(x)
 Notice also that variables can be reassigned:
 
 
-~~~sourcecode r
+~~~sourcecode
 x <- 100
 ~~~
 
@@ -453,7 +453,7 @@ x <- 100
 Assignment values can contain the variable being assigned to:
 
 
-~~~sourcecode r
+~~~sourcecode
 x <- x + 1 #notice how RStudio updates its description of x on the top right tab
 ~~~
 
@@ -473,7 +473,7 @@ What you use is up to you, but **be consistent**.
 It is also possible to use the `=` operator for assignment:
 
 
-~~~sourcecode r
+~~~sourcecode
 x = 1/40
 ~~~
 
@@ -492,7 +492,7 @@ One final thing to be aware of is that R is *vectorized*, meaning that
 variables and functions can have vectors as values. For example
 
 
-~~~sourcecode r
+~~~sourcecode
 1:5
 ~~~
 
@@ -505,7 +505,7 @@ variables and functions can have vectors as values. For example
 
 
 
-~~~sourcecode r
+~~~sourcecode
 2^(1:5)
 ~~~
 
@@ -518,7 +518,7 @@ variables and functions can have vectors as values. For example
 
 
 
-~~~sourcecode r
+~~~sourcecode
 x <- 1:5
 2^x
 ~~~
@@ -545,7 +545,7 @@ There are a few useful commands you can use to interact with the R session.
 (your working R session):
 
 
-~~~sourcecode r
+~~~sourcecode
 ls()
 ~~~
 
@@ -568,7 +568,7 @@ needed to give the parentheses to tell R to call the function.
 If we type `ls` by itself, R will print out the source code for that function!
 
 
-~~~sourcecode r
+~~~sourcecode
 ls
 ~~~
 
@@ -606,7 +606,7 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
     }
     else all.names
 }
-<bytecode: 0x26974c8>
+<bytecode: 0x2c9c4c8>
 <environment: namespace:base>
 
 ~~~
@@ -614,7 +614,7 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
 You can use `rm` to delete objects you no longer need:
 
 
-~~~sourcecode r
+~~~sourcecode
 rm(x)
 ~~~
 
@@ -622,7 +622,7 @@ If you have lots of things in your environment and want to delete all of them,
 you can pass the results of `ls` to the `rm` function:
 
 
-~~~sourcecode r
+~~~sourcecode
 rm(list = ls())
 ~~~
 
@@ -637,7 +637,7 @@ If instead we use `<-`, there will be unintended side effects, or you may just
 get an error message:
 
 
-~~~sourcecode r
+~~~sourcecode
 rm(list <- ls())
 ~~~
 
@@ -678,7 +678,7 @@ network). R and RStudio have functionality for managing packages:
 <!--sec data-title="Challenge 1" data-id="ch1" data-show=true data-collapse=false ces-->
 Which of the following are valid R variable names?
 
-~~~sourcecode r
+~~~sourcecode
 > min_height
 > max.height
 > _age
@@ -697,7 +697,7 @@ Which of the following are valid R variable names?
 What will be the value of each  variable  after each statement in the following program?
 
 
-~~~sourcecode r
+~~~sourcecode
 > mass <- 47.5
 > age <- 122
 > mass <- mass * 2.3
