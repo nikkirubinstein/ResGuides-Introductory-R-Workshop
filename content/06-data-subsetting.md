@@ -289,13 +289,12 @@ print(x)
 ~~~
 
 1. Come up with at least 3 different commands that will produce the following output:
-
-
-~~~output
-  b   c   d 
-6.2 7.1 4.8 
-
-~~~
+    
+    ~~~output
+      b   c   d 
+    6.2 7.1 4.8 
+    
+    ~~~
 
 2. Compare notes with your neighbour. Did you have different strategies?
 
@@ -1194,39 +1193,34 @@ be changed with the third argument, `drop = FALSE`).
 Fix each of the following common data frame subsetting errors:
 
 1. Extract observations collected for birth year = 1909
-
-
-~~~sourcecode
-healthData[healthData$birthYear = 1909,]
-~~~
+    
+    ~~~sourcecode
+    healthData[healthData$birthYear = 1909,]
+    ~~~
 
 2. Extract all columns except 1 through to 4
-
-
-~~~sourcecode
-healthData[,-1:4]
-~~~
+    
+    ~~~sourcecode
+    healthData[,-1:4]
+    ~~~
 
 3. Extract the rows where the health metric is greater than 7
-
-
-~~~sourcecode
-healthData[healthData$health > 7]
-~~~
+    
+    ~~~sourcecode
+    healthData[healthData$health > 7]
+    ~~~
 
 4. Extract the first row, and the fourth and fifth columns (`intellect` and `agreeableness`).
-
-
-~~~sourcecode
-healthData[1, 4, 5]
-~~~
+    
+    ~~~sourcecode
+    healthData[1, 4, 5]
+    ~~~
 
 5. Advanced: extract rows that contain information for those in education level 7 and 9
-
-
-~~~sourcecode
-healthData[healthData$education == 7 | 9,]
-~~~
+    
+    ~~~sourcecode
+    healthData[healthData$education == 7 | 9,]
+    ~~~
 
 <!--endsec-->
 
@@ -1403,45 +1397,40 @@ mod$df.residual
 Fix each of the following common data frame subsetting errors:
 
 1. Extract observations collected for birth year = 1909
-
-
-~~~sourcecode
-# healthData[healthData$birthYear = 1909,]
-healthData[healthData$birthYear == 1909,]
-~~~
+    
+    ~~~sourcecode
+    # healthData[healthData$birthYear = 1909,]
+    healthData[healthData$birthYear == 1909,]
+    ~~~
 
 2. Extract all columns except 1 through to 4
-
-
-~~~sourcecode
-# healthData[,-1:4]
-healthData[,-c(1:4)]
-~~~
+    
+    ~~~sourcecode
+    # healthData[,-1:4]
+    healthData[,-c(1:4)]
+    ~~~
 
 3. Extract the rows where the health metric is greater than 7
-
-
-~~~sourcecode
-# healthData[healthData$health > 7]
-healthData[healthData$health > 7,]
-~~~
+    
+    ~~~sourcecode
+    # healthData[healthData$health > 7]
+    healthData[healthData$health > 7,]
+    ~~~
 
 4. Extract the first row, and the fourth and fifth columns (`intellect` and `agreeableness`).
-
-
-~~~sourcecode
-# healthData[1, 4, 5]
-healthData[1, c(4, 5)]
-~~~
+    
+    ~~~sourcecode
+    # healthData[1, 4, 5]
+    healthData[1, c(4, 5)]
+    ~~~
 
 5. Advanced: extract rows that contain information for those in education level 7 and 9
-
-
-~~~sourcecode
-# healthData[healthData$education == 7 | 9,]
-healthData[healthData$education == 7 | healthData$education == 9,]
-healthData[healthData$education %in% c(7, 9),]
-~~~
+    
+    ~~~sourcecode
+    # healthData[healthData$education == 7 | 9,]
+    healthData[healthData$education == 7 | healthData$education == 9,]
+    healthData[healthData$education %in% c(7, 9),]
+    ~~~
 
 <!--endsec-->
 
@@ -1449,7 +1438,7 @@ healthData[healthData$education %in% c(7, 9),]
 
 1. Why does `healthData[1:20]` return an error? How does it differ from `healthData[1:20, ]`?
 
-Answer: `healthData` is a data.frame so needs to be subsetted on two dimensions. `healthData[1:20, ]` subsets the data to give the first 20 rows and all columns.
+    Answer: `healthData` is a data.frame so needs to be subsetted on two dimensions. `healthData[1:20, ]` subsets the data to give the first 20 rows and all columns.
 
 2. Create a new `data.frame` called `healthData_small` that only contains rows 1 through 9 and 19 through 23. You can do this in one or two steps.
 
