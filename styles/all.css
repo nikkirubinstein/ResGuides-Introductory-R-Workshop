@@ -93,6 +93,10 @@ background-color: #00779c;
 color: white;
 }
 
+.panel {
+  border-color: grey;
+}
+
 .ex {
   color: White;
   background-color:#532176;
