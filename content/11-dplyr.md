@@ -32,8 +32,8 @@ mean(healthData[healthData$HIGroup == "Group 1", "health"])
 
 
 
-~~~output
-[1] 9.197253
+~~~err
+Error in mean(healthData[healthData$HIGroup == "Group 1", "health"]): object 'healthData' not found
 
 ~~~
 
@@ -45,8 +45,8 @@ mean(healthData[healthData$HIGroup == "Group 2", "health"])
 
 
 
-~~~output
-[1] 9.64024
+~~~err
+Error in mean(healthData[healthData$HIGroup == "Group 2", "health"]): object 'healthData' not found
 
 ~~~
 
@@ -95,6 +95,13 @@ If, for example, we wanted to move forward with only a few of the variables in o
 sex_health_neuroticism <- select(healthData,sex,health,neuroticism)
 ~~~
 
+
+
+~~~err
+Error in select_(.data, .dots = lazyeval::lazy_dots(...)): object 'healthData' not found
+
+~~~
+
 ![](../images/13-dplyr-fig1.png)
 
 If we open up `sex_health_neuroticism` we'll see that it only contains the sex, health and neuroticism columns. Above we used 'normal' grammar, but the strengths of `dplyr` lie in combining several functions using pipes. Since the pipes grammar is unlike anything we've seen in R before, let's repeat what we've done above using pipes.
@@ -102,6 +109,13 @@ If we open up `sex_health_neuroticism` we'll see that it only contains the sex, 
 
 ~~~sourcecode
 sex_health_neuroticism <- healthData %>% select(sex,health,neuroticism)
+~~~
+
+
+
+~~~err
+Error in eval(expr, envir, enclos): object 'healthData' not found
+
 ~~~
 
 To help you understand why we wrote that in that way, let's walk through it step by step. First we summon the healthData dataframe and pass it on, using the pipe symbol `%>%`, to the next step, which is the `select()` function. In this case we don't specify which data object we use in the `select()` function since in gets that from the previous pipe.
@@ -119,6 +133,13 @@ If we now wanted to move forward with the above, but only with data for females,
 sex_health_neuroticism_female <- healthData %>%
     filter(sex=="Female") %>%
     select(sex,health,neuroticism)
+~~~
+
+
+
+~~~err
+Error in eval(expr, envir, enclos): object 'healthData' not found
+
 ~~~
 
 <!--sec data-title="Challenge 1" data-id="ch1" data-show=true data-collapse=false ces-->
@@ -144,23 +165,8 @@ str(healthData)
 
 
 
-~~~output
-'data.frame':	2034 obs. of  15 variables:
- $ id                        : int  3 4 7 8 10 12 15 17 18 20 ...
- $ conscientiousness         : num  5.83 7.73 6.5 5.88 4.25 ...
- $ extraversion              : num  3.99 7.02 2.7 2.5 5.15 ...
- $ intellect                 : num  6.04 6.82 5.53 4.23 4.75 ...
- $ agreeableness             : num  4.61 6.65 3.09 4.61 3.85 ...
- $ neuroticism               : num  3.65 6.3 4.09 3.65 3.21 ...
- $ sex                       : Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 2 2 2 2 ...
- $ selfRatedHealth           : int  4 5 3 3 4 4 4 4 5 4 ...
- $ mentalAdjustment          : int  2 3 3 2 2 2 3 1 3 3 ...
- $ illnessReversed           : int  3 5 4 4 3 5 2 4 5 4 ...
- $ health                    : num  6.74 11.96 8.05 6.48 6.74 ...
- $ alcoholUseInYoungAdulthood: int  2 3 2 1 2 2 1 1 1 2 ...
- $ education                 : int  9 8 6 8 9 4 6 7 9 9 ...
- $ birthYear                 : int  1909 1905 1910 1905 1910 1911 1903 1908 1909 1911 ...
- $ HIGroup                   : Factor w/ 2 levels "Group 1","Group 2": 1 1 1 1 1 1 1 1 1 1 ...
+~~~err
+Error in str(healthData): object 'healthData' not found
 
 ~~~
 
@@ -172,36 +178,8 @@ str(healthData %>% group_by(sex))
 
 
 
-~~~output
-Classes 'grouped_df', 'tbl_df', 'tbl' and 'data.frame':	2034 obs. of  15 variables:
- $ id                        : int  3 4 7 8 10 12 15 17 18 20 ...
- $ conscientiousness         : num  5.83 7.73 6.5 5.88 4.25 ...
- $ extraversion              : num  3.99 7.02 2.7 2.5 5.15 ...
- $ intellect                 : num  6.04 6.82 5.53 4.23 4.75 ...
- $ agreeableness             : num  4.61 6.65 3.09 4.61 3.85 ...
- $ neuroticism               : num  3.65 6.3 4.09 3.65 3.21 ...
- $ sex                       : Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 2 2 2 2 ...
- $ selfRatedHealth           : int  4 5 3 3 4 4 4 4 5 4 ...
- $ mentalAdjustment          : int  2 3 3 2 2 2 3 1 3 3 ...
- $ illnessReversed           : int  3 5 4 4 3 5 2 4 5 4 ...
- $ health                    : num  6.74 11.96 8.05 6.48 6.74 ...
- $ alcoholUseInYoungAdulthood: int  2 3 2 1 2 2 1 1 1 2 ...
- $ education                 : int  9 8 6 8 9 4 6 7 9 9 ...
- $ birthYear                 : int  1909 1905 1910 1905 1910 1911 1903 1908 1909 1911 ...
- $ HIGroup                   : Factor w/ 2 levels "Group 1","Group 2": 1 1 1 1 1 1 1 1 1 1 ...
- - attr(*, "vars")=List of 1
-  ..$ : symbol sex
- - attr(*, "drop")= logi TRUE
- - attr(*, "indices")=List of 2
-  ..$ : int  1118 1119 1120 1121 1122 1123 1124 1125 1126 1127 ...
-  ..$ : int  0 1 2 3 4 5 6 7 8 9 ...
- - attr(*, "group_sizes")= int  916 1118
- - attr(*, "biggest_group_size")= int 1118
- - attr(*, "labels")='data.frame':	2 obs. of  1 variable:
-  ..$ sex: Factor w/ 2 levels "Female","Male": 1 2
-  ..- attr(*, "vars")=List of 1
-  .. ..$ : symbol sex
-  ..- attr(*, "drop")= logi TRUE
+~~~err
+Error in eval(expr, envir, enclos): object 'healthData' not found
 
 ~~~
 You will notice that the structure of the dataframe where we used `group_by()` (`grouped_df`) is not the same as the original `healthData` (`data.frame`). A `grouped_df` can be thought of as a `list` where each item in the `list`is a `data.frame` which contains only the rows that correspond to the a particular value `sex` (at least in the example above).
@@ -221,18 +199,25 @@ The above was a bit on the uneventful side because `group_by()` is much more exc
 conscientiousness_by_sex <- healthData %>%
     group_by(sex) %>%
     summarize(mean_conscientiousness=mean(conscientiousness))
+~~~
+
+
+
+~~~err
+Error in eval(expr, envir, enclos): object 'healthData' not found
+
+~~~
+
+
+
+~~~sourcecode
 conscientiousness_by_sex
 ~~~
 
 
 
-~~~output
-Source: local data frame [2 x 2]
-
-     sex mean_conscientiousness
-  (fctr)                  (dbl)
-1 Female               6.086473
-2   Male               5.685394
+~~~err
+Error in eval(expr, envir, enclos): object 'conscientiousness_by_sex' not found
 
 ~~~
 
@@ -256,6 +241,13 @@ intellect_bysex_byeducation <- healthData %>%
     summarize(max_intellect=max(intellect))
 ~~~
 
+
+
+~~~err
+Error in eval(expr, envir, enclos): object 'healthData' not found
+
+~~~
+
 That is already quite powerful, but it gets even better! You're not limited to defining 1 new variable in `summarize()`.
 
 
@@ -266,6 +258,13 @@ intellect_health_bysex_byeducation <- healthData %>%
               sd_intellect=sd(intellect),
               mean_health=mean(health),
               sd_health=sd(health))
+~~~
+
+
+
+~~~err
+Error in eval(expr, envir, enclos): object 'healthData' not found
+
 ~~~
 
 <br>
@@ -286,6 +285,13 @@ intellect_health_bysex_byeducation <- healthData %>%
               sd_health=sd(health),
               mean_killer=mean(serialKiller),
               sd_killer=sd(serialKiller))
+~~~
+
+
+
+~~~err
+Error in eval(expr, envir, enclos): object 'healthData' not found
+
 ~~~
 
 <!--sec data-title="Advanced challenge" data-id="ch3" data-show=true data-collapse=false ces-->
@@ -309,6 +315,13 @@ conscientiousness_extraversion_intellect_males <- healthData %>%
                             select(conscientiousness,extraversion,intellect)
 ~~~
 
+
+
+~~~err
+Error in eval(expr, envir, enclos): object 'healthData' not found
+
+~~~
+
 <!--endsec-->
 
 <!--sec data-title="Solution to Challenge 2" data-id="ch2sol" data-show=true data-collapse=true ces-->
@@ -318,6 +331,13 @@ conscientiousness_extraversion_intellect_males <- healthData %>%
 mentalAdjustment_byeducation <- healthData %>%
     group_by(education) %>%
     summarize(mean_mentalAdjustment=mean(mentalAdjustment))
+~~~
+
+
+
+~~~err
+Error in eval(expr, envir, enclos): object 'healthData' not found
+
 ~~~
 
 <!--endsec-->
@@ -332,6 +352,13 @@ intellect_5ids_byHIGroup <- healthData %>%
     sample_n(5) %>%
     summarize(mean_intellect=mean(intellect)) %>%
     arrange(desc(HIGroup))
+~~~
+
+
+
+~~~err
+Error in eval(expr, envir, enclos): object 'healthData' not found
+
 ~~~
 
 <!--endsec-->

@@ -50,8 +50,8 @@ using the arguments to this function.
 
 
 ~~~sourcecode
-pdf("Health_vs_SelfRatedHealth.pdf", width=12, height=4)
-ggplot(data=healthData, aes(x=selfRatedHealth, y=health, colour=HIGroup)) +
+pdf("SibSp_vs_Age.pdf", width=12, height=4)
+ggplot(data=titanic, aes(x=Age, y=Fare, colour=Survived)) +
   geom_point()
 
 # You then have to make sure to turn off the pdf device!
@@ -63,7 +63,7 @@ Open up this document and have a look.
 
 <!--sec data-title="Challenge 1" data-id="ch1" data-show=true data-collapse=false ces-->
 
-Rewrite your 'pdf' command to print a second page in the pdf, showing a facet plot (hint: use `facet_grid`) of the same data with one panel per education year.
+Rewrite your 'pdf' command to print a second page in the pdf, showing a facet plot (hint: use `facet_grid`) of the same data with one panel per sex.
 
 <!--endsec-->
 
@@ -79,20 +79,35 @@ documents in different formats.
 At some point, you'll also want to write out data from R.
 
 We can use the `write.table` function for this, which is
-very similar to `read.table` from before.
+very similar to `read.table` or `read.csv` from before.
 
 Let's create a data-cleaning script. For this analysis, we
-only want to focus on the health data for males from sample group 1:
+only want to focus on the titanic data for males with first class tickets:
 
 
 ~~~sourcecode
-healthData_subset <- healthData[healthData$sex == "Male" & 
-                                  healthData$HIGroup == "Group 1",]
+titanic_subset <- titanic[titanic$Sex == "male" & 
+                                  titanic$Pclass == 1,]
 
-write.table(healthData_subset,
-  file="../cleaned-data/healthData_subset.csv",
+write.table(titanic_subset,
+  file="data/titanic_subset.csv",
   sep=","
 )
+~~~
+
+
+
+~~~err
+Warning in file(file, ifelse(append, "a", "w")): cannot open file 'data/
+titanic_subset.csv': No such file or directory
+
+~~~
+
+
+
+~~~err
+Error in file(file, ifelse(append, "a", "w")): cannot open the connection
+
 ~~~
 
 Now let's have a look at the data. Provided data files aren't very large, this can be achieved easily in R by simply opening the file from the file explorer.
@@ -118,10 +133,25 @@ Let's fix this:
 
 ~~~sourcecode
 write.table(
-  healthData_subset,
-  file="../cleaned-data/healthData_subset.csv",
+  titanic_subset,
+  file="data/titanic_subset.csv",
   sep=",", quote=FALSE, row.names=FALSE
 )
+~~~
+
+
+
+~~~err
+Warning in file(file, ifelse(append, "a", "w")): cannot open file 'data/
+titanic_subset.csv': No such file or directory
+
+~~~
+
+
+
+~~~err
+Error in file(file, ifelse(append, "a", "w")): cannot open the connection
+
 ~~~
 
 Now lets look at the data again.
@@ -130,9 +160,9 @@ That looks better!
 
 <!--sec data-title="Challenge 2" data-id="ch2" data-show=true data-collapse=false ces-->
 
-Write a data-cleaning script file that subsets the health data to include only data points collected collected for students in year 8.
+Write a data-cleaning script file that subsets the titanic data to include only data for children (below the age of 18).
 
-Use this script to write out the new subset to a file in the `cleaned-data/` directory.
+Use this script to write out the new subset to a file in the `data/` directory.
 
 <!--endsec-->
 

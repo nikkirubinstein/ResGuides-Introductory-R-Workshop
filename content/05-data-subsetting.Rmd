@@ -7,7 +7,7 @@ source("../tools/chunk-options.R")
 
 ```{r, include=FALSE}
 # Silently load in the data so the rest of the lesson works
-healthData <- read.csv("https://goo.gl/4Gqsnz", header=TRUE)
+titanic <- read.csv("https://goo.gl/4Gqsnz", header=TRUE)
 ```
 
 <!--sec data-title="Learning Objectives" data-id="obj" data-show=true data-collapse=false ces-->
@@ -600,7 +600,7 @@ Using your knowledge of both list and vector subsetting, extract the number 2 fr
 Given a linear model:
 
 ```{r, eval=FALSE}
-mod <- aov(intellect ~ education, data=titanic)
+mod <- aov(Survived ~ Age, data=titanic)
 ```
 
 Extract the residual degrees of freedom (hint: `attributes()` will help you)
@@ -620,32 +620,32 @@ apply. However they are also two dimensional objects:
 element corresponds to a column. The resulting object will be a data frame:
 
 ```{r}
-head(healthData[3])
+head(titanic[3])
 ```
 
 Similarly, `[[` will act to extract *a single column*:
 
 ```{r}
-head(healthData[["health"]])
+head(titanic[["Name"]])
 ```
 
 And `$` provides a convenient shorthand to extract columns by name:
 
 ```{r}
-head(healthData$birthYear)
+head(titanic$Sex)
 ```
 
 With two arguments, `[` behaves the same way as for matrices:
 
 ```{r}
-healthData[1:3,]
+titanic[1:3,]
 ```
 
 If we subset a single row, the result will be a data frame (because
 the elements are mixed types):
 
 ```{r}
-healthData[3,]
+titanic[3,]
 ```
 
 But for a single column the result will be a vector (this can
@@ -655,38 +655,38 @@ be changed with the third argument, `drop = FALSE`).
 
 Fix each of the following common data frame subsetting errors:
 
-1. Extract observations collected for birth year = 1909
+1. Extract observations collected for age = 35
     ```{r, eval=FALSE}
-    healthData[healthData$birthYear = 1909,]
+    titanic[titanic$Age = 35,]
     ```
 
 2. Extract all columns except 1 through to 4
     ```{r, eval=FALSE}
-    healthData[,-1:4]
+    titanic[,-1:4]
     ```
 
-3. Extract the rows where the health metric is greater than 7
+3. Extract the rows where the passenger class (Pclass) is 1.
     ```{r, eval=FALSE}
-    healthData[healthData$health > 7]
+    titanic[titanic$Pclass == 1]
     ```
 
-4. Extract the first row, and the fourth and fifth columns (`intellect` and `agreeableness`).
+4. Extract the first row, and the fourth and fifth columns (`Name` and `Sex`).
     ```{r, eval=FALSE}
-    healthData[1, 4, 5]
+    titanic[1, 4, 5]
     ```
 
-5. Advanced: extract rows that contain information for those in education level 7 and 9
+5. Advanced: extract rows that contain information for those with age 14 and 16.
     ```{r, eval=FALSE}
-    healthData[healthData$education == 7 | 9,]
+    titanic[titanic$Age == 14 | 16,]
     ```
 
 <!--endsec-->
 
 <!--sec data-title="Challenge 8" data-id="ch8" data-show=true data-collapse=false ces-->
 
-1. Why does `healthData[1:20]` return an error? How does it differ from `healthData[1:20, ]`?
+1. Why does `titanic[1:20]` return an error? How does it differ from `titanic[1:20, ]`?
 
-2. Create a new `data.frame` called `healthData_small` that only contains rows 1 through 9 and 19 through 23. You can do this in one or two steps.
+2. Create a new `data.frame` called `titanic_small` that only contains rows 1 through 9 and 19 through 23. You can do this in one or two steps.
 
 <!--endsec-->
 
@@ -800,7 +800,7 @@ xlist[["b"]][2]
 Given a linear model:
 
 ```{r}
-mod <- aov(intellect ~ education, data=healthData)
+mod <- aov(Survived ~ Age, data=titanic)
 ```
 
 Extract the residual degrees of freedom (hint: `attributes()` will help you)
@@ -816,49 +816,49 @@ mod$df.residual
 
 Fix each of the following common data frame subsetting errors:
 
-1. Extract observations collected for birth year = 1909
+1. Extract observations collected for age = 35
     ```{r, eval=FALSE}
-    # healthData[healthData$birthYear = 1909,]
-    healthData[healthData$birthYear == 1909,]
+    # titanic[titanic$Age = 35,]
+    titanic[titanic$Age == 35,]
     ```
 
 2. Extract all columns except 1 through to 4
     ```{r, eval=FALSE}
-    # healthData[,-1:4]
-    healthData[,-c(1:4)]
+    # titanic[,-1:4]
+    titanic[,-c(1:4)]
     ```
 
-3. Extract the rows where the health metric is greater than 7
+3. Extract the rows where the passenger class (Pclass) is 1.
     ```{r, eval=FALSE}
-    # healthData[healthData$health > 7]
-    healthData[healthData$health > 7,]
+    # titanic[titanic$Pclass == 1]
+    titanic[titanic$Pclass == 1,]
     ```
 
-4. Extract the first row, and the fourth and fifth columns (`intellect` and `agreeableness`).
+4. Extract the first row, and the fourth and fifth columns (`Name` and `Sex`).
     ```{r, eval=FALSE}
-    # healthData[1, 4, 5]
-    healthData[1, c(4, 5)]
+    # titanic[1, 4, 5]
+    titanic[1, c(4, 5)]
     ```
 
-5. Advanced: extract rows that contain information for those in education level 7 and 9
+5. Advanced: extract rows that contain information for those with age 14 and 16.
     ```{r, eval=FALSE}
-    # healthData[healthData$education == 7 | 9,]
-    healthData[healthData$education == 7 | healthData$education == 9,]
-    healthData[healthData$education %in% c(7, 9),]
+    # titanic[titanic$Age == 14 | 16,]
+    titanic[titanic$Age == 14 | titanic$Age == 16,]
+    titanic[titanic$Age %in% c(14, 16),]
     ```
 
 <!--endsec-->
 
 <!--sec data-title="Solution to Challenge 8" data-id="ch8sol" data-show=true data-collapse=true ces-->
 
-1. Why does `healthData[1:20]` return an error? How does it differ from `healthData[1:20, ]`?
+1. Why does `titanic[1:20]` return an error? How does it differ from `titanic[1:20, ]`?
 
-    Answer: `healthData` is a data.frame so needs to be subsetted on two dimensions. `healthData[1:20, ]` subsets the data to give the first 20 rows and all columns.
+    Answer: `titanic` is a data.frame so needs to be subsetted on two dimensions. `titanic[1:20, ]` subsets the data to give the first 20 rows and all columns.
 
-2. Create a new `data.frame` called `healthData_small` that only contains rows 1 through 9 and 19 through 23. You can do this in one or two steps.
+2. Create a new `data.frame` called `titanic_small` that only contains rows 1 through 9 and 19 through 23. You can do this in one or two steps.
 
 ```{r}
-healthData_small <- healthData[c(1:9, 19:23),]
+titanic_small <- titanic[c(1:9, 19:23),]
 ```
 
 <!--endsec-->

@@ -1075,7 +1075,7 @@ Given a linear model:
 
 
 ~~~sourcecode
-mod <- aov(intellect ~ education, data=titanic)
+mod <- aov(Survived ~ Age, data=titanic)
 ~~~
 
 Extract the residual degrees of freedom (hint: `attributes()` will help you)
@@ -1096,19 +1096,19 @@ element corresponds to a column. The resulting object will be a data frame:
 
 
 ~~~sourcecode
-head(healthData[3])
+head(titanic[3])
 ~~~
 
 
 
 ~~~output
-                                          Name
-1                             Kelly, Mr. James
-2             Wilkes, Mrs. James (Ellen Needs)
-3                    Myles, Mr. Thomas Francis
-4                             Wirz, Mr. Albert
-5 Hirvonen, Mrs. Alexander (Helga E Lindqvist)
-6                   Svensson, Mr. Johan Cervin
+  Pclass
+1      3
+2      1
+3      3
+4      1
+5      3
+6      3
 
 ~~~
 
@@ -1116,13 +1116,19 @@ Similarly, `[[` will act to extract *a single column*:
 
 
 ~~~sourcecode
-head(healthData[["health"]])
+head(titanic[["Name"]])
 ~~~
 
 
 
 ~~~output
-NULL
+[1] Braund, Mr. Owen Harris                            
+[2] Cumings, Mrs. John Bradley (Florence Briggs Thayer)
+[3] Heikkinen, Miss. Laina                             
+[4] Futrelle, Mrs. Jacques Heath (Lily May Peel)       
+[5] Allen, Mr. William Henry                           
+[6] Moran, Mr. James                                   
+891 Levels: Abbing, Mr. Anthony ... van Melkebeke, Mr. Philemon
 
 ~~~
 
@@ -1130,13 +1136,14 @@ And `$` provides a convenient shorthand to extract columns by name:
 
 
 ~~~sourcecode
-head(healthData$birthYear)
+head(titanic$Sex)
 ~~~
 
 
 
 ~~~output
-NULL
+[1] male   female female female male   male  
+Levels: female male
 
 ~~~
 
@@ -1144,20 +1151,24 @@ With two arguments, `[` behaves the same way as for matrices:
 
 
 ~~~sourcecode
-healthData[1:3,]
+titanic[1:3,]
 ~~~
 
 
 
 ~~~output
-  PassengerId Pclass                             Name    Sex  Age SibSp
-1         892      3                 Kelly, Mr. James   male 34.5     0
-2         893      3 Wilkes, Mrs. James (Ellen Needs) female 47.0     1
-3         894      2        Myles, Mr. Thomas Francis   male 62.0     0
-  Parch Ticket   Fare Cabin Embarked
-1     0 330911 7.8292              Q
-2     0 363272 7.0000              S
-3     0 240276 9.6875              Q
+  PassengerId Survived Pclass
+1           1        0      3
+2           2        1      1
+3           3        1      3
+                                                 Name    Sex Age SibSp
+1                             Braund, Mr. Owen Harris   male  22     1
+2 Cumings, Mrs. John Bradley (Florence Briggs Thayer) female  38     1
+3                              Heikkinen, Miss. Laina female  26     0
+  Parch           Ticket    Fare Cabin Embarked
+1     0        A/5 21171  7.2500              S
+2     0         PC 17599 71.2833   C85        C
+3     0 STON/O2. 3101282  7.9250              S
 
 ~~~
 
@@ -1166,16 +1177,16 @@ the elements are mixed types):
 
 
 ~~~sourcecode
-healthData[3,]
+titanic[3,]
 ~~~
 
 
 
 ~~~output
-  PassengerId Pclass                      Name  Sex Age SibSp Parch Ticket
-3         894      2 Myles, Mr. Thomas Francis male  62     0     0 240276
-    Fare Cabin Embarked
-3 9.6875              Q
+  PassengerId Survived Pclass                   Name    Sex Age SibSp
+3           3        1      3 Heikkinen, Miss. Laina female  26     0
+  Parch           Ticket  Fare Cabin Embarked
+3     0 STON/O2. 3101282 7.925              S
 
 ~~~
 
@@ -1186,43 +1197,43 @@ be changed with the third argument, `drop = FALSE`).
 
 Fix each of the following common data frame subsetting errors:
 
-1. Extract observations collected for birth year = 1909
+1. Extract observations collected for age = 35
     
     ~~~sourcecode
-    healthData[healthData$birthYear = 1909,]
+    titanic[titanic$Age = 35,]
     ~~~
 
 2. Extract all columns except 1 through to 4
     
     ~~~sourcecode
-    healthData[,-1:4]
+    titanic[,-1:4]
     ~~~
 
-3. Extract the rows where the health metric is greater than 7
+3. Extract the rows where the passenger class (Pclass) is 1.
     
     ~~~sourcecode
-    healthData[healthData$health > 7]
+    titanic[titanic$Pclass == 1]
     ~~~
 
-4. Extract the first row, and the fourth and fifth columns (`intellect` and `agreeableness`).
+4. Extract the first row, and the fourth and fifth columns (`Name` and `Sex`).
     
     ~~~sourcecode
-    healthData[1, 4, 5]
+    titanic[1, 4, 5]
     ~~~
 
-5. Advanced: extract rows that contain information for those in education level 7 and 9
+5. Advanced: extract rows that contain information for those with age 14 and 16.
     
     ~~~sourcecode
-    healthData[healthData$education == 7 | 9,]
+    titanic[titanic$Age == 14 | 16,]
     ~~~
 
 <!--endsec-->
 
 <!--sec data-title="Challenge 8" data-id="ch8" data-show=true data-collapse=false ces-->
 
-1. Why does `healthData[1:20]` return an error? How does it differ from `healthData[1:20, ]`?
+1. Why does `titanic[1:20]` return an error? How does it differ from `titanic[1:20, ]`?
 
-2. Create a new `data.frame` called `healthData_small` that only contains rows 1 through 9 and 19 through 23. You can do this in one or two steps.
+2. Create a new `data.frame` called `titanic_small` that only contains rows 1 through 9 and 19 through 23. You can do this in one or two steps.
 
 <!--endsec-->
 
@@ -1373,14 +1384,7 @@ Given a linear model:
 
 
 ~~~sourcecode
-mod <- aov(intellect ~ education, data=healthData)
-~~~
-
-
-
-~~~err
-Error in eval(expr, envir, enclos): object 'intellect' not found
-
+mod <- aov(Survived ~ Age, data=titanic)
 ~~~
 
 Extract the residual degrees of freedom (hint: `attributes()` will help you)
@@ -1397,55 +1401,55 @@ mod$df.residual
 
 Fix each of the following common data frame subsetting errors:
 
-1. Extract observations collected for birth year = 1909
+1. Extract observations collected for age = 35
     
     ~~~sourcecode
-    # healthData[healthData$birthYear = 1909,]
-    healthData[healthData$birthYear == 1909,]
+    # titanic[titanic$Age = 35,]
+    titanic[titanic$Age == 35,]
     ~~~
 
 2. Extract all columns except 1 through to 4
     
     ~~~sourcecode
-    # healthData[,-1:4]
-    healthData[,-c(1:4)]
+    # titanic[,-1:4]
+    titanic[,-c(1:4)]
     ~~~
 
-3. Extract the rows where the health metric is greater than 7
+3. Extract the rows where the passenger class (Pclass) is 1.
     
     ~~~sourcecode
-    # healthData[healthData$health > 7]
-    healthData[healthData$health > 7,]
+    # titanic[titanic$Pclass == 1]
+    titanic[titanic$Pclass == 1,]
     ~~~
 
-4. Extract the first row, and the fourth and fifth columns (`intellect` and `agreeableness`).
+4. Extract the first row, and the fourth and fifth columns (`Name` and `Sex`).
     
     ~~~sourcecode
-    # healthData[1, 4, 5]
-    healthData[1, c(4, 5)]
+    # titanic[1, 4, 5]
+    titanic[1, c(4, 5)]
     ~~~
 
-5. Advanced: extract rows that contain information for those in education level 7 and 9
+5. Advanced: extract rows that contain information for those with age 14 and 16.
     
     ~~~sourcecode
-    # healthData[healthData$education == 7 | 9,]
-    healthData[healthData$education == 7 | healthData$education == 9,]
-    healthData[healthData$education %in% c(7, 9),]
+    # titanic[titanic$Age == 14 | 16,]
+    titanic[titanic$Age == 14 | titanic$Age == 16,]
+    titanic[titanic$Age %in% c(14, 16),]
     ~~~
 
 <!--endsec-->
 
 <!--sec data-title="Solution to Challenge 8" data-id="ch8sol" data-show=true data-collapse=true ces-->
 
-1. Why does `healthData[1:20]` return an error? How does it differ from `healthData[1:20, ]`?
+1. Why does `titanic[1:20]` return an error? How does it differ from `titanic[1:20, ]`?
 
-    Answer: `healthData` is a data.frame so needs to be subsetted on two dimensions. `healthData[1:20, ]` subsets the data to give the first 20 rows and all columns.
+    Answer: `titanic` is a data.frame so needs to be subsetted on two dimensions. `titanic[1:20, ]` subsets the data to give the first 20 rows and all columns.
 
-2. Create a new `data.frame` called `healthData_small` that only contains rows 1 through 9 and 19 through 23. You can do this in one or two steps.
+2. Create a new `data.frame` called `titanic_small` that only contains rows 1 through 9 and 19 through 23. You can do this in one or two steps.
 
 
 ~~~sourcecode
-healthData_small <- healthData[c(1:9, 19:23),]
+titanic_small <- titanic[c(1:9, 19:23),]
 ~~~
 
 <!--endsec-->

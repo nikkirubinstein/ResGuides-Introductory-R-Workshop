@@ -7,7 +7,7 @@ source("../tools/chunk-options.R")
 
 ```{r, include=FALSE}
 # Silently load in the data so the rest of the lesson works
-healthData <- read.csv("https://goo.gl/oqQGKF", header=TRUE)
+titanic <- read.csv("https://goo.gl/4Gqsnz", header=TRUE)
 ```
 
 <!--sec data-title="Learning Objectives" data-id="obj" data-show=true data-collapse=false ces-->
@@ -153,18 +153,18 @@ Define the function to convert directly from Fahrenheit to Celsius, by reusing t
 ## Applying functions to datasets
 
 We're going to define
-a function that calculates the average year of birth in our health dataset:
+a function that calculates the average age in our titanic dataset:
 
 ```{r}
 # Takes a dataset and calculates the average year of birth for a
 # specified study group.
-calcBirthYearAverage <- function(dat) {
-  birthYearAverage <- mean(dat$birthYear)
-  return(birthYearAverage)
+calcAgeAverage <- function(dat) {
+  ageAverage <- mean(dat$Age, na.rm = TRUE)
+  return(ageAverage)
 }
 ```
 
-We define `calcBirthYearAverage` by assigning it to the output of `function`.
+We define `calcAgeAverage` by assigning it to the output of `function`.
 The list of argument names are contained within parentheses.
 Next, the body of the function -- the statements executed when you
 call the function -- is contained within curly braces (`{}`).
@@ -183,17 +183,17 @@ of the function.
 
 
 ```{r}
-calcBirthYearAverage(healthData)
+calcAgeAverage(titanic)
 ```
 
-That's not very informative, since the dataset comprises data from two studies that were performed decades apart. Let's add another argument so we can calculate the average year of birth for a particular study group.
+Now, let's add another argument so we can calculate the average age for a particular gender.
 
 ```{r}
-# Takes a dataset and calculates the average year of birth for a
-# specified study group.
-calcBirthYearAverage <- function(dat, group = "Group 1") {
-  birthYearAverage <- mean(dat[dat$HIGroup == group, ]$birthYear)
-  return(birthYearAverage)
+# Takes a dataset and calculates the average age for a
+# specified sex.
+calcAgeAverage <- function(dat, sex = "female") {
+  ageAverage <- mean(dat[dat$Sex == sex, ]$Age, na.rm = TRUE)
+  return(ageAverage)
 }
 ```
 
@@ -205,27 +205,27 @@ If you've been writing these functions down into a separate R script
 source("functions/functions-lesson.R")
 ```
 
-The function now subsets the provided data by group before taking the average year of birth. A default value of 1 is given for group, so that if no value is specified when you call the function, the result of the function will be for group 1. You need to be careful when setting default values; sometimes you can get some unexpected behaviour from functions if you don't realise that an argument has a default value.
+The function now subsets the provided data by sex before taking the average age. A default value of "female" is given for sex, so that if no value is specified when you call the function, the result of the function will be for females. You need to be careful when setting default values; sometimes you can get some unexpected behaviour from functions if you don't realise that an argument has a default value.
 
 Let's take a look at what happens when we specify the study group:
 
 ```{r}
-calcBirthYearAverage(healthData,"Group 1")
-calcBirthYearAverage(healthData,"Group 2")
-calcBirthYearAverage(healthData)
+calcAgeAverage(titanic,"Group 1")
+calcAgeAverage(titanic,"Group 2")
+calcAgeAverage(titanic)
 ```
 
-What if we want to look at the average year of birth for specific year levels?
+What if we want to look at the average age for specific passenger classes?
 
 <!--sec data-title="Challenge 3" data-id="ch3" data-show=true data-collapse=false ces-->
 
-Define the function to calculate the average year of birth for specific year  levels of a single study group. Hint: Look up the function %in%, which will allow you to subset by multiple year levels
+Define the function to calculate the average age for specific classes of a single sex. Hint: Look up the function %in%, which will allow you to subset by multiple classes.
  
  <!--endsec-->
 
 <!--sec data-title="Tip: Pass by value" data-id="tip2" data-show=true data-collapse=true ces-->
 
-Functions in R almost always make copies of the data to operate on inside of a function body. If we were to modify `dat` inside the function we are modifying the copy of the health study dataset stored in `dat`, not the original variable we gave as the first argument.
+Functions in R almost always make copies of the data to operate on inside of a function body. If we were to modify `dat` inside the function we are modifying the copy of the titanic dataset stored in `dat`, not the original variable we gave as the first argument.
 
 This is called "pass-by-value" and it makes writing code much safer: you can always be sure that whatever changes you make within the body of the function, stay inside the body of the function.
 
@@ -233,7 +233,7 @@ This is called "pass-by-value" and it makes writing code much safer: you can alw
 
 <!--sec data-title="Tip: Function scope" data-id="tip3" data-show=true data-collapse=true ces-->
 
-Another important concept is scoping: any variables (or functions!) you create or modify inside the body of a function only exist for the lifetime of the function's execution. When we call `calcBirthYearAverage`, the variables `dat`, `group` and `birthYearAverage` only exist inside the body of the function. Even if we have variables of the same name in our interactive R session, they are not modified in any way when executing a function.
+Another important concept is scoping: any variables (or functions!) you create or modify inside the body of a function only exist for the lifetime of the function's execution. When we call `calcAgeAverage`, the variables `dat`, `sex` and `ageAverage` only exist inside the body of the function. Even if we have variables of the same name in our interactive R session, they are not modified in any way when executing a function.
 
 <!--endsec-->
 
@@ -332,9 +332,9 @@ fahr_to_celsius <- function(temp) {
 Define the function to calculate the average year of birth for specific year  levels of a single study group. Hint: Look up the function %in%, which will allow you to subset by multiple  year levels
 
 ```{r}
-calcBirthYearAverage <- function(dat, group, yearLevel) {
-   birthYearAverage <- mean(dat[dat$HIGroup == group & dat$education %in% yearLevel, ]$birthYear)
-   return(birthYearAverage)
+calcAgeAverage <- function(dat, sex, class) {
+   ageAverage <- mean(dat[dat$Sex == sex & dat$Pclass %in% class, ]$Age, na.rm = TRUE)
+   return(ageAverage)
 }
 ```
 

@@ -73,9 +73,9 @@ y:  6  7  8  9
 
 <!--sec data-title="Challenge 1" data-id="ch1" data-show=true data-collapse=false ces-->
 
-Let's try this on the `health` column of the `healthData` dataset.
+Let's try this on the `Fare` column of the `titanic` dataset.
 
-Make a new column in the `healthData` data frame that contains health rounded to the nearest integer. Check the head or tail of the data frame to make sure it worked.
+Make a new column in the `titanic` data frame that contains `Fare` rounded to the nearest integer. Check the head or tail of the data frame to make sure it worked.
 
 **Hint**: R has a round() function
 
@@ -244,42 +244,42 @@ n.  Use vectorisation to compute x when n=100. What is the sum when n=10,000?
 
 <!--sec data-title="Solution to Challenge 1" data-id="ch1sol" data-show=true data-collapse=true ces-->
 
-Let's try this on the `health` column of the `healthData` dataset.
+Let's try this on the `Fare` column of the `titanic` dataset.
 
-Make a new column in the `healthData` data frame that contains health rounded to the nearest integer. Check the head or tail of the data frame to make sure it worked.
+Make a new column in the `titanic` data frame that contains `Fare` rounded to the nearest integer. Check the head or tail of the data frame to make sure it worked.
 
 Hint: R has a round() function
 
 
 ~~~sourcecode
-healthData$healthInteger <- round(healthData$health)
-head(healthData)
+titanic$FareInteger <- round(titanic$Fare)
+head(titanic)
 ~~~
 
 
 
 ~~~output
-  id conscientiousness extraversion intellect agreeableness neuroticism
-1  3             5.825        3.986     6.044         4.613       3.649
-2  4             7.732        7.016     6.821         6.649       6.299
-3  7             6.498        2.697     5.527         3.087       4.091
-4  8             5.881        2.504     4.234         4.613       3.649
-5 10             4.254        5.147     4.751         3.850       3.208
-6 12             7.508        3.535     6.821         4.613       5.415
-   sex selfRatedHealth mentalAdjustment illnessReversed health
-1 Male               4                2               3   6.74
-2 Male               5                3               5  11.96
-3 Male               3                3               4   8.05
-4 Male               3                2               4   6.48
-5 Male               4                2               3   6.74
-6 Male               4                2               5   9.01
-  alcoholUseInYoungAdulthood education birthYear HIGroup healthInteger
-1                          2         9      1909 Group 1             7
-2                          3         8      1905 Group 1            12
-3                          2         6      1910 Group 1             8
-4                          1         8      1905 Group 1             6
-5                          2         9      1910 Group 1             7
-6                          2         4      1911 Group 1             9
+  PassengerId Survived Pclass
+1           1        0      3
+2           2        1      1
+3           3        1      3
+4           4        1      1
+5           5        0      3
+6           6        0      3
+                                                 Name    Sex Age SibSp
+1                             Braund, Mr. Owen Harris   male  22     1
+2 Cumings, Mrs. John Bradley (Florence Briggs Thayer) female  38     1
+3                              Heikkinen, Miss. Laina female  26     0
+4        Futrelle, Mrs. Jacques Heath (Lily May Peel) female  35     1
+5                            Allen, Mr. William Henry   male  35     0
+6                                    Moran, Mr. James   male  NA     0
+  Parch           Ticket    Fare Cabin Embarked FareInteger
+1     0        A/5 21171  7.2500              S           7
+2     0         PC 17599 71.2833   C85        C          71
+3     0 STON/O2. 3101282  7.9250              S           8
+4     0           113803 53.1000  C123        S          53
+5     0           373450  8.0500              S           8
+6     0           330877  8.4583              Q           8
 
 ~~~
 

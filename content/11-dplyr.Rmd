@@ -7,7 +7,7 @@ source("../tools/chunk-options.R")
 
 ```{r, include=FALSE}
 # Silently load in the data so the rest of the lesson works
-healthData <- read.csv("https://goo.gl/oqQGKF", header=TRUE)
+titanic <- read.csv("https://goo.gl/4Gqsnz", header=TRUE)
 ```
 
 <!--sec data-title="Learning Objective" data-id="obj" data-show=true data-collapse=false ces-->

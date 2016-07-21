@@ -133,7 +133,7 @@ x
 
 <!--sec data-title="Challenge 1" data-id="ch1" data-show=true data-collapse=false ces-->
 
-Use an `if` statement to print a suitable message reporting whether there are any years of birth from 1812 in the `healthData` dataset. Now do the same for 1910.
+Use an `if` statement to print a suitable message reporting whether there are any people with age of 100 in the `titanic` dataset. Now do the same for 80. HINT: you will need to use the na.rm argument in the `any()` function.
 
 <!--endsec-->
 
@@ -141,8 +141,8 @@ Did anyone get a warning message like this?
 
 
 ~~~err
-Warning in if (healthData$birthYear == 1812) {: the condition has length >
-1 and only the first element will be used
+Warning in if (titanic$Age == 100) {: the condition has length > 1 and only
+the first element will be used
 
 ~~~
 
@@ -345,13 +345,13 @@ Compare the objects output_vector and output_vector2. Are they the same? If not,
 
 <!--sec data-title="Challenge 3" data-id="ch3" data-show=true data-collapse=false ces-->
 
-Write a script that loops through the `healthData` data by illness level and prints  out whether the mean health measure is smaller or larger than 8 units. Hint: you may want to check out the functions na.rm(), is.na() and unique()
+Write a script that loops through the `titanic` data by passenger class and prints  out whether the mean Survived measure is smaller or larger than 0.5. Hint: you may want to check out the function unique().
 
 <!--endsec-->
 
 <!--sec data-title="Challenge 4" data-id="ch4" data-show=true data-collapse=false ces-->
 
-Modify the script from Challenge 4 to also loop over each study. This time print out whether the health measure is smaller than 5, between 5 and 8, or greater than 8.
+Modify the script from Challenge 4 to also loop over each sex. This time print out whether the Survived is smaller than 0.2, between 0.2 and 0.6, or greater than 0.6.
 
 <!--endsec-->
 
@@ -363,38 +363,38 @@ Modify the script from Challenge 4 to also loop over each study. This time print
 
 <!--sec data-title="Solution to Challenge 1" data-id="ch1sol" data-show=true data-collapse=true ces-->
 
-Use an `if` statement to print a suitable message reporting whether there are any years of birth from 1812 in the `healthData` dataset. Now do the same for 1910.
+Use an `if` statement to print a suitable message reporting whether there are any people with age of 100 in the `titanic` dataset. Now do the same for 80.
 
 
 ~~~sourcecode
-if (any(healthData$birthYear == 1812)){
-  print("There was at least one person born in 1812 in the dataset")
+if (any(titanic$Age == 100, na.rm = TRUE)){
+  print("There was at least one 100 y.o. person in the dataset")
 } else {
-  print("There are no people in the dataset who were born in 1812")
+  print("There were no 100 y.o. persons in the dataset")
 }
 ~~~
 
 
 
 ~~~output
-[1] "There are no people in the dataset who were born in 1812"
+[1] "There were no 100 y.o. persons in the dataset"
 
 ~~~
 
 
 
 ~~~sourcecode
-if (any(healthData$birthYear == 1910)){
-  print("There was at least one person born in 1910 in the dataset")
+if (any(titanic$Age == 80, na.rm = TRUE)){
+  print("There was at least one 80 y.o. person in the dataset")
 } else {
-  print("There are no people in the dataset who were born in 1910")
+  print("There were no 80 y.o. persons in the dataset")
 }
 ~~~
 
 
 
 ~~~output
-[1] "There was at least one person born in 1910 in the dataset"
+[1] "There was at least one 80 y.o. person in the dataset"
 
 ~~~
 
@@ -433,15 +433,15 @@ output_vector2
 
 <!--sec data-title="Solution to Challenge 3" data-id="ch3sol" data-show=true data-collapse=true ces-->
 
-Write a script that loops through the `healthData` data by illness level and prints out whether the mean health measure is smaller or larger than 8 units.
+Write a script that loops through the `titanic` data by passenger class and prints  out whether the mean Survived measure is smaller or larger than 0.5. Hint: you may want to check out the function unique().
 
 
 ~~~sourcecode
-for (illness in sort(unique(healthData$illnessReversed[!is.na(healthData$illnessReversed)]))){
-  if ((mean(healthData$health[healthData$illnessReversed == illness], na.rm=T) > 8)){
-  print(paste("The mean health measure for people with", illness, "illness is greater than 8 units"))
+for (class in sort(unique(titanic$Pclass))){
+  if (mean(titanic$Survived[titanic$Pclass == class]) > 0.5){
+  print(paste("The mean Survived measure for people with class", class, "is greater than 0.5 units"))
   } else {
-  print(paste("The mean health measure for people with", illness, "illness is less than 8 units"))
+  print(paste("The mean Survived measure for people with class", class, "is less than 0.5 units"))
   }
 }
 ~~~
@@ -449,11 +449,9 @@ for (illness in sort(unique(healthData$illnessReversed[!is.na(healthData$illness
 
 
 ~~~output
-[1] "The mean health measure for people with 1 illness is less than 8 units"
-[1] "The mean health measure for people with 2 illness is less than 8 units"
-[1] "The mean health measure for people with 3 illness is less than 8 units"
-[1] "The mean health measure for people with 4 illness is greater than 8 units"
-[1] "The mean health measure for people with 5 illness is greater than 8 units"
+[1] "The mean Survived measure for people with class 1 is greater than 0.5 units"
+[1] "The mean Survived measure for people with class 2 is less than 0.5 units"
+[1] "The mean Survived measure for people with class 3 is less than 0.5 units"
 
 ~~~
 
@@ -461,18 +459,18 @@ for (illness in sort(unique(healthData$illnessReversed[!is.na(healthData$illness
 
 <!--sec data-title="Solution to Challenge 4" data-id="ch4sol" data-show=true data-collapse=true ces-->
 
-Modify the script from Challenge 4 to also loop over each study. This time print out whether the health measure is smaller than 5, between 5 and 8, or greater than 8.
+Modify the script from Challenge 4 to also loop over each sex. This time print out whether the Survived is smaller than 0.2, between 0.2 and 0.6, or greater than 0.6.
 
 
 ~~~sourcecode
-for (illness in sort(unique(healthData$illnessReversed[!is.na(healthData$illnessReversed)]))){
-  for (group in unique(healthData$HIGroup)){
-    if ((ans <- mean(healthData$health[healthData$illnessReversed == illness & healthData$HIGroup == group], na.rm=T)) > 8){
-      print(paste("The mean health measure for people with", illness, "illness in group", group, "is greater than 8 units"))
-    } else if (ans < 5){
-      print(paste("The mean health measure for people with", illness, "illness in group", group, "is less than 5 units"))
+for (class in sort(unique(titanic$Pclass))){
+  for (sex in unique(titanic$Sex)) {
+    if (mean(titanic$Survived[titanic$Pclass == class & titanic$Sex == sex]) <= 0.2){
+      print(paste("The mean Survived measure for",sex,"people with class", class, "is less than 0.2 units"))
+    } else if (mean(titanic$Survived[titanic$Pclass == class & titanic$Sex == sex]) > 0.6) {
+      print(paste("The mean Survived measure for",sex,"people with class", class, "is greater than 0.6 units"))
     } else {
-      print(paste("The mean health measure for people with", illness, "illness in group", group, "is between 5 and 8 units"))
+      print(paste("The mean Survived measure for",sex,"people with class", class, "is between 0.2 and 0.6"))
     }
   }
 }
@@ -481,17 +479,12 @@ for (illness in sort(unique(healthData$illnessReversed[!is.na(healthData$illness
 
 
 ~~~output
-[1] "The mean health measure for people with 1 illness in group Group 1 is less than 5 units"
-[1] "The mean health measure for people with 1 illness in group Group 2 is less than 5 units"
-[1] "The mean health measure for people with 2 illness in group Group 1 is between 5 and 8 units"
-[1] "The mean health measure for people with 2 illness in group Group 2 is between 5 and 8 units"
-[1] "The mean health measure for people with 3 illness in group Group 1 is between 5 and 8 units"
-[1] "The mean health measure for people with 3 illness in group Group 2 is between 5 and 8 units"
-[1] "The mean health measure for people with 4 illness in group Group 1 is greater than 8 units"
-[1] "The mean health measure for people with 4 illness in group Group 2 is greater than 8 units"
-[1] "The mean health measure for people with 5 illness in group Group 1 is greater than 8 units"
-[1] "The mean health measure for people with 5 illness in group Group 2 is greater than 8 units"
+[1] "The mean Survived measure for male people with class 1 is between 0.2 and 0.6"
+[1] "The mean Survived measure for female people with class 1 is greater than 0.6 units"
+[1] "The mean Survived measure for male people with class 2 is less than 0.2 units"
+[1] "The mean Survived measure for female people with class 2 is greater than 0.6 units"
+[1] "The mean Survived measure for male people with class 3 is less than 0.2 units"
+[1] "The mean Survived measure for female people with class 3 is between 0.2 and 0.6"
 
 ~~~
-
 <!--endsec-->
