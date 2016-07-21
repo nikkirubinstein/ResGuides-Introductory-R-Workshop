@@ -11,7 +11,7 @@ library(ggplot2)
 titanic <- read.csv("https://goo.gl/4Gqsnz", header=TRUE)
 # Temporarily create a cleaned-data directory so that the writing examples work
 # The students should have created this in topic 2.
-dir.create("../cleaned-data")
+# dir.create("data")
 ```
 
 <!--sec data-title="Learning Objective" data-id="obj" data-show=true data-collapse=false ces-->
@@ -143,5 +143,5 @@ Use this script to write out the new subset to a file in the `data/` directory.
 ```{r, echo=FALSE}
 # We remove after rendering the lesson, because we don't want this in the lesson
 # repository
-unlink("../cleaned-data", recursive=TRUE)
+# unlink("../cleaned-data", recursive=TRUE)
 ```

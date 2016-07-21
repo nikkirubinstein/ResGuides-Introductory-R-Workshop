@@ -95,21 +95,6 @@ write.table(titanic_subset,
 )
 ~~~
 
-
-
-~~~err
-Warning in file(file, ifelse(append, "a", "w")): cannot open file 'data/
-titanic_subset.csv': No such file or directory
-
-~~~
-
-
-
-~~~err
-Error in file(file, ifelse(append, "a", "w")): cannot open the connection
-
-~~~
-
 Now let's have a look at the data. Provided data files aren't very large, this can be achieved easily in R by simply opening the file from the file explorer.
 
 Hmm, that's not quite what we wanted. Where did all these
@@ -137,21 +122,6 @@ write.table(
   file="data/titanic_subset.csv",
   sep=",", quote=FALSE, row.names=FALSE
 )
-~~~
-
-
-
-~~~err
-Warning in file(file, ifelse(append, "a", "w")): cannot open file 'data/
-titanic_subset.csv': No such file or directory
-
-~~~
-
-
-
-~~~err
-Error in file(file, ifelse(append, "a", "w")): cannot open the connection
-
 ~~~
 
 Now lets look at the data again.
