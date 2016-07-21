@@ -4,6 +4,7 @@
 
 # Introduction to R and RStudio 
 
+
 <!--sec data-title="Learning Objectives" data-id="obj" data-show=true data-collapse=false ces-->
 
  * To gain familiarity with the various panes in the RStudio IDE
