@@ -137,7 +137,7 @@ sessionInfo()
 
 
 ~~~output
-R version 3.3.1 (2016-06-21)
+R version 3.3.0 (2016-05-03)
 Platform: x86_64-pc-linux-gnu (64-bit)
 Running under: Debian GNU/Linux 8 (jessie)
 
@@ -151,10 +151,10 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  base     
 
 other attached packages:
-[1] knitr_1.13
+[1] knitr_1.12.3
 
 loaded via a namespace (and not attached):
-[1] magrittr_1.5  formatR_1.4   tools_3.3.1   stringi_1.1.1 methods_3.3.1
+[1] magrittr_1.5  formatR_1.3   tools_3.3.0   stringi_1.0-1 methods_3.3.0
 [6] stringr_1.0.0 evaluate_0.9 
 
 ~~~

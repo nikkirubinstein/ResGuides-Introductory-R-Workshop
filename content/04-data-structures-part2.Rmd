@@ -148,70 +148,70 @@ Then use `rbind` to add an entry for the people sitting beside you.  Finally, us
 
 <!--endsec-->
 
-So far, you've seen the basics of manipulating data.frames with our cat data; now, let's use those skills to digest a more realistic dataset. Lets read in some real data now. For the remainder of the workshop we will play with some child health data from positive psychology, supplied by Dr Peggy Kern:
+So far, you've seen the basics of manipulating data.frames with our cat data; now, let's use those skills to digest a more realistic dataset. Lets read in some real data now. For the remainder of the workshop we will play with some data which contains details of the passengers aboard the Titanic when it sunk, which was sourced from the data science competition website Kaggle:
 
-Kern, M. L., Hampson, S. E., Goldberg, L. R., & Friedman, H. S. (2014). Integrating Prospective Longitudinal Data: Modeling Personality and Health in the Terman Life Cycle and Hawaii Longitudinal Studies. Developmental Psychology, 50(5), 1390–1406. http://doi.org/10.1037/a0030874.
+https://www.kaggle.com/c/titanic
 
-The data is stored on the GitHub repository used for these training materials, and R can read the file directly from there:
+The data is stored in a CSV on the GitHub repository used for these training materials, and R can read the file directly from there:
 
 ```{r}
-healthData <- read.csv("https://goo.gl/oqQGKF")
+titanic <- read.csv("https://goo.gl/4Gqsnz")
 ```
 
 
 <!--sec data-title="Miscellaneous Tips" data-id="tip1" data-show=true data-collapse=true ces-->
 
-1. Another type of file you might encounter are tab-separated format. To specify a tab as a separator, use `"\t"`.
+1. Another type of file you might encounter is tab-separated format. To specify a tab as a separator, use `"\t"`.
 
-2. You can also read in files from the Internet by replacing the file paths with a web address.
+2. You can also read in files from the Internet using a web address, or from a local file using the local directory.
 
 3. You can read directly from excel spreadsheets without converting them to plain text first by using the `xlsx` package.
 
 <!--endsec-->
 
-Let's investigate healthData a bit; the first thing we should always do is check out what the data looks like with `str`:
+Let's investigate titanic data a bit; the first thing we should always do is check out what the data looks like with `str`:
 
 ```{r}
-str(healthData)
+str(titanic)
 ```
 
 We can also examine individual columns of the data.frame with our `typeof` function:
 
 ```{r}
-typeof(healthData$id)
-typeof(healthData$conscientiousness)
-typeof(healthData$sex)
-str(healthData$health)
+typeof(titanic$PassengerId)
+typeof(titanic$Name)
+typeof(titanic$Age)
+str(titanic$Pclass)
 ```
 
-We can also interrogate the data.frame for information about its dimensions; remembering that `str(healthData)` said there were 2255 observations of 15 variables in healthData, what do you think the following will produce, and why?
+We can also interrogate the data.frame for information about its dimensions; remembering that `str(titanic)` said there were 418 observations of 11 variables in the titanic data, what do you think the following will produce, and why?
 
 ```{r}
-length(healthData)
+length(titanic)
 ```
 
-A fair guess would have been to say that the length of a data.frame would be the number of rows it has (2255), but this is not the case; remember, a data.frame is a *list of vectors and factors*:
+A fair guess would have been to say that the length of a data.frame would be the number of rows it has (418), but this is not the case; remember, a data.frame is a *list of vectors and factors*:
 
 ```{r}
-typeof(healthData)
+typeof(titanic)
 ```
 
-When `length` gave us 15, it's because healthData is built out of a list of 15 columns. To get the number of rows and columns in our dataset, try:
+When `length` gave us 11, it's because the titanic data is built out of a list of 11 columns. To get the number of rows and columns in our dataset, try:
 
 ```{r}
-nrow(healthData)
-ncol(healthData)
+nrow(titanic)
+ncol(titanic)
 ```
 
 Or, both at once:
 
 ```{r}
-dim(healthData)
+dim(titanic)
 ```
 
 We'll also likely want to know what the titles of all the columns are, so we can ask for them later:
 ```{r}
-colnames(healthData)
+colnames(titanic)
 ```
 
 At this stage, it's important to ask ourselves if the structure R is reporting matches our intuition or expectations; do the basic data types reported for each column make sense? If not, we need to sort any problems out now before they turn into bad surprises down the road, using what we've learned about how R interprets data, and the importance of *strict consistency* in how we record our data.
@@ -219,7 +219,7 @@ At this stage, it's important to ask ourselves if the structure R is reporting m
 Once we're happy that the data types and structures seem reasonable, it's time to start digging into our data proper. Check out the first few lines:
 
 ```{r}
-head(healthData)
+head(titanic)
 ```
 
 To make sure our analysis is reproducible, we should put the code
@@ -227,7 +227,7 @@ into a script file so we can come back to it later.
 
 <!--sec data-title="Challenge 2" data-id="ch2" data-show=true data-collapse=false ces-->
 
-Go to file -> new file -> R script, and write an R script to load in the healthData dataset. Put it in the `scripts/` directory and add it to version control.
+Go to file -> new file -> R script, and write an R script to load in the titanic dataset. Put it in the `scripts/` directory.
 
 Run the script using the `source` function, using the file path as its argument (or by pressing the "source" button in RStudio).
 
@@ -235,7 +235,7 @@ Run the script using the `source` function, using the file path as its argument 
 
 <!--sec data-title="Challenge 3" data-id="ch3" data-show=true data-collapse=false ces-->
 
-Read the output of `str(healthData)` again;  this time, use what you've learned about factors, lists and vectors, as well as the output of functions like `colnames` and `dim` to explain what everything that `str` prints out for healthData means. If there are any parts you can't interpret, discuss with your neighbors!
+Read the output of `str(titanic)` again;  this time, use what you've learned about factors, lists and vectors, as well as the output of functions like `colnames` and `dim` to explain what everything that `str` prints out for titanic means. If there are any parts you can't interpret, discuss with your neighbors!
 
 <!--endsec-->
 
@@ -260,13 +260,13 @@ names(df)[4] <- 'coffeetime'
 
 <!--sec data-title="Solution to Challenge 2" data-id="ch2sol" data-show=true data-collapse=true ces-->
 
-The contents of `script/load-healthData.R`:
+The contents of `script/load-titanic.R`:
 ```{r eval = FALSE}
-healthData <- read.csv(file = "../data/THCombo051311.csv")
+titanic <- read.csv("https://goo.gl/4Gqsnz")
 ```
-To run the script and load the data into the `healthData` variable:
+To run the script and load the data into the `titanic` variable:
 ```{r eval = FALSE}
-source(file = "scripts/load-healthData.R")
+source(file = "scripts/load-titanic.R")
 ```
 
 <!--endsec-->

@@ -227,9 +227,10 @@ conscientiousness_by_sex
 
 
 ~~~output
-# A tibble: 2 x 2
+Source: local data frame [2 x 2]
+
      sex mean_conscientiousness
-  <fctr>                  <dbl>
+  (fctr)                  (dbl)
 1 Female               6.086473
 2   Male               5.685394
 

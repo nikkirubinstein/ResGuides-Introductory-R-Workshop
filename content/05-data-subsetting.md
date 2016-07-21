@@ -1075,7 +1075,7 @@ Given a linear model:
 
 
 ~~~sourcecode
-mod <- aov(intellect ~ education, data=healthData)
+mod <- aov(intellect ~ education, data=titanic)
 ~~~
 
 Extract the residual degrees of freedom (hint: `attributes()` will help you)
@@ -1102,13 +1102,13 @@ head(healthData[3])
 
 
 ~~~output
-  extraversion
-1        3.986
-2        7.016
-3        2.697
-4        2.504
-5        5.147
-6        3.535
+                                          Name
+1                             Kelly, Mr. James
+2             Wilkes, Mrs. James (Ellen Needs)
+3                    Myles, Mr. Thomas Francis
+4                             Wirz, Mr. Albert
+5 Hirvonen, Mrs. Alexander (Helga E Lindqvist)
+6                   Svensson, Mr. Johan Cervin
 
 ~~~
 
@@ -1122,7 +1122,7 @@ head(healthData[["health"]])
 
 
 ~~~output
-[1]  6.74 11.96  8.05  6.48  6.74  9.01
+NULL
 
 ~~~
 
@@ -1136,7 +1136,7 @@ head(healthData$birthYear)
 
 
 ~~~output
-[1] 1909 1905 1910 1905 1910 1911
+NULL
 
 ~~~
 
@@ -1150,18 +1150,14 @@ healthData[1:3,]
 
 
 ~~~output
-  id conscientiousness extraversion intellect agreeableness neuroticism
-1  3             5.825        3.986     6.044         4.613       3.649
-2  4             7.732        7.016     6.821         6.649       6.299
-3  7             6.498        2.697     5.527         3.087       4.091
-   sex selfRatedHealth mentalAdjustment illnessReversed health
-1 Male               4                2               3   6.74
-2 Male               5                3               5  11.96
-3 Male               3                3               4   8.05
-  alcoholUseInYoungAdulthood education birthYear HIGroup
-1                          2         9      1909 Group 1
-2                          3         8      1905 Group 1
-3                          2         6      1910 Group 1
+  PassengerId Pclass                             Name    Sex  Age SibSp
+1         892      3                 Kelly, Mr. James   male 34.5     0
+2         893      3 Wilkes, Mrs. James (Ellen Needs) female 47.0     1
+3         894      2        Myles, Mr. Thomas Francis   male 62.0     0
+  Parch Ticket   Fare Cabin Embarked
+1     0 330911 7.8292              Q
+2     0 363272 7.0000              S
+3     0 240276 9.6875              Q
 
 ~~~
 
@@ -1176,12 +1172,10 @@ healthData[3,]
 
 
 ~~~output
-  id conscientiousness extraversion intellect agreeableness neuroticism
-3  7             6.498        2.697     5.527         3.087       4.091
-   sex selfRatedHealth mentalAdjustment illnessReversed health
-3 Male               3                3               4   8.05
-  alcoholUseInYoungAdulthood education birthYear HIGroup
-3                          2         6      1910 Group 1
+  PassengerId Pclass                      Name  Sex Age SibSp Parch Ticket
+3         894      2 Myles, Mr. Thomas Francis male  62     0     0 240276
+    Fare Cabin Embarked
+3 9.6875              Q
 
 ~~~
 
@@ -1380,6 +1374,13 @@ Given a linear model:
 
 ~~~sourcecode
 mod <- aov(intellect ~ education, data=healthData)
+~~~
+
+
+
+~~~err
+Error in eval(expr, envir, enclos): object 'intellect' not found
+
 ~~~
 
 Extract the residual degrees of freedom (hint: `attributes()` will help you)

@@ -7,7 +7,7 @@ source("../tools/chunk-options.R")
 
 ```{r, include=FALSE}
 # Silently load in the data so the rest of the lesson works
-healthData <- read.csv("https://goo.gl/oqQGKF", header=TRUE)
+healthData <- read.csv("https://goo.gl/4Gqsnz", header=TRUE)
 ```
 
 <!--sec data-title="Learning Objectives" data-id="obj" data-show=true data-collapse=false ces-->
@@ -600,7 +600,7 @@ Using your knowledge of both list and vector subsetting, extract the number 2 fr
 Given a linear model:
 
 ```{r, eval=FALSE}
-mod <- aov(intellect ~ education, data=healthData)
+mod <- aov(intellect ~ education, data=titanic)
 ```
 
 Extract the residual degrees of freedom (hint: `attributes()` will help you)

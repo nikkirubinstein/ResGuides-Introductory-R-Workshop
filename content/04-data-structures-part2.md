@@ -294,54 +294,50 @@ Then use `rbind` to add an entry for the people sitting beside you.  Finally, us
 
 <!--endsec-->
 
-So far, you've seen the basics of manipulating data.frames with our cat data; now, let's use those skills to digest a more realistic dataset. Lets read in some real data now. For the remainder of the workshop we will play with some child health data from positive psychology, supplied by Dr Peggy Kern:
+So far, you've seen the basics of manipulating data.frames with our cat data; now, let's use those skills to digest a more realistic dataset. Lets read in some real data now. For the remainder of the workshop we will play with some data which contains details of the passengers aboard the Titanic when it sunk, which was sourced from the data science competition website Kaggle:
 
-Kern, M. L., Hampson, S. E., Goldberg, L. R., & Friedman, H. S. (2014). Integrating Prospective Longitudinal Data: Modeling Personality and Health in the Terman Life Cycle and Hawaii Longitudinal Studies. Developmental Psychology, 50(5), 1390–1406. http://doi.org/10.1037/a0030874.
+https://www.kaggle.com/c/titanic
 
-The data is stored on the GitHub repository used for these training materials, and R can read the file directly from there:
+The data is stored in a CSV on the GitHub repository used for these training materials, and R can read the file directly from there:
 
 
 ~~~sourcecode
-healthData <- read.csv("https://goo.gl/oqQGKF")
+titanic <- read.csv("https://goo.gl/4Gqsnz")
 ~~~
 
 
 <!--sec data-title="Miscellaneous Tips" data-id="tip1" data-show=true data-collapse=true ces-->
 
-1. Another type of file you might encounter are tab-separated format. To specify a tab as a separator, use `"\t"`.
+1. Another type of file you might encounter is tab-separated format. To specify a tab as a separator, use `"\t"`.
 
-2. You can also read in files from the Internet by replacing the file paths with a web address.
+2. You can also read in files from the Internet using a web address, or from a local file using the local directory.
 
 3. You can read directly from excel spreadsheets without converting them to plain text first by using the `xlsx` package.
 
 <!--endsec-->
 
-Let's investigate healthData a bit; the first thing we should always do is check out what the data looks like with `str`:
+Let's investigate titanic data a bit; the first thing we should always do is check out what the data looks like with `str`:
 
 
 ~~~sourcecode
-str(healthData)
+str(titanic)
 ~~~
 
 
 
 ~~~output
-'data.frame':	2034 obs. of  15 variables:
- $ id                        : int  3 4 7 8 10 12 15 17 18 20 ...
- $ conscientiousness         : num  5.83 7.73 6.5 5.88 4.25 ...
- $ extraversion              : num  3.99 7.02 2.7 2.5 5.15 ...
- $ intellect                 : num  6.04 6.82 5.53 4.23 4.75 ...
- $ agreeableness             : num  4.61 6.65 3.09 4.61 3.85 ...
- $ neuroticism               : num  3.65 6.3 4.09 3.65 3.21 ...
- $ sex                       : Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 2 2 2 2 ...
- $ selfRatedHealth           : int  4 5 3 3 4 4 4 4 5 4 ...
- $ mentalAdjustment          : int  2 3 3 2 2 2 3 1 3 3 ...
- $ illnessReversed           : int  3 5 4 4 3 5 2 4 5 4 ...
- $ health                    : num  6.74 11.96 8.05 6.48 6.74 ...
- $ alcoholUseInYoungAdulthood: int  2 3 2 1 2 2 1 1 1 2 ...
- $ education                 : int  9 8 6 8 9 4 6 7 9 9 ...
- $ birthYear                 : int  1909 1905 1910 1905 1910 1911 1903 1908 1909 1911 ...
- $ HIGroup                   : Factor w/ 2 levels "Group 1","Group 2": 1 1 1 1 1 1 1 1 1 1 ...
+'data.frame':	418 obs. of  11 variables:
+ $ PassengerId: int  892 893 894 895 896 897 898 899 900 901 ...
+ $ Pclass     : int  3 3 2 3 3 3 3 2 3 3 ...
+ $ Name       : Factor w/ 418 levels "Abbott, Master. Eugene Joseph",..: 207 404 270 409 179 367 85 58 5 104 ...
+ $ Sex        : Factor w/ 2 levels "female","male": 2 1 2 2 1 2 1 2 1 2 ...
+ $ Age        : num  34.5 47 62 27 22 14 30 26 18 21 ...
+ $ SibSp      : int  0 1 0 0 1 0 0 1 0 2 ...
+ $ Parch      : int  0 0 0 0 1 0 0 1 0 0 ...
+ $ Ticket     : Factor w/ 363 levels "110469","110489",..: 153 222 74 148 139 262 159 85 101 270 ...
+ $ Fare       : num  7.83 7 9.69 8.66 12.29 ...
+ $ Cabin      : Factor w/ 77 levels "","A11","A18",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ Embarked   : Factor w/ 3 levels "C","Q","S": 2 3 2 3 3 3 2 3 1 3 ...
 
 ~~~
 
@@ -349,7 +345,7 @@ We can also examine individual columns of the data.frame with our `typeof` funct
 
 
 ~~~sourcecode
-typeof(healthData$id)
+typeof(titanic$PassengerId)
 ~~~
 
 
@@ -362,7 +358,20 @@ typeof(healthData$id)
 
 
 ~~~sourcecode
-typeof(healthData$conscientiousness)
+typeof(titanic$Name)
+~~~
+
+
+
+~~~output
+[1] "integer"
+
+~~~
+
+
+
+~~~sourcecode
+typeof(titanic$Age)
 ~~~
 
 
@@ -375,48 +384,35 @@ typeof(healthData$conscientiousness)
 
 
 ~~~sourcecode
-typeof(healthData$sex)
+str(titanic$Pclass)
 ~~~
 
 
 
 ~~~output
-[1] "integer"
+ int [1:418] 3 3 2 3 3 3 3 2 3 3 ...
 
 ~~~
 
+We can also interrogate the data.frame for information about its dimensions; remembering that `str(titanic)` said there were 418 observations of 11 variables in the titanic data, what do you think the following will produce, and why?
 
 
 ~~~sourcecode
-str(healthData$health)
+length(titanic)
 ~~~
 
 
 
 ~~~output
- num [1:2034] 6.74 11.96 8.05 6.48 6.74 ...
+[1] 11
 
 ~~~
 
-We can also interrogate the data.frame for information about its dimensions; remembering that `str(healthData)` said there were 2255 observations of 15 variables in healthData, what do you think the following will produce, and why?
+A fair guess would have been to say that the length of a data.frame would be the number of rows it has (418), but this is not the case; remember, a data.frame is a *list of vectors and factors*:
 
 
 ~~~sourcecode
-length(healthData)
-~~~
-
-
-
-~~~output
-[1] 15
-
-~~~
-
-A fair guess would have been to say that the length of a data.frame would be the number of rows it has (2255), but this is not the case; remember, a data.frame is a *list of vectors and factors*:
-
-
-~~~sourcecode
-typeof(healthData)
+typeof(titanic)
 ~~~
 
 
@@ -426,30 +422,30 @@ typeof(healthData)
 
 ~~~
 
-When `length` gave us 15, it's because healthData is built out of a list of 15 columns. To get the number of rows and columns in our dataset, try:
+When `length` gave us 11, it's because the titanic data is built out of a list of 11 columns. To get the number of rows and columns in our dataset, try:
 
 
 ~~~sourcecode
-nrow(healthData)
+nrow(titanic)
 ~~~
 
 
 
 ~~~output
-[1] 2034
+[1] 418
 
 ~~~
 
 
 
 ~~~sourcecode
-ncol(healthData)
+ncol(titanic)
 ~~~
 
 
 
 ~~~output
-[1] 15
+[1] 11
 
 ~~~
 
@@ -457,33 +453,28 @@ Or, both at once:
 
 
 ~~~sourcecode
-dim(healthData)
+dim(titanic)
 ~~~
 
 
 
 ~~~output
-[1] 2034   15
+[1] 418  11
 
 ~~~
 
 We'll also likely want to know what the titles of all the columns are, so we can ask for them later:
 
 ~~~sourcecode
-colnames(healthData)
+colnames(titanic)
 ~~~
 
 
 
 ~~~output
- [1] "id"                         "conscientiousness"         
- [3] "extraversion"               "intellect"                 
- [5] "agreeableness"              "neuroticism"               
- [7] "sex"                        "selfRatedHealth"           
- [9] "mentalAdjustment"           "illnessReversed"           
-[11] "health"                     "alcoholUseInYoungAdulthood"
-[13] "education"                  "birthYear"                 
-[15] "HIGroup"                   
+ [1] "PassengerId" "Pclass"      "Name"        "Sex"         "Age"        
+ [6] "SibSp"       "Parch"       "Ticket"      "Fare"        "Cabin"      
+[11] "Embarked"   
 
 ~~~
 
@@ -493,33 +484,26 @@ Once we're happy that the data types and structures seem reasonable, it's time t
 
 
 ~~~sourcecode
-head(healthData)
+head(titanic)
 ~~~
 
 
 
 ~~~output
-  id conscientiousness extraversion intellect agreeableness neuroticism
-1  3             5.825        3.986     6.044         4.613       3.649
-2  4             7.732        7.016     6.821         6.649       6.299
-3  7             6.498        2.697     5.527         3.087       4.091
-4  8             5.881        2.504     4.234         4.613       3.649
-5 10             4.254        5.147     4.751         3.850       3.208
-6 12             7.508        3.535     6.821         4.613       5.415
-   sex selfRatedHealth mentalAdjustment illnessReversed health
-1 Male               4                2               3   6.74
-2 Male               5                3               5  11.96
-3 Male               3                3               4   8.05
-4 Male               3                2               4   6.48
-5 Male               4                2               3   6.74
-6 Male               4                2               5   9.01
-  alcoholUseInYoungAdulthood education birthYear HIGroup
-1                          2         9      1909 Group 1
-2                          3         8      1905 Group 1
-3                          2         6      1910 Group 1
-4                          1         8      1905 Group 1
-5                          2         9      1910 Group 1
-6                          2         4      1911 Group 1
+  PassengerId Pclass                                         Name    Sex
+1         892      3                             Kelly, Mr. James   male
+2         893      3             Wilkes, Mrs. James (Ellen Needs) female
+3         894      2                    Myles, Mr. Thomas Francis   male
+4         895      3                             Wirz, Mr. Albert   male
+5         896      3 Hirvonen, Mrs. Alexander (Helga E Lindqvist) female
+6         897      3                   Svensson, Mr. Johan Cervin   male
+   Age SibSp Parch  Ticket    Fare Cabin Embarked
+1 34.5     0     0  330911  7.8292              Q
+2 47.0     1     0  363272  7.0000              S
+3 62.0     0     0  240276  9.6875              Q
+4 27.0     0     0  315154  8.6625              S
+5 22.0     1     1 3101298 12.2875              S
+6 14.0     0     0    7538  9.2250              S
 
 ~~~
 
@@ -528,7 +512,7 @@ into a script file so we can come back to it later.
 
 <!--sec data-title="Challenge 2" data-id="ch2" data-show=true data-collapse=false ces-->
 
-Go to file -> new file -> R script, and write an R script to load in the healthData dataset. Put it in the `scripts/` directory and add it to version control.
+Go to file -> new file -> R script, and write an R script to load in the titanic dataset. Put it in the `scripts/` directory.
 
 Run the script using the `source` function, using the file path as its argument (or by pressing the "source" button in RStudio).
 
@@ -536,7 +520,7 @@ Run the script using the `source` function, using the file path as its argument 
 
 <!--sec data-title="Challenge 3" data-id="ch3" data-show=true data-collapse=false ces-->
 
-Read the output of `str(healthData)` again;  this time, use what you've learned about factors, lists and vectors, as well as the output of functions like `colnames` and `dim` to explain what everything that `str` prints out for healthData means. If there are any parts you can't interpret, discuss with your neighbors!
+Read the output of `str(titanic)` again;  this time, use what you've learned about factors, lists and vectors, as well as the output of functions like `colnames` and `dim` to explain what everything that `str` prints out for titanic means. If there are any parts you can't interpret, discuss with your neighbors!
 
 <!--endsec-->
 
@@ -562,15 +546,15 @@ names(df)[4] <- 'coffeetime'
 
 <!--sec data-title="Solution to Challenge 2" data-id="ch2sol" data-show=true data-collapse=true ces-->
 
-The contents of `script/load-healthData.R`:
+The contents of `script/load-titanic.R`:
 
 ~~~sourcecode
-healthData <- read.csv(file = "../data/THCombo051311.csv")
+titanic <- read.csv("https://goo.gl/4Gqsnz")
 ~~~
-To run the script and load the data into the `healthData` variable:
+To run the script and load the data into the `titanic` variable:
 
 ~~~sourcecode
-source(file = "scripts/load-healthData.R")
+source(file = "scripts/load-titanic.R")
 ~~~
 
 <!--endsec-->
