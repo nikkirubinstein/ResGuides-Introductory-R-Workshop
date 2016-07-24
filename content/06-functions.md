@@ -79,12 +79,12 @@ fahr_to_kelvin <- function(temp) {
 
 We define `fahr_to_kelvin` by assigning it to the output of `function`.
 The list of argument names are contained within parentheses.
-Next, the [body](reference.html#function-body) of the function--the statements that are executed when it runs--is contained within curly braces (`{}`).
+Next, the body of the function--the statements that are executed when it runs--is contained within curly braces (`{}`).
 The statements in the body are indented by two spaces.
 This makes the code easier to read but does not affect how the code operates.
 
 When we call the function, the values we pass to it are assigned to those variables so that we can use them inside the function.
-Inside the function, we use a [return statement](reference.html#return-statement) to send a result back to whoever asked for it.
+Inside the function, we use a return statement to send a result back to whoever asked for it.
 
 <!--sec data-title="Tip: The return statement" data-id="tip1" data-show=true data-collapse=true ces-->
 
@@ -171,13 +171,14 @@ a function that calculates the average age in our titanic dataset:
 
 
 ~~~sourcecode
-# Takes a dataset and calculates the average year of birth for a
-# specified study group.
+# Takes a dataset and calculates the average year of birth
 calcAgeAverage <- function(dat) {
   ageAverage <- mean(dat$Age, na.rm = TRUE)
   return(ageAverage)
 }
 ~~~
+
+Note, that because there are missing values in the dataset (`NA`s), we need to set the argument `na.rm=TRUE`, when calculating the mean.
 
 We define `calcAgeAverage` by assigning it to the output of `function`.
 The list of argument names are contained within parentheses.
@@ -214,7 +215,7 @@ Now, let's add another argument so we can calculate the average age for a partic
 
 ~~~sourcecode
 # Takes a dataset and calculates the average age for a
-# specified sex.
+# specified gender
 calcAgeAverage <- function(dat, sex = "female") {
   ageAverage <- mean(dat[dat$Sex == sex, ]$Age, na.rm = TRUE)
   return(ageAverage)
@@ -232,30 +233,30 @@ source("functions/functions-lesson.R")
 
 The function now subsets the provided data by sex before taking the average age. A default value of "female" is given for sex, so that if no value is specified when you call the function, the result of the function will be for females. You need to be careful when setting default values; sometimes you can get some unexpected behaviour from functions if you don't realise that an argument has a default value.
 
-Let's take a look at what happens when we specify the study group:
+Let's take a look at what happens when we specify the gender:
 
 
 ~~~sourcecode
-calcAgeAverage(titanic,"Group 1")
+calcAgeAverage(titanic,"female")
 ~~~
 
 
 
 ~~~output
-[1] NaN
+[1] 27.91571
 
 ~~~
 
 
 
 ~~~sourcecode
-calcAgeAverage(titanic,"Group 2")
+calcAgeAverage(titanic,"male")
 ~~~
 
 
 
 ~~~output
-[1] NaN
+[1] 30.72664
 
 ~~~
 
