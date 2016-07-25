@@ -378,9 +378,9 @@ Source: local data frame [3 x 2]
 
   Pclass mean_Survived
    (int)         (dbl)
-1      3          0.35
-2      2          0.90
-3      1          1.00
+1      3          0.40
+2      2          0.95
+3      1          0.95
 
 ~~~
 

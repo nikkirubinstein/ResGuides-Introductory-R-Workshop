@@ -4,7 +4,6 @@
 
 # Introduction to R and RStudio 
 
-
 <!--sec data-title="Learning Objectives" data-id="obj" data-show=true data-collapse=false ces-->
 
  * To gain familiarity with the various panes in the RStudio IDE
@@ -20,7 +19,6 @@
 <br>
 
 ---
-
 
 **Table of Contents**
 
@@ -605,7 +603,7 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
     }
     else all.names
 }
-<bytecode: 0x34d54c8>
+<bytecode: 0x34ad398>
 <environment: namespace:base>
 
 ~~~

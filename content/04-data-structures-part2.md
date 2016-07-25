@@ -326,18 +326,19 @@ str(titanic)
 
 
 ~~~output
-'data.frame':	418 obs. of  11 variables:
- $ PassengerId: int  892 893 894 895 896 897 898 899 900 901 ...
- $ Pclass     : int  3 3 2 3 3 3 3 2 3 3 ...
- $ Name       : Factor w/ 418 levels "Abbott, Master. Eugene Joseph",..: 207 404 270 409 179 367 85 58 5 104 ...
- $ Sex        : Factor w/ 2 levels "female","male": 2 1 2 2 1 2 1 2 1 2 ...
- $ Age        : num  34.5 47 62 27 22 14 30 26 18 21 ...
- $ SibSp      : int  0 1 0 0 1 0 0 1 0 2 ...
- $ Parch      : int  0 0 0 0 1 0 0 1 0 0 ...
- $ Ticket     : Factor w/ 363 levels "110469","110489",..: 153 222 74 148 139 262 159 85 101 270 ...
- $ Fare       : num  7.83 7 9.69 8.66 12.29 ...
- $ Cabin      : Factor w/ 77 levels "","A11","A18",..: 1 1 1 1 1 1 1 1 1 1 ...
- $ Embarked   : Factor w/ 3 levels "C","Q","S": 2 3 2 3 3 3 2 3 1 3 ...
+'data.frame':	891 obs. of  12 variables:
+ $ PassengerId: int  1 2 3 4 5 6 7 8 9 10 ...
+ $ Survived   : int  0 1 1 1 0 0 0 0 1 1 ...
+ $ Pclass     : int  3 1 3 1 3 3 1 3 3 2 ...
+ $ Name       : Factor w/ 891 levels "Abbing, Mr. Anthony",..: 109 191 354 273 16 555 516 625 413 577 ...
+ $ Sex        : Factor w/ 2 levels "female","male": 2 1 1 1 2 2 2 2 1 1 ...
+ $ Age        : num  22 38 26 35 35 NA 54 2 27 14 ...
+ $ SibSp      : int  1 1 0 1 0 0 0 3 0 1 ...
+ $ Parch      : int  0 0 0 0 0 0 0 1 2 0 ...
+ $ Ticket     : Factor w/ 681 levels "110152","110413",..: 524 597 670 50 473 276 86 396 345 133 ...
+ $ Fare       : num  7.25 71.28 7.92 53.1 8.05 ...
+ $ Cabin      : Factor w/ 148 levels "","A10","A14",..: 1 83 1 57 1 1 131 1 1 1 ...
+ $ Embarked   : Factor w/ 4 levels "","C","Q","S": 4 2 4 4 4 3 4 4 4 2 ...
 
 ~~~
 
@@ -390,7 +391,7 @@ str(titanic$Pclass)
 
 
 ~~~output
- int [1:418] 3 3 2 3 3 3 3 2 3 3 ...
+ int [1:891] 3 1 3 1 3 3 1 3 3 2 ...
 
 ~~~
 
@@ -404,7 +405,7 @@ length(titanic)
 
 
 ~~~output
-[1] 11
+[1] 12
 
 ~~~
 
@@ -432,7 +433,7 @@ nrow(titanic)
 
 
 ~~~output
-[1] 418
+[1] 891
 
 ~~~
 
@@ -445,7 +446,7 @@ ncol(titanic)
 
 
 ~~~output
-[1] 11
+[1] 12
 
 ~~~
 
@@ -459,7 +460,7 @@ dim(titanic)
 
 
 ~~~output
-[1] 418  11
+[1] 891  12
 
 ~~~
 
@@ -472,9 +473,9 @@ colnames(titanic)
 
 
 ~~~output
- [1] "PassengerId" "Pclass"      "Name"        "Sex"         "Age"        
- [6] "SibSp"       "Parch"       "Ticket"      "Fare"        "Cabin"      
-[11] "Embarked"   
+ [1] "PassengerId" "Survived"    "Pclass"      "Name"        "Sex"        
+ [6] "Age"         "SibSp"       "Parch"       "Ticket"      "Fare"       
+[11] "Cabin"       "Embarked"   
 
 ~~~
 
@@ -490,20 +491,27 @@ head(titanic)
 
 
 ~~~output
-  PassengerId Pclass                                         Name    Sex
-1         892      3                             Kelly, Mr. James   male
-2         893      3             Wilkes, Mrs. James (Ellen Needs) female
-3         894      2                    Myles, Mr. Thomas Francis   male
-4         895      3                             Wirz, Mr. Albert   male
-5         896      3 Hirvonen, Mrs. Alexander (Helga E Lindqvist) female
-6         897      3                   Svensson, Mr. Johan Cervin   male
-   Age SibSp Parch  Ticket    Fare Cabin Embarked
-1 34.5     0     0  330911  7.8292              Q
-2 47.0     1     0  363272  7.0000              S
-3 62.0     0     0  240276  9.6875              Q
-4 27.0     0     0  315154  8.6625              S
-5 22.0     1     1 3101298 12.2875              S
-6 14.0     0     0    7538  9.2250              S
+  PassengerId Survived Pclass
+1           1        0      3
+2           2        1      1
+3           3        1      3
+4           4        1      1
+5           5        0      3
+6           6        0      3
+                                                 Name    Sex Age SibSp
+1                             Braund, Mr. Owen Harris   male  22     1
+2 Cumings, Mrs. John Bradley (Florence Briggs Thayer) female  38     1
+3                              Heikkinen, Miss. Laina female  26     0
+4        Futrelle, Mrs. Jacques Heath (Lily May Peel) female  35     1
+5                            Allen, Mr. William Henry   male  35     0
+6                                    Moran, Mr. James   male  NA     0
+  Parch           Ticket    Fare Cabin Embarked
+1     0        A/5 21171  7.2500              S
+2     0         PC 17599 71.2833   C85        C
+3     0 STON/O2. 3101282  7.9250              S
+4     0           113803 53.1000  C123        S
+5     0           373450  8.0500              S
+6     0           330877  8.4583              Q
 
 ~~~
 
