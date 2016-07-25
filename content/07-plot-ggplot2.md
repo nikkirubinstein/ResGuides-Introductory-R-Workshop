@@ -64,13 +64,6 @@ ggplot(data = titanic, aes(x = Age, y = Fare)) +
   geom_point()
 ~~~
 
-
-
-~~~err
-Warning: Removed 177 rows containing missing values (geom_point).
-
-~~~
-
 <img src="images/Age-vs-Fare-scatter1-1.png" title="plot of chunk Age-vs-Fare-scatter1" alt="plot of chunk Age-vs-Fare-scatter1" style="display: block; margin: auto;" />
 
 So the first thing we do is call the `ggplot` function. This function lets R
@@ -106,13 +99,6 @@ tells `ggplot` we want to visually represent the relationship between **x** and
 ~~~sourcecode
 ggplot(titanic,aes(x = Age, y = Fare)) +
   geom_point()
-~~~
-
-
-
-~~~err
-Warning: Removed 177 rows containing missing values (geom_point).
-
 ~~~
 
 <img src="images/Age-vs-Fare-scatter2-1.png" title="plot of chunk Age-vs-Fare-scatter2" alt="plot of chunk Age-vs-Fare-scatter2" style="display: block; margin: auto;" />
@@ -156,13 +142,6 @@ ggplot(titanic, aes(x = Age, y = Fare, col = as.factor(Pclass)))+
   geom_line()
 ~~~
 
-
-
-~~~err
-Warning: Removed 177 rows containing missing values (geom_path).
-
-~~~
-
 <img src="images/Fare-line-1.png" title="plot of chunk Fare-line" alt="plot of chunk Fare-line" style="display: block; margin: auto;" />
 
 Instead of adding a `geom_point` layer, we've added a `geom_line` layer. 
@@ -176,20 +155,6 @@ ggplot(titanic, aes(x = Age, y = Fare, col = as.factor(Pclass)))+
   geom_point() + geom_line()
 ~~~
 
-
-
-~~~err
-Warning: Removed 177 rows containing missing values (geom_point).
-
-~~~
-
-
-
-~~~err
-Warning: Removed 177 rows containing missing values (geom_path).
-
-~~~
-
 <img src="images/Fare-line-point-1.png" title="plot of chunk Fare-line-point" alt="plot of chunk Fare-line-point" style="display: block; margin: auto;" />
 
 It's important to note that each layer is drawn on top of the previous layer. In
@@ -200,20 +165,6 @@ demonstration:
 ~~~sourcecode
 ggplot(titanic, aes(x = Age, y = Fare ))+
   geom_point() + geom_line(aes(col = as.factor(Pclass)))
-~~~
-
-
-
-~~~err
-Warning: Removed 177 rows containing missing values (geom_point).
-
-~~~
-
-
-
-~~~err
-Warning: Removed 177 rows containing missing values (geom_path).
-
 ~~~
 
 <img src="images/Fare-layer-example-1-1.png" title="plot of chunk Fare-layer-example-1" alt="plot of chunk Fare-layer-example-1" style="display: block; margin: auto;" />
@@ -244,13 +195,6 @@ ggplot(titanic, aes(x = Age, y = Fare, col = as.factor(Pclass)))+
   geom_point()
 ~~~
 
-
-
-~~~err
-Warning: Removed 177 rows containing missing values (geom_point).
-
-~~~
-
 <img src="images/Fare-vs-Age-scatter3-1.png" title="plot of chunk Fare-vs-Age-scatter3" alt="plot of chunk Fare-vs-Age-scatter3" style="display: block; margin: auto;" />
 
 We can fit a simple relationship to the data by adding another layer,
@@ -262,20 +206,6 @@ ggplot(titanic, aes(x = Age, y = Fare, col = as.factor(Pclass)))+
   geom_point() + geom_smooth(method = "lm")
 ~~~
 
-
-
-~~~err
-Warning: Removed 177 rows containing non-finite values (stat_smooth).
-
-~~~
-
-
-
-~~~err
-Warning: Removed 177 rows containing missing values (geom_point).
-
-~~~
-
 <img src="images/lm-fit-1.png" title="plot of chunk lm-fit" alt="plot of chunk lm-fit" style="display: block; margin: auto;" />
 
 We can make the line thicker by *setting* the **size** and **se** aesthetic in the
@@ -285,20 +215,6 @@ We can make the line thicker by *setting* the **size** and **se** aesthetic in t
 ~~~sourcecode
 ggplot(titanic, aes(x = Age, y = Fare, col = as.factor(Pclass)))+
   geom_point() + geom_smooth(method = "lm", size =1.5, se = F)
-~~~
-
-
-
-~~~err
-Warning: Removed 177 rows containing non-finite values (stat_smooth).
-
-~~~
-
-
-
-~~~err
-Warning: Removed 177 rows containing missing values (geom_point).
-
 ~~~
 
 <img src="images/lm-fit2-1.png" title="plot of chunk lm-fit2" alt="plot of chunk lm-fit2" style="display: block; margin: auto;" />
@@ -324,20 +240,6 @@ by adding a layer of **facet** panels:
 ggplot(titanic, aes(x = Age, y = Fare, col = as.factor(Pclass)))+
   geom_point() + geom_smooth(method = "lm", size =1.5, se = F) +
   facet_grid(.~Pclass)
-~~~
-
-
-
-~~~err
-Warning: Removed 177 rows containing non-finite values (stat_smooth).
-
-~~~
-
-
-
-~~~err
-Warning: Removed 177 rows containing missing values (geom_point).
-
 ~~~
 
 <img src="images/facet-1.png" title="plot of chunk facet" alt="plot of chunk facet" style="display: block; margin: auto;" />
@@ -368,20 +270,6 @@ ggplot(titanic, aes(x = Age, y = Fare, col = as.factor(Pclass)))+
   scale_colour_discrete(name = "Passenger Classes", labels = c("First Class", "Second Class", "Third Class"))
 ~~~
 
-
-
-~~~err
-Warning: Removed 177 rows containing non-finite values (stat_smooth).
-
-~~~
-
-
-
-~~~err
-Warning: Removed 177 rows containing missing values (geom_point).
-
-~~~
-
 <img src="images/theme-1.png" title="plot of chunk theme" alt="plot of chunk theme" style="display: block; margin: auto;" />
 
 Next, we need to set the background as blank. Actually, we can save all `theme` settings in one variable.
@@ -399,21 +287,7 @@ ggplot(titanic, aes(x = Age, y = Fare, col = as.factor(Pclass)))+
   theme1
 ~~~
 
-
-
-~~~err
-Warning: Removed 177 rows containing non-finite values (stat_smooth).
-
-~~~
-
-
-
-~~~err
-Warning: Removed 177 rows containing missing values (geom_point).
-
-~~~
-
-<img src="images/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
+<img src="images/theme2-1.png" title="plot of chunk theme2" alt="plot of chunk theme2" style="display: block; margin: auto;" />
 
 
 This is just a taste of what you can do with `ggplot2`. RStudio provides a
@@ -441,13 +315,6 @@ ggplot(titanic, aes(x = Age, y = Fare, size = 2))+
   geom_point()
 ~~~
 
-
-
-~~~err
-Warning: Removed 177 rows containing missing values (geom_point).
-
-~~~
-
 <img src="images/ch1-sol1-1.png" title="plot of chunk ch1-sol1" alt="plot of chunk ch1-sol1" style="display: block; margin: auto;" />
 
 
@@ -456,26 +323,12 @@ ggplot(titanic, aes(x = Age, y = Fare, alpha = 0.2))+
   geom_point()
 ~~~
 
-
-
-~~~err
-Warning: Removed 177 rows containing missing values (geom_point).
-
-~~~
-
 <img src="images/ch1-sol2-1.png" title="plot of chunk ch1-sol2" alt="plot of chunk ch1-sol2" style="display: block; margin: auto;" />
 
 
 ~~~sourcecode
 ggplot(titanic, aes(x = Age, y = Fare, col = "red"))+
   geom_point()
-~~~
-
-
-
-~~~err
-Warning: Removed 177 rows containing missing values (geom_point).
-
 ~~~
 
 <img src="images/ch1-sol3-1.png" title="plot of chunk ch1-sol3" alt="plot of chunk ch1-sol3" style="display: block; margin: auto;" />
@@ -490,13 +343,6 @@ ggplot(titanic, aes(x = Age, y = Fare, col = as.factor(Pclass)))+
   geom_point()
 ~~~
 
-
-
-~~~err
-Warning: Removed 177 rows containing missing values (geom_point).
-
-~~~
-
 <img src="images/ch2-sol-1.png" title="plot of chunk ch2-sol" alt="plot of chunk ch2-sol" style="display: block; margin: auto;" />
 
 <!--endsec-->
@@ -509,20 +355,6 @@ Switch the order of the point and line layers from the previous example. What ha
 ~~~sourcecode
 ggplot(titanic, aes(x = Age, y = Fare )) + 
   geom_line(aes(col = as.factor(Pclass)))+geom_point()
-~~~
-
-
-
-~~~err
-Warning: Removed 177 rows containing missing values (geom_path).
-
-~~~
-
-
-
-~~~err
-Warning: Removed 177 rows containing missing values (geom_point).
-
 ~~~
 
 <img src="images/ch3-sol-1.png" title="plot of chunk ch3-sol" alt="plot of chunk ch3-sol" style="display: block; margin: auto;" />
