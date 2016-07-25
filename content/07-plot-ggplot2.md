@@ -60,11 +60,18 @@ Let's start off with an example:
 
 ~~~sourcecode
 library("ggplot2")
-ggplot(data = healthData, aes(x = selfRatedHealth, y = health)) +
+ggplot(data = titanic, aes(x = Age, y = Fare)) +
   geom_point()
 ~~~
 
-<img src="images/lifeExp-vs-gdpPercap-scatter-1.png" title="plot of chunk lifeExp-vs-gdpPercap-scatter" alt="plot of chunk lifeExp-vs-gdpPercap-scatter" style="display: block; margin: auto;" />
+
+
+~~~err
+Warning: Removed 177 rows containing missing values (geom_point).
+
+~~~
+
+<img src="images/Age-vs-Fare-scatter1-1.png" title="plot of chunk Age-vs-Fare-scatter1" alt="plot of chunk Age-vs-Fare-scatter1" style="display: block; margin: auto;" />
 
 So the first thing we do is call the `ggplot` function. This function lets R
 know that we're creating a new plot, and any of the arguments we give the
@@ -72,20 +79,20 @@ know that we're creating a new plot, and any of the arguments we give the
 layers on the plot.
 
 We've passed in two arguments to `ggplot`. First, we tell `ggplot` what data we
-want to show on our figure, in this example the health data we read in
+want to show on our figure, in this example the titanic data we read in
 earlier. For the second argument we passed in the `aes` function, which
 tells `ggplot` how variables in the **data** map to *aesthetic* properties of
 the figure, in this case the **x** and **y** locations. Here we told `ggplot` we
-want to plot the "education" column of the gapminder data frame on the x-axis, and
-the "health" column on the y-axis. Notice that we didn't need to explicitly
-pass `aes` these columns (e.g. `x = healthData[, "education"]`), this is because
+want to plot the "Age" column of the titanic data frame on the x-axis, and
+the "Fare" column on the y-axis. Notice that we didn't need to explicitly
+pass `aes` these columns (e.g. `x = titanic[, "Age"]`), this is because
 `ggplot` is smart enough to know to look in the **data** for that column!
 
 By itself, the call to `ggplot` isn't enough to draw a figure:
 
 
 ~~~sourcecode
-ggplot(healthData,aes(x=selfRatedHealth,y=health))
+ggplot(titanic,aes(x = Age, y = Fare))
 ~~~
 
 <img src="images/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
@@ -97,21 +104,28 @@ tells `ggplot` we want to visually represent the relationship between **x** and
 
 
 ~~~sourcecode
-ggplot(healthData,aes(x=selfRatedHealth,y=health)) +
+ggplot(titanic,aes(x = Age, y = Fare)) +
   geom_point()
 ~~~
 
-<img src="images/education-vs-health-scatter2-1.png" title="plot of chunk education-vs-health-scatter2" alt="plot of chunk education-vs-health-scatter2" style="display: block; margin: auto;" />
+
+
+~~~err
+Warning: Removed 177 rows containing missing values (geom_point).
+
+~~~
+
+<img src="images/Age-vs-Fare-scatter2-1.png" title="plot of chunk Age-vs-Fare-scatter2" alt="plot of chunk Age-vs-Fare-scatter2" style="display: block; margin: auto;" />
 
 
 <!--sec data-title="Challenge 1" data-id="ch1" data-show=true data-collapse=false ces-->
 
-Modify the following example so that the figure visualises how illnessReversed varies with health:
+Customize the basic setting (size = 2, alpha = 0.2, or col = “red”) in the aesthetics (`aes()`) argument and have a look at what happens. Change `geom_point()` to `geom_jitter()`. Can you explain the difference?
 
 
 ~~~sourcecode
-ggplot(healthData,aes(x=selfRatedHealth,y=health)) +
-  geom_point()
+ggplot(titanic, aes(x = Age, y = Fare, alpha = 0.2))+
+  geom_jitter()
 ~~~
 
 <!--endsec-->
@@ -120,10 +134,10 @@ ggplot(healthData,aes(x=selfRatedHealth,y=health)) +
 
 In the previous examples and challenge we've used the `aes` function to tell the scatterplot **geom** about the **x** and **y** locations of each point.
 Another *aesthetic* property we can modify is the point *color*. Modify the
-code from the previous challenge to **color** the points by the "education"
+code from the previous challenge to **color** the points by the "Pclass"
 column.
 
-**HINT**: transform the education column to a factor using the `as.factor()` function.
+**HINT**: transform the Pclass column to a factor using the `as.factor()` function.
 
 <!--endsec-->
 
@@ -138,24 +152,45 @@ Instead, let's tell `ggplot` to visualise the data as a line plot:
 
 
 ~~~sourcecode
-ggplot(healthData,aes(x=health,y=illnessReversed,color=as.factor(education),by=sex)) + geom_line()
+ggplot(titanic, aes(x = Age, y = Fare, col = as.factor(Pclass)))+
+  geom_line()
 ~~~
 
-<img src="images/health-line-1.png" title="plot of chunk health-line" alt="plot of chunk health-line" style="display: block; margin: auto;" />
 
-Instead of adding a `geom_point` layer, we've added a `geom_line` layer. We've
-added the **by** *aesthetic*, which tells `ggplot` to draw a line for each
-sex.
+
+~~~err
+Warning: Removed 177 rows containing missing values (geom_path).
+
+~~~
+
+<img src="images/Fare-line-1.png" title="plot of chunk Fare-line" alt="plot of chunk Fare-line" style="display: block; margin: auto;" />
+
+Instead of adding a `geom_point` layer, we've added a `geom_line` layer. 
 
 But what if we want to visualise both lines and points on the plot? We can
 simply add another layer to the plot:
 
 
 ~~~sourcecode
-ggplot(healthData,aes(x=health,y=illnessReversed,color=as.factor(education),by=sex)) + geom_point() + geom_line()
+ggplot(titanic, aes(x = Age, y = Fare, col = as.factor(Pclass)))+
+  geom_point() + geom_line()
 ~~~
 
-<img src="images/health-line-point-1.png" title="plot of chunk health-line-point" alt="plot of chunk health-line-point" style="display: block; margin: auto;" />
+
+
+~~~err
+Warning: Removed 177 rows containing missing values (geom_point).
+
+~~~
+
+
+
+~~~err
+Warning: Removed 177 rows containing missing values (geom_path).
+
+~~~
+
+<img src="images/Fare-line-point-1.png" title="plot of chunk Fare-line-point" alt="plot of chunk Fare-line-point" style="display: block; margin: auto;" />
 
 It's important to note that each layer is drawn on top of the previous layer. In
 this example, the points have been drawn *on top of* the lines. Here's a
@@ -163,10 +198,25 @@ demonstration:
 
 
 ~~~sourcecode
-ggplot(healthData,aes(x=health,y=illnessReversed,by=sex)) + geom_line(aes(color=as.factor(education))) + geom_point()
+ggplot(titanic, aes(x = Age, y = Fare ))+
+  geom_point() + geom_line(aes(col = as.factor(Pclass)))
 ~~~
 
-<img src="images/health-layer-example-1-1.png" title="plot of chunk health-layer-example-1" alt="plot of chunk health-layer-example-1" style="display: block; margin: auto;" />
+
+
+~~~err
+Warning: Removed 177 rows containing missing values (geom_point).
+
+~~~
+
+
+
+~~~err
+Warning: Removed 177 rows containing missing values (geom_path).
+
+~~~
+
+<img src="images/Fare-layer-example-1-1.png" title="plot of chunk Fare-layer-example-1" alt="plot of chunk Fare-layer-example-1" style="display: block; margin: auto;" />
 
 In this example, the *aesthetic* mapping of **color** has been moved from the
 global plot options in `ggplot` to the `geom_line` layer so it no longer applies
@@ -190,52 +240,65 @@ demonstrate we'll go back to our first example:
 
 
 ~~~sourcecode
-ggplot(data = healthData, aes(x = selfRatedHealth, y = health,color=as.factor(education))) +
+ggplot(titanic, aes(x = Age, y = Fare, col = as.factor(Pclass)))+
   geom_point()
 ~~~
 
-<img src="images/health-vs-gdpPercap-scatter3-1.png" title="plot of chunk health-vs-gdpPercap-scatter3" alt="plot of chunk health-vs-gdpPercap-scatter3" style="display: block; margin: auto;" />
-
-<!-- not useful ???
-
-Currently it's hard to see the relationship between the points due to some strong
-outliers in GDP per capita. We can change the scale of units on the y axis using
-the *scale* functions. These control the mapping between the data values and
-visual values of an aesthetic.
 
 
-~~~sourcecode
-ggplot(data = healthData, aes(x = health, y = education, color=sex)) +
-  geom_point() + scale_y_log10()
+~~~err
+Warning: Removed 177 rows containing missing values (geom_point).
+
 ~~~
 
-<img src="images/axis-scale-1.png" title="plot of chunk axis-scale" alt="plot of chunk axis-scale" style="display: block; margin: auto;" />
-
-The `log10` function applied a transformation to the values of the gdpPercap
-column before rendering them on the plot, so that each multiple of 10 now only
-corresponds to an increase in 1 on the transformed scale, e.g. a GDP per capita
-of 1,000 is now 3 on the y axis, a value of 10,000 corresponds to 4 on the y
-axis and so on. This makes it easier to visualise the spread of data on the
-y-axis. -->
+<img src="images/Fare-vs-Age-scatter3-1.png" title="plot of chunk Fare-vs-Age-scatter3" alt="plot of chunk Fare-vs-Age-scatter3" style="display: block; margin: auto;" />
 
 We can fit a simple relationship to the data by adding another layer,
 `geom_smooth`:
 
 
 ~~~sourcecode
-ggplot(data = healthData, aes(x = selfRatedHealth, y = health,color=as.factor(education))) +
-  geom_point() + geom_smooth(method="lm")
+ggplot(titanic, aes(x = Age, y = Fare, col = as.factor(Pclass)))+
+  geom_point() + geom_smooth(method = "lm")
+~~~
+
+
+
+~~~err
+Warning: Removed 177 rows containing non-finite values (stat_smooth).
+
+~~~
+
+
+
+~~~err
+Warning: Removed 177 rows containing missing values (geom_point).
+
 ~~~
 
 <img src="images/lm-fit-1.png" title="plot of chunk lm-fit" alt="plot of chunk lm-fit" style="display: block; margin: auto;" />
 
-We can make the line thicker by *setting* the **size** aesthetic in the
+We can make the line thicker by *setting* the **size** and **se** aesthetic in the
 `geom_smooth` layer:
 
 
 ~~~sourcecode
-ggplot(data = healthData, aes(x = selfRatedHealth, y = health,color=as.factor(education))) +
-  geom_point() + geom_smooth(method="lm", size = 1.5)
+ggplot(titanic, aes(x = Age, y = Fare, col = as.factor(Pclass)))+
+  geom_point() + geom_smooth(method = "lm", size =1.5, se = F)
+~~~
+
+
+
+~~~err
+Warning: Removed 177 rows containing non-finite values (stat_smooth).
+
+~~~
+
+
+
+~~~err
+Warning: Removed 177 rows containing missing values (geom_point).
+
 ~~~
 
 <img src="images/lm-fit2-1.png" title="plot of chunk lm-fit2" alt="plot of chunk lm-fit2" style="display: block; margin: auto;" />
@@ -245,13 +308,6 @@ aesthetic by passing it as an argument to `geom_smooth`. Previously in the
 lesson we've used the `aes` function to define a *mapping* between data
 variables and their visual representation.
 
-<!--sec data-title="Challenge 4" data-id="ch4" data-show=true data-collapse=false ces-->
-
-Modify the color and size of the points on the point layer in the previous example.
-
-Hint: do not use the `aes` function.
-
-<!--endsec-->
 
 <br>
 
@@ -259,20 +315,36 @@ Hint: do not use the `aes` function.
 
 ## Multi-panel figures
 
-Earlier we visualised the change in health with selfRatedHealth across education levels
+Earlier we visualised the change in Fare across Age levels
 in one plot. Alternatively, we can split out different groups in the data into multiple panels
 by adding a layer of **facet** panels:
 
 
 ~~~sourcecode
-ggplot(data = healthData, aes(x = selfRatedHealth, y = health,color=paste(sex,HIGroup))) + geom_smooth(method="lm") + facet_wrap( ~ alcoholUseInYoungAdulthood)
+ggplot(titanic, aes(x = Age, y = Fare, col = as.factor(Pclass)))+
+  geom_point() + geom_smooth(method = "lm", size =1.5, se = F) +
+  facet_grid(.~Pclass)
+~~~
+
+
+
+~~~err
+Warning: Removed 177 rows containing non-finite values (stat_smooth).
+
+~~~
+
+
+
+~~~err
+Warning: Removed 177 rows containing missing values (geom_point).
+
 ~~~
 
 <img src="images/facet-1.png" title="plot of chunk facet" alt="plot of chunk facet" style="display: block; margin: auto;" />
 
-The `facet_wrap` layer took a "formula" as its argument, denoted by the tilde
-(~). This tells R to draw a panel for each unique value in the alcohol column
-of the healthData dataset.
+The `facet_grid` layer took a "formula" as its argument, denoted by the tilde
+(~). This tells R to draw a panel for each unique value in the Pclass column
+of the titanic dataset.
 
 <br>
 
@@ -290,13 +362,58 @@ for changing the axis labels. To change the legend title, we need to use the
 
 
 ~~~sourcecode
-ggplot(data = healthData, aes(x = selfRatedHealth, y = health,color=paste(sex,HIGroup))) + geom_smooth(method="lm") + facet_wrap( ~ alcoholUseInYoungAdulthood) +
-  xlab("Self-reported health") + ylab("Health rating from teacher") + ggtitle("Figure 1") +
-  scale_colour_discrete(name="Study group and gender", labels= c("Hawaii - Female","Teman - Female","Hawaii - Male","Teman - Male")) +
-  theme(axis.text.x=element_blank(), axis.ticks.x=element_blank())
+ggplot(titanic, aes(x = Age, y = Fare, col = as.factor(Pclass)))+
+  geom_point() + geom_smooth(method = "lm", size =1.5, se = F) +
+  facet_grid(.~Pclass)+
+  scale_colour_discrete(name = "Passenger Classes", labels = c("First Class", "Second Class", "Third Class"))
+~~~
+
+
+
+~~~err
+Warning: Removed 177 rows containing non-finite values (stat_smooth).
+
+~~~
+
+
+
+~~~err
+Warning: Removed 177 rows containing missing values (geom_point).
+
 ~~~
 
 <img src="images/theme-1.png" title="plot of chunk theme" alt="plot of chunk theme" style="display: block; margin: auto;" />
+
+Next, we need to set the background as blank. Actually, we can save all `theme` settings in one variable.
+
+
+~~~sourcecode
+theme1 <- theme(panel.background = element_blank(),
+               legend.background = element_blank(),
+               panel.grid = element_blank())
+
+ggplot(titanic, aes(x = Age, y = Fare, col = as.factor(Pclass)))+
+  geom_point() + geom_smooth(method = "lm", size =1.5, se = F) +
+  facet_grid(.~Pclass)+ xlab("Passsengers Age") +ylab("Fare") + ggtitle("Figure 1")+
+  scale_colour_discrete(name = "Passengers Class", labels = c("First Class", "Second Class", "Third Class")) +
+  theme1
+~~~
+
+
+
+~~~err
+Warning: Removed 177 rows containing non-finite values (stat_smooth).
+
+~~~
+
+
+
+~~~err
+Warning: Removed 177 rows containing missing values (geom_point).
+
+~~~
+
+<img src="images/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
 
 
 This is just a taste of what you can do with `ggplot2`. RStudio provides a
@@ -309,25 +426,6 @@ code to modify!
 [cheat]: http://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf
 [ggplot-doc]: http://docs.ggplot2.org/current/
 
-<!--sec data-title="Challenge 5" data-id="ch5" data-show=true data-collapse=false ces-->
-
-What would you like to visualise from the dataset? Go ahead and try to do it using ggplot!
-
-<!--endsec-->
-
-Lastly, `ggplot2` has a very handy function, `ggsave()` for saving the current plot to a file:
-
-
-~~~sourcecode
-ggsave("../images/Figure1.pdf")
-~~~
-
-
-
-~~~output
-Saving 7 x 7 in image
-
-~~~
 
 <br>
 
@@ -337,26 +435,66 @@ Saving 7 x 7 in image
 
 <!--sec data-title="Solution to Challenge 1" data-id="ch1sol" data-show=true data-collapse=true ces-->
 
-Modify the example so that the figure visualises how illnessReversed  varies with health:
+
+~~~sourcecode
+ggplot(titanic, aes(x = Age, y = Fare, size = 2))+
+  geom_point()
+~~~
+
+
+
+~~~err
+Warning: Removed 177 rows containing missing values (geom_point).
+
+~~~
+
+<img src="images/ch1-sol1-1.png" title="plot of chunk ch1-sol1" alt="plot of chunk ch1-sol1" style="display: block; margin: auto;" />
 
 
 ~~~sourcecode
-ggplot(healthData, aes(x = health, y = illnessReversed)) + geom_point()
+ggplot(titanic, aes(x = Age, y = Fare, alpha = 0.2))+
+  geom_point()
 ~~~
 
-<img src="images/ch1-sol-1.png" title="plot of chunk ch1-sol" alt="plot of chunk ch1-sol" style="display: block; margin: auto;" />
+
+
+~~~err
+Warning: Removed 177 rows containing missing values (geom_point).
+
+~~~
+
+<img src="images/ch1-sol2-1.png" title="plot of chunk ch1-sol2" alt="plot of chunk ch1-sol2" style="display: block; margin: auto;" />
+
+
+~~~sourcecode
+ggplot(titanic, aes(x = Age, y = Fare, col = "red"))+
+  geom_point()
+~~~
+
+
+
+~~~err
+Warning: Removed 177 rows containing missing values (geom_point).
+
+~~~
+
+<img src="images/ch1-sol3-1.png" title="plot of chunk ch1-sol3" alt="plot of chunk ch1-sol3" style="display: block; margin: auto;" />
 
 <!--endsec-->
 
 <!--sec data-title="Solution to Challenge 2" data-id="ch2sol" data-show=true data-collapse=true ces-->
 
-In the previous examples and challenge we've used the `aes` function to tell the scatterplot **geom** about the **x** and **y** locations of each point.
-Another *aesthetic* property we can modify is the point *color*. Modify the code from the previous challenge to **color** the points by the "education" column.
-
 
 ~~~sourcecode
-ggplot(healthData, aes(x = health, y = illnessReversed, colour=as.factor(education))) + 
-geom_point()
+ggplot(titanic, aes(x = Age, y = Fare, col = as.factor(Pclass)))+
+  geom_point()
+~~~
+
+
+
+~~~err
+Warning: Removed 177 rows containing missing values (geom_point).
+
 ~~~
 
 <img src="images/ch2-sol-1.png" title="plot of chunk ch2-sol" alt="plot of chunk ch2-sol" style="display: block; margin: auto;" />
@@ -369,27 +507,26 @@ Switch the order of the point and line layers from the previous example. What ha
 
 
 ~~~sourcecode
-ggplot(healthData,aes(x=health,y=illnessReversed,by=sex)) + geom_point() + geom_line(aes(color=as.factor(education)))
+ggplot(titanic, aes(x = Age, y = Fare )) + 
+  geom_line(aes(col = as.factor(Pclass)))+geom_point()
+~~~
+
+
+
+~~~err
+Warning: Removed 177 rows containing missing values (geom_path).
+
+~~~
+
+
+
+~~~err
+Warning: Removed 177 rows containing missing values (geom_point).
+
 ~~~
 
 <img src="images/ch3-sol-1.png" title="plot of chunk ch3-sol" alt="plot of chunk ch3-sol" style="display: block; margin: auto;" />
  
 The lines now get drawn over the points!
-
-<!--endsec-->
-
-<!--sec data-title="Solution to Challenge 4" data-id="ch4sol" data-show=true data-collapse=true ces-->
-
-Modify the color and size of the points on the point layer in the previous example.
-
-Hint: do not use the `aes` function.
-
-
-~~~sourcecode
-ggplot(data = healthData, aes(x = selfRatedHealth, y = health)) +
-  geom_point(size=3,color="red") + geom_smooth(method="lm", size = 1.5)
-~~~
-
-<img src="images/ch4-sol-1.png" title="plot of chunk ch4-sol" alt="plot of chunk ch4-sol" style="display: block; margin: auto;" />
 
 <!--endsec-->

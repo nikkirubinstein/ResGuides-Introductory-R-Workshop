@@ -31,8 +31,8 @@ titanic <- read.csv("https://goo.gl/4Gqsnz", header=TRUE)
 Manipulation of dataframes means many things to many researchers, we often select certain observations (rows) or variables (columns), we often group the data by a certain variable(s), or we even calculate summary statistics. We can do these operations using the normal base R operations:
 
 ```{r}
-mean(healthData[healthData$HIGroup == "Group 1", "health"])
-mean(healthData[healthData$HIGroup == "Group 2", "health"])
+mean(titanic[titanic$Pclass == 1, "Age"],na.rm = TRUE)
+mean(titanic[titanic$Pclass == 2, "Age"],na.rm = TRUE)
 ```
 
 But this isn't very *nice* because there is a fair bit of repetition. Repeating yourself will cost you time, both now and later, and potentially introduce some nasty bugs.
@@ -74,18 +74,18 @@ library(dplyr)
 If, for example, we wanted to move forward with only a few of the variables in our dataframe we could use the `select()` function. This will keep only the variables you select.
 
 ```{r}
-sex_health_neuroticism <- select(healthData,sex,health,neuroticism)
+Name_Sex_Survived <- select(titanic,Name,Sex,Survived)
 ```
 
 ![](../images/13-dplyr-fig1.png)
 
-If we open up `sex_health_neuroticism` we'll see that it only contains the sex, health and neuroticism columns. Above we used 'normal' grammar, but the strengths of `dplyr` lie in combining several functions using pipes. Since the pipes grammar is unlike anything we've seen in R before, let's repeat what we've done above using pipes.
+If we open up `Name_Sex_Survived` we'll see that it only contains the Name, Sex and Survived columns. Above we used 'normal' grammar, but the strengths of `dplyr` lie in combining several functions using pipes. Since the pipes grammar is unlike anything we've seen in R before, let's repeat what we've done above using pipes.
 
 ```{r}
-sex_health_neuroticism <- healthData %>% select(sex,health,neuroticism)
+Name_Sex_Survived <- titanic %>% select(Name,Sex,Survived)
 ```
 
-To help you understand why we wrote that in that way, let's walk through it step by step. First we summon the healthData dataframe and pass it on, using the pipe symbol `%>%`, to the next step, which is the `select()` function. In this case we don't specify which data object we use in the `select()` function since in gets that from the previous pipe.
+To help you understand why we wrote that in that way, let's walk through it step by step. First we summon the titanic dataframe and pass it on, using the pipe symbol `%>%`, to the next step, which is the `select()` function. In this case we don't specify which data object we use in the `select()` function since in gets that from the previous pipe.
 
 <br>
 
@@ -93,21 +93,21 @@ To help you understand why we wrote that in that way, let's walk through it step
 
 ## Using filter()
 
-If we now wanted to move forward with the above, but only with data for females, we can combine `select` and `filter`
+If we now wanted to move forward with the above, but only with data for first class passengers, we can combine `select` and `filter`
 
 ```{r}
-sex_health_neuroticism_female <- healthData %>%
-    filter(sex=="Female") %>%
-    select(sex,health,neuroticism)
+Name_Sex_Survived_Female <- titanic %>%
+    filter(Sex=="female") %>%
+    select(Name,Sex,Survived)
 ```
 
 <!--sec data-title="Challenge 1" data-id="ch1" data-show=true data-collapse=false ces-->
 
-Write a single command (which can span multiple lines and includes pipes) that will produce a dataframe that has the values for `conscientiousness`, `extraversion` and `intellect` for males. How many rows does your dataframe have and why?
+Write a single command (which can span multiple lines and includes pipes) that will produce a dataframe that has the values for `Age`, `SibSp` and `Fare` for males only. How many rows does your dataframe have and why?
 
 <!--endsec-->
 
-As with last time, first we pass the healthData dataframe to the `filter()` function, then we pass the filtered version of the healthData dataframe to the `select()` function. **Note:** The order of operations is very important in this case. If we used 'select' first, filter would not be able to find the variable sex since we would have removed it in the previous step.
+As with last time, first we pass the titanic dataframe to the `filter()` function, then we pass the filtered version of the titanic dataframe to the `select()` function. **Note:** The order of operations is very important in this case. If we used 'select' first, filter would not be able to find the variable sex since we would have removed it in the previous step.
 
 <br>
 
@@ -115,14 +115,14 @@ As with last time, first we pass the healthData dataframe to the `filter()` func
 
 ## Using group_by() and summarize()
 
-Now, we were supposed to be reducing the error prone repetitiveness of what can be done with base R, but up to now we haven't done that since we would have to repeat the above for each sex. Instead of `filter()`, which will only pass observations that meet your criteria (in the above: `sex=="Female"`), we can use `group_by()`, which will essentially use every unique criteria that you could have used in filter.
+Now, we were supposed to be reducing the error prone repetitiveness of what can be done with base R, but up to now we haven't done that since we would have to repeat the above for each sex. Instead of `filter()`, which will only pass observations that meet your criteria (in the above: `Sex=="female"`), we can use `group_by()`, which will essentially use every unique criteria that you could have used in filter.
 
 ```{r}
-str(healthData)
+str(titanic)
 
-str(healthData %>% group_by(sex))
+str(titanic %>% group_by(Sex))
 ```
-You will notice that the structure of the dataframe where we used `group_by()` (`grouped_df`) is not the same as the original `healthData` (`data.frame`). A `grouped_df` can be thought of as a `list` where each item in the `list`is a `data.frame` which contains only the rows that correspond to the a particular value `sex` (at least in the example above).
+You will notice that the structure of the dataframe where we used `group_by()` (`grouped_df`) is not the same as the original `titanic` (`data.frame`). A `grouped_df` can be thought of as a `list` where each item in the `list`is a `data.frame` which contains only the rows that correspond to the a particular value `Sex` (at least in the example above).
 
 ![](../images/13-dplyr-fig2.png)
 
@@ -132,43 +132,34 @@ You will notice that the structure of the dataframe where we used `group_by()` (
 
 ## Using summarize()
 
-The above was a bit on the uneventful side because `group_by()` is much more exciting in conjunction with `summarize()`. This will allow you to create new variable(s) by using functions that repeat for each of the sex-specific data frames. That is to say, using the `group_by()` function, we split our original dataframe into multiple pieces, then we can run functions (e.g. `mean()` or `sd()`) within `summarize()`.
+The above was a bit on the uneventful side because `group_by()` is only really useful in conjunction with `summarize()` (or `summarise()`). This will allow you to create new variable(s) by using functions that repeat for each of the sex-specific data frames. That is to say, using the `group_by()` function, we split our original dataframe into multiple pieces, then we can run functions (e.g. `mean()` or `sd()`) within `summarize()`.
 
 ```{r}
-conscientiousness_by_sex <- healthData %>%
-    group_by(sex) %>%
-    summarize(mean_conscientiousness=mean(conscientiousness))
-conscientiousness_by_sex
+Survived_by_Sex <- titanic %>%
+    group_by(Sex) %>%
+    summarise(mean_Survived=mean(Survived))
+Survived_by_Sex
 ```
 
 ![](../images/13-dplyr-fig3.png)
 
-That allowed us to calculate the mean conscientiousness for each sex, but it gets even better.
+That allowed us to calculate the mean conscientiousness for each sex, but it gets even better. We can specify as many group_by variables as we want, enabling us to get stats on every combination of that set of variables.
 
 <!--sec data-title="Challenge 2" data-id="ch2" data-show=true data-collapse=false ces-->
 
-Calculate the average mentalAdjustment per education. Which had the highest mentalAdjustment and which had the lowest?
+Calculate the average Survived value per Pclass and Sex. Which combination of Pclass and Sex had the highest Survived value and which combination had the lowest?
 
 <!--endsec-->
-
-The function `group_by()` allows us to group by multiple variables. Let's group by `sex` and `education`.
-
-
-```{r}
-intellect_bysex_byeducation <- healthData %>%
-    group_by(sex,education) %>%
-    summarize(max_intellect=max(intellect))
-```
 
 That is already quite powerful, but it gets even better! You're not limited to defining 1 new variable in `summarize()`.
 
 ```{r}
-intellect_health_bysex_byeducation <- healthData %>%
-    group_by(sex,education) %>%
-    summarize(mean_intellect=mean(intellect),
-              sd_intellect=sd(intellect),
-              mean_health=mean(health),
-              sd_health=sd(health))
+Survived_by_PclassAndSex <- titanic %>%
+    group_by(Pclass,Sex) %>%
+    summarise(mean_Survived = mean(Survived),
+              sd_Survived = sd(Survived),
+              GroupSize = n())
+Survived_by_PclassAndSex
 ```
 
 <br>
@@ -179,20 +170,19 @@ intellect_health_bysex_byeducation <- healthData %>%
 
 We can also create new variables prior to (or even after) summarizing information using `mutate()`.
 ```{r}
-intellect_health_bysex_byeducation <- healthData %>%
-    mutate(serialKiller=intellect/mentalAdjustment) %>%
-    group_by(sex,education) %>%
-    summarize(mean_intellect=mean(intellect),
-              sd_intellect=sd(intellect),
-              mean_health=mean(health),
-              sd_health=sd(health),
-              mean_killer=mean(serialKiller),
-              sd_killer=sd(serialKiller))
+Survived_by_Sex_Status <- titanic %>%
+    mutate(Status=Age*Pclass) %>%
+    group_by(Sex) %>%
+    summarize(mean_Age=mean(Age, na.rm = TRUE),
+              sd_Age=sd(Age, na.rm = TRUE),
+              mean_Status=mean(Status, na.rm = TRUE),
+              sd_Status=sd(Status, na.rm = TRUE))
+Survived_by_Sex_Status
 ```
 
 <!--sec data-title="Advanced challenge" data-id="ch3" data-show=true data-collapse=false ces-->
 
-Calculate the average intellect for 5 randomly selected females in each sample group. Then arrange the groups in reverse alphabetical order. **Hint:** Use the `dplyr` functions `arrange()` and `sample_n()`, they have similar syntax to other dplyr functions.
+Calculate the average Survived value for a group of 20 randomly selected females from each Pclass group. Then arrange the classes in descending order. **Hint:** Use the `dplyr` functions `arrange()` and `sample_n()`, they have similar syntax to other dplyr functions. Look at the help!
 
 <!--endsec-->
 
@@ -204,33 +194,41 @@ Calculate the average intellect for 5 randomly selected females in each sample g
 
 <!--sec data-title="Solution to Challenge 1" data-id="ch1sol" data-show=true data-collapse=true ces-->
 
+Write a single command (which can span multiple lines and includes pipes) that will produce a dataframe that has the values for `Age`, `SibSp` and `Fare` for males only. How many rows does your dataframe have and why?
+
 ```{r}
-conscientiousness_extraversion_intellect_males <- healthData %>%
-                            filter(sex=="Male") %>%
-                            select(conscientiousness,extraversion,intellect)
+Age_SibSp_Fare_Males <- titanic %>%
+  filter(Sex=="male") %>%
+  select(Age,SibSp,Fare)
 ```
 
 <!--endsec-->
 
 <!--sec data-title="Solution to Challenge 2" data-id="ch2sol" data-show=true data-collapse=true ces-->
 
+Calculate the average Survived value per Pclass and Sex. Which combination of Pclass and Sex had the highest Survived value and which combination had the lowest?
+
 ```{r}
-mentalAdjustment_byeducation <- healthData %>%
-    group_by(education) %>%
-    summarize(mean_mentalAdjustment=mean(mentalAdjustment))
+Survived_by_PclassAndSex <- titanic %>%
+    group_by(Pclass,Sex) %>%
+    summarise(mean_Survived=mean(Survived))
+Survived_by_PclassAndSex
 ```
 
 <!--endsec-->
 
 <!--sec data-title="Solution to Advanced challenge" data-id="ch3sol" data-show=true data-collapse=true ces-->
 
+Calculate the average Survived value for a group of 20 randomly selected females from each Pclass group. Then arrange the classes in descending order. **Hint:** Use the `dplyr` functions `arrange()` and `sample_n()`, they have similar syntax to other dplyr functions. Look at the help!
+
 ```{r}
-intellect_5ids_byHIGroup <- healthData %>% 
-    filter(sex=="Female") %>%
-    group_by(HIGroup) %>%
-    sample_n(5) %>%
-    summarize(mean_intellect=mean(intellect)) %>%
-    arrange(desc(HIGroup))
+Survived_byPclass_RandomSample <- titanic %>% 
+    filter(Sex=="female") %>%
+    group_by(Pclass) %>%
+    sample_n(20) %>%
+    summarize(mean_Survived=mean(Survived)) %>%
+    arrange(desc(Pclass))
+Survived_byPclass_RandomSample
 ```
 
 <!--endsec-->
