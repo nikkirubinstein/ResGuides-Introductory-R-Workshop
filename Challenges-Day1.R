@@ -246,6 +246,21 @@
 # separator between text. The default is a space: " ". The default for paste0
 # is no space "".
 
+## Challenge 4
+# The paste function is commonly used to make human-readable messages as it is 
+# used to combine text together, e.g:
+# language <- "R"
+# paste("learning", "to", "code", "in", language, "is", "fun", sep=" ")
+# Write a function called ColumnPercentile that takes 3 arguments:
+# - a dataset
+# - a column name of the dataset (must contain numeric data)
+# - a percentile (must be between 0 and 1)
+# and returns a human readable statement with the result.
+# E.g. ColumnPercentile(titanic, "age", 0.5)
+# might return: "The 50th percentile of the age column is 28"
+# HINT: Look up the quantile() function to calculate perecentiles.
+# Don't forget to set na.rm = TRUE
+
 # Creating publication quality graphics (8) ##################################
 
 ## Challenge 1 
