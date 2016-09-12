@@ -103,12 +103,14 @@ ggplot(titanic,aes(x = Age, y = Fare)) +
 
 <!--sec data-title="Challenge 1" data-id="ch1" data-show=true data-collapse=false ces-->
 
-Customize the basic setting (size = 2, alpha = 0.2, or col = “red”) in the aesthetics (`aes()`) argument and have a look at what happens. Change `geom_point()` to `geom_jitter()`. Can you explain the difference?
+Modify the example so that the figure visualises how fare changes across passenger class:
 
 ```{r, eval=FALSE}
-ggplot(titanic, aes(x = Age, y = Fare, alpha = 0.2))+
-  geom_jitter()
+ggplot(titanic,aes(x = Age, y = Fare)) +
+  geom_point()
 ```
+
+Hint: the titanic dataset has a column called "Pclass", which should appear on the x-axis.
 
 <!--endsec-->
 
@@ -116,11 +118,12 @@ ggplot(titanic, aes(x = Age, y = Fare, alpha = 0.2))+
 
 In the previous examples and challenge we've used the `aes` function to tell the scatterplot **geom** about the **x** and **y** locations of each point.
 Another *aesthetic* property we can modify is the point *color*. Modify the
-code from the previous challenge to **color** the points by the "Pclass"
+code from the previous challenge to **color** the points by the "Survived"
 column.
 
-**HINT**: transform the Pclass column to a factor using the `as.factor()` function.
+**HINT**: transform the Survived column to a factor using the `as.factor()` function.
 
+What trends do you see in the data? Are they what you expected?
 <!--endsec-->
 
 <br>
@@ -190,11 +193,11 @@ ggplot(titanic, aes(x = Age, y = Fare, col = as.factor(Pclass)))+
 ```
 
 We can make the line thicker by *setting* the **size** and **se** aesthetic in the
-`geom_smooth` layer:
+`geom_smooth` layer. We can change the scale of units on the y axis using the scale functions. These control the mapping between the data values and visual values of an aesthetic.
 
 ```{r lm-fit2, warning = FALSE}
 ggplot(titanic, aes(x = Age, y = Fare, col = as.factor(Pclass)))+
-  geom_point() + geom_smooth(method = "lm", size =1.5, se = F)
+  geom_point() + geom_smooth(method = "lm", size =1.5, se = F) + scale_y_log10()
 ```
 
 There are two ways an *aesthetic* can be specified. Here we *set* the **size**
@@ -214,9 +217,14 @@ in one plot. Alternatively, we can split out different groups in the data into m
 by adding a layer of **facet** panels:
 
 ```{r facet, warning = FALSE}
-ggplot(titanic, aes(x = Age, y = Fare, col = as.factor(Pclass)))+
-  geom_point() + geom_smooth(method = "lm", size =1.5, se = F) +
-  facet_grid(.~Pclass)
+ggplot(titanic, aes(x = Sex, fill=as.factor(Survived))) + 
+  geom_bar(position = 'dodge') 
+```
+
+```{r facet, warning = FALSE}
+ggplot(titanic, aes(x = Sex, fill=as.factor(Survived))) + 
+  geom_bar(position = 'dodge') + 
+  facet_grid(~ Pclass)
 ```
 
 The `facet_grid` layer took a "formula" as its argument, denoted by the tilde
@@ -238,24 +246,16 @@ for changing the axis labels. To change the legend title, we need to use the
 **scales** layer.
 
 ```{r theme, warning = FALSE}
-ggplot(titanic, aes(x = Age, y = Fare, col = as.factor(Pclass)))+
-  geom_point() + geom_smooth(method = "lm", size =1.5, se = F) +
-  facet_grid(.~Pclass)+
-  scale_colour_discrete(name = "Passenger Classes", labels = c("First Class", "Second Class", "Third Class"))
-```
 
-Next, we need to set the background as blank. Actually, we can save all `theme` settings in one variable.
+ggplot(titanic, aes(x = Sex, fill=as.factor(Survived))) + 
+  geom_bar(position = 'dodge') + 
+  facet_grid(~ Pclass, labeller = labeller(Pclass = c(`1` = "first class", 
+                                                      `2` = "second class", 
+                                                      `3` = "third class"))) +
+  xlab("gender") + ggtitle("Figure 1") +
+  scale_fill_discrete(name="survival", label=c("died", "survived")) + 
+  theme_bw() + theme(panel.grid = element_blank())
 
-```{r theme2, warning = FALSE}
-theme1 <- theme(panel.background = element_blank(),
-               legend.background = element_blank(),
-               panel.grid = element_blank())
-
-ggplot(titanic, aes(x = Age, y = Fare, col = as.factor(Pclass)))+
-  geom_point() + geom_smooth(method = "lm", size =1.5, se = F) +
-  facet_grid(.~Pclass)+ xlab("Passsengers Age") +ylab("Fare") + ggtitle("Figure 1")+
-  scale_colour_discrete(name = "Passengers Class", labels = c("First Class", "Second Class", "Third Class")) +
-  theme1
 ```
 
 
