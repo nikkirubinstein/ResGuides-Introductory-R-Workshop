@@ -155,6 +155,7 @@ this example, the points have been drawn *on top of* the lines. Here's a
 demonstration:
 
 ```{r Fare-layer-example-1, warning = FALSE}
+
 ggplot(titanic, aes(x = Age, y = Fare ))+
   geom_point() + geom_line(aes(col = as.factor(Pclass)))
 ```
@@ -180,6 +181,7 @@ Ggplot also makes it easy to overlay statistical models over the data. To
 demonstrate we'll go back to our first example:
 
 ```{r Fare-vs-Age-scatter3, message=FALSE, warning = FALSE}
+
 ggplot(titanic, aes(x = Age, y = Fare, col = as.factor(Pclass)))+
   geom_point()
 ```
@@ -188,6 +190,7 @@ We can fit a simple relationship to the data by adding another layer,
 `geom_smooth`:
 
 ```{r lm-fit, warning = FALSE}
+
 ggplot(titanic, aes(x = Age, y = Fare, col = as.factor(Pclass)))+
   geom_point() + geom_smooth(method = "lm")
 ```
@@ -216,12 +219,14 @@ Earlier we visualised the change in Fare across Age levels
 in one plot. Alternatively, we can split out different groups in the data into multiple panels
 by adding a layer of **facet** panels:
 
-```{r facet, warning = FALSE}
+```{r warning = FALSE}
+
 ggplot(titanic, aes(x = Sex, fill=as.factor(Survived))) + 
   geom_bar(position = 'dodge') 
 ```
 
-```{r facet, warning = FALSE}
+```{r warning = FALSE}
+
 ggplot(titanic, aes(x = Sex, fill=as.factor(Survived))) + 
   geom_bar(position = 'dodge') + 
   facet_grid(~ Pclass)
@@ -279,11 +284,13 @@ code to modify!
 <!--sec data-title="Solution to Challenge 1" data-id="ch1sol" data-show=true data-collapse=true ces-->
 
 ```{r ch1-sol1, warning = FALSE}
+
 ggplot(titanic, aes(x = Age, y = Fare, size = 2))+
   geom_point()
 ```
 
 ```{r ch1-sol2, warning = FALSE}
+
 ggplot(titanic, aes(x = Age, y = Fare, alpha = 0.2))+
   geom_point()
 ```

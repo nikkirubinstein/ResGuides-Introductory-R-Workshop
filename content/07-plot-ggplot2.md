@@ -106,13 +106,15 @@ ggplot(titanic,aes(x = Age, y = Fare)) +
 
 <!--sec data-title="Challenge 1" data-id="ch1" data-show=true data-collapse=false ces-->
 
-Customize the basic setting (size = 2, alpha = 0.2, or col = “red”) in the aesthetics (`aes()`) argument and have a look at what happens. Change `geom_point()` to `geom_jitter()`. Can you explain the difference?
+Modify the example so that the figure visualises how fare changes across passenger class:
 
 
 ~~~sourcecode
-ggplot(titanic, aes(x = Age, y = Fare, alpha = 0.2))+
-  geom_jitter()
+ggplot(titanic,aes(x = Age, y = Fare)) +
+  geom_point()
 ~~~
+
+Hint: the titanic dataset has a column called "Pclass", which should appear on the x-axis.
 
 <!--endsec-->
 
@@ -120,11 +122,12 @@ ggplot(titanic, aes(x = Age, y = Fare, alpha = 0.2))+
 
 In the previous examples and challenge we've used the `aes` function to tell the scatterplot **geom** about the **x** and **y** locations of each point.
 Another *aesthetic* property we can modify is the point *color*. Modify the
-code from the previous challenge to **color** the points by the "Pclass"
+code from the previous challenge to **color** the points by the "Survived"
 column.
 
-**HINT**: transform the Pclass column to a factor using the `as.factor()` function.
+**HINT**: transform the Survived column to a factor using the `as.factor()` function.
 
+What trends do you see in the data? Are they what you expected?
 <!--endsec-->
 
 <br>
@@ -209,12 +212,12 @@ ggplot(titanic, aes(x = Age, y = Fare, col = as.factor(Pclass)))+
 <img src="images/lm-fit-1.png" title="plot of chunk lm-fit" alt="plot of chunk lm-fit" style="display: block; margin: auto;" />
 
 We can make the line thicker by *setting* the **size** and **se** aesthetic in the
-`geom_smooth` layer:
+`geom_smooth` layer. We can change the scale of units on the y axis using the scale functions. These control the mapping between the data values and visual values of an aesthetic.
 
 
 ~~~sourcecode
 ggplot(titanic, aes(x = Age, y = Fare, col = as.factor(Pclass)))+
-  geom_point() + geom_smooth(method = "lm", size =1.5, se = F)
+  geom_point() + geom_smooth(method = "lm", size =1.5, se = F) + scale_y_log10()
 ~~~
 
 <img src="images/lm-fit2-1.png" title="plot of chunk lm-fit2" alt="plot of chunk lm-fit2" style="display: block; margin: auto;" />
@@ -237,12 +240,20 @@ by adding a layer of **facet** panels:
 
 
 ~~~sourcecode
-ggplot(titanic, aes(x = Age, y = Fare, col = as.factor(Pclass)))+
-  geom_point() + geom_smooth(method = "lm", size =1.5, se = F) +
-  facet_grid(.~Pclass)
+ggplot(titanic, aes(x = Sex, fill=as.factor(Survived))) + 
+  geom_bar(position = 'dodge') 
 ~~~
 
-<img src="images/facet-1.png" title="plot of chunk facet" alt="plot of chunk facet" style="display: block; margin: auto;" />
+<img src="images/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
+
+
+~~~sourcecode
+ggplot(titanic, aes(x = Sex, fill=as.factor(Survived))) + 
+  geom_bar(position = 'dodge') + 
+  facet_grid(~ Pclass)
+~~~
+
+<img src="images/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
 
 The `facet_grid` layer took a "formula" as its argument, denoted by the tilde
 (~). This tells R to draw a panel for each unique value in the Pclass column
@@ -264,30 +275,17 @@ for changing the axis labels. To change the legend title, we need to use the
 
 
 ~~~sourcecode
-ggplot(titanic, aes(x = Age, y = Fare, col = as.factor(Pclass)))+
-  geom_point() + geom_smooth(method = "lm", size =1.5, se = F) +
-  facet_grid(.~Pclass)+
-  scale_colour_discrete(name = "Passenger Classes", labels = c("First Class", "Second Class", "Third Class"))
+ggplot(titanic, aes(x = Sex, fill=as.factor(Survived))) + 
+  geom_bar(position = 'dodge') + 
+  facet_grid(~ Pclass, labeller = labeller(Pclass = c(`1` = "first class", 
+                                                      `2` = "second class", 
+                                                      `3` = "third class"))) +
+  xlab("gender") + ggtitle("Figure 1") +
+  scale_fill_discrete(name="survival", label=c("died", "survived")) + 
+  theme_bw() + theme(panel.grid = element_blank())
 ~~~
 
 <img src="images/theme-1.png" title="plot of chunk theme" alt="plot of chunk theme" style="display: block; margin: auto;" />
-
-Next, we need to set the background as blank. Actually, we can save all `theme` settings in one variable.
-
-
-~~~sourcecode
-theme1 <- theme(panel.background = element_blank(),
-               legend.background = element_blank(),
-               panel.grid = element_blank())
-
-ggplot(titanic, aes(x = Age, y = Fare, col = as.factor(Pclass)))+
-  geom_point() + geom_smooth(method = "lm", size =1.5, se = F) +
-  facet_grid(.~Pclass)+ xlab("Passsengers Age") +ylab("Fare") + ggtitle("Figure 1")+
-  scale_colour_discrete(name = "Passengers Class", labels = c("First Class", "Second Class", "Third Class")) +
-  theme1
-~~~
-
-<img src="images/theme2-1.png" title="plot of chunk theme2" alt="plot of chunk theme2" style="display: block; margin: auto;" />
 
 
 This is just a taste of what you can do with `ggplot2`. RStudio provides a
