@@ -263,28 +263,33 @@
 
 # Creating publication quality graphics (8) ##################################
 
-## Challenge 1 
-# Modify the following example so that the figure visualises how illnessReversed 
-# varies with health:
-# ggplot(healthData,aes(x=selfRatedHealth,y=health)) +
+## Challenge 1
+# Modify the example so that the figure visualises how fare changes 
+# across passenger class:
+# ggplot(titanic,aes(x = Age, y = Fare)) +
 # geom_point()
+# Hint: the titanic dataset has a column called "Pclass", 
+# which should appear on the x-axis.
 
-## Challenge 2 
-# In the previous examples and challenge we've used the aes function to tell
-# the scatterplot geom about the x and y locations of each point.
-# Another aesthetic property we can modify is the point color. Modify the
-# code from the previous challenge to color the points by the "education"
-# column.
-# HINT: transform the education column to a factor using the as.factor() function.
+## Challenge 2
+# In the previous examples and challenge we've used the `aes` 
+# function to tell the scatterplot geom about the x and y 
+# locations of each point.
+# Another aesthetic property we can modify is the point color. 
+# Modify the code from the previous challenge to color the 
+# points by the "Survived" column.
+# HINT: transform the Survived column to a factor using the 
+# `as.factor()` function.
 
-## Challenge 3 
-# Switch the order of the point and line layers from the previous example. What
-# happened?
+## Challenge 3
+# Switch the order of the point and line layers from the 
+# previous example. What happened?
 
-## Challenge 4 
-# Modify the color and size of the points on the point layer in the previous
-# example.
-# Hint: do not use the aes function.
+## Challenge 4
+# Remove the confidence intervals from the plot.
+# HINT: look up the help for geom_smooth() 
+# Also try to change the width of the line (you will need to use the 
+# size argument)
 
 ## Challenge 5 
 # What would you like to visualise from the dataset?
